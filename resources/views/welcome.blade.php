@@ -88,7 +88,12 @@
 
 <div class="w3-container">
   <h3 class="w3-center">Coming Soon</h3>
-  
+  <div class="w3-containe w3-centerr">
+    <p class="w3-center">Vowel Clusters</p>
+    <p class="w3-center">Consonant Clusters</p>
+    <p class="w3-center">Me Before You: Vowels</p>
+    <p class="w3-center">Me Before You: Consonants</p>
+  </div>
 </div>
 
 
