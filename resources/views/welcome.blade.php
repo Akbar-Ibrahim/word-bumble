@@ -49,6 +49,9 @@
     </div>
 </div>
 
+<!-- First three -->
+
+
 <div class="w3-row-padding w3-center w3-margin-top">
 <div class="w3-third">
   <div class="w3-card w3-container" style="min-height:460px">
@@ -86,7 +89,48 @@
 </div>
 
 
-<div class="w3-container">
+
+
+<!-- Second three -->
+
+<div class="w3-row-padding w3-center w3-margin-top">
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <!-- <h3>The begining, the end</h3><br> -->
+  
+  <i class="fa fa-flag-checkered w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+  <p>Vowels Unclustered</p>
+  <p>
+  <a class="w3-button w3-border" style="font-size: 21px; padding: 14px 40px;;" href="/last/letter">Play</a>
+  </p>
+  </div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <!-- <h3>Word Length</h3><br> -->
+  <i class="fas fa fa-text-width w3-margin-bottom w3-text-theme" style="font-size: 120px;"></i>
+  <p>The begining and the end</p>
+  <p>
+  <a class="w3-button w3-border" style="font-size: 21px; padding: 14px 40px;;" href="/words/4">Play</a>
+  </p>
+  </div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <!-- <h3>Nth Position</h3><br> -->
+  <i class="fa fa-diamond w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+  <p>Consonants Unclustered </p>
+  <p>
+  <a class="w3-button w3-border" style="font-size: 21px; padding: 14px 40px;;" href="letter/nth-position/">Play</a>
+  </p>
+  </div>
+</div>
+</div>
+
+
+<div class="w3-container" style="margin-bottom: 100px;">
   <h3 class="w3-center">Coming Soon</h3>
   <div class="w3-containe w3-centerr">
     <p class="w3-center">Vowel Clusters</p>
@@ -95,6 +139,10 @@
     <p class="w3-center">Me Before You: Consonants</p>
   </div>
 </div>
+
+
+
+
 
 
 

@@ -1,16 +1,15 @@
 @extends('layouts.app')
 
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"> Vowels Unclustered </div>
+                <div class="card-header"> Begining and end </div>
 
                 <div class="card-body">
 
-                <vowel-unclustered></vowel-unclustered>
+                <begin-end></begin-end>
                 </div>
             </div>
         </div>

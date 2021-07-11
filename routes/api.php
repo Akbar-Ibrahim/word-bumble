@@ -56,3 +56,11 @@ Route::post('/words/length', 'SpecificLengthController@specificNumberOfLetters')
 //Cluster
 Route::post('/words/vowel/uncluster', 'ClusterController@vowelUncluster');
 Route::get('/words/vowel/cluster', 'ClusterController@vowelCluster');
+
+
+
+
+Route::post('/bb', 'BeginingAndEndController@beginsAndEndsWith');
+
+
+Route::get('test', 'TestController@test');

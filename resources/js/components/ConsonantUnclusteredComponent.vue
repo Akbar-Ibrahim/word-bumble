@@ -80,7 +80,7 @@ export default {
       level: 1,
       letter: "",
       rules:
-        "Mention words that do not begin or end with a vowel. The word must contain at least two vowels. The vowels must not come one after another.",
+        "Mention words that do not begin or end with a consonant. The word must contain at least two consonants. The consonants must not come one after another.",
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
@@ -186,16 +186,16 @@ export default {
       var lengthOfWord = word.length - 1;
 
       if (
-        word.charAt(0).match(/\b[aeiou]/) ||
-        word.charAt(lengthOfWord).match(/[aeiou]\b/)
+        word.charAt(0).match(/\b[bcdfghjklmnpqrstvwxyz]/) ||
+        word.charAt(lengthOfWord).match(/[bcdfghjklmnpqrstvwxyz]\b/)
       ) {
         this.gameOver();
       } else {
-        var patt1 = /[aeiou][aeiou]*/g;
+        var patt1 = /[bcdfghjklmnpqrstvwxyz][bcdfghjilmnpqrstvwxyz]*/g;
         var result = word.match(patt1);
 
         for (var i = 0; i < result.length; i++) {
-          if (result[i].match(/[aeiou][aeiou]+/g)) {
+          if (result[i].match(/[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]+/g)) {
             check += 1;
             break;
           }
@@ -204,10 +204,10 @@ export default {
 if (check >= 1) {
         this.gameOver();
       } else {
-        var myPattern = /[aeiou]/gi;
-        var numOfVowels = word.match(myPattern);
+        var myPattern = /[bcdfghjklmnpqrstvwxyz]/gi;
+        var numOfConsonants = word.match(myPattern);
 
-        if (numOfVowels.length < 2) {
+        if (numOfConsonants.length < 2) {
           this.gameOver();
         } else {
           // this.sendWord();

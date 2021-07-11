@@ -25,7 +25,10 @@ Route::get('/last/letter', 'GameController@lastLetter');
 Route::get('/words/{length}/', 'GameController@wordLength');
 Route::get('/letters/{letter}/', 'GameController@letter')->name('letters.letter');
 Route::get('/letter/nth-position/', 'GameController@nthPosition')->name('nth.position');
-// Route::get('/vowel/unclustered/{length}/', 'GameController@vowelUnclustered');
+Route::get('/vowel/unclustered/', 'GameController@vowelUnclustered');
+Route::get('/consonant/unclustered/', 'GameController@consonantUnclustered');
+
+Route::get('/begining-and-end/', 'GameController@beginingAndEnd');
 
 Route::get('/insert', function(){
 //     $myfile = fopen("word.txt", "r") or die("Unable to open file!");

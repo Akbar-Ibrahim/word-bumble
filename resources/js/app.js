@@ -28,6 +28,9 @@ Vue.component('word-tally', require('./components/WordTallyComponent.vue').defau
 Vue.component('game-over', require('./components/GameOverComponent.vue').default);
 Vue.component('nth-position', require('./components/NthPositionComponent.vue').default);
 Vue.component('vowel-unclustered', require('./components/VowelUnclusteredComponent.vue').default);
+Vue.component('consonant-unclustered', require('./components/ConsonantUnclusteredComponent.vue').default);
+Vue.component('begin-end', require('./components/BeginAndEndComponent.vue').default);
+Vue.component('single-player-tally', require('./components/SinglePlayerTallyComponent.vue').default);
 
 // Modal
 Vue.component('modal', require('./components/ModalComponent.vue').default);

@@ -1834,6 +1834,458 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginAndEndComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginAndEndComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: [],
+  data: function data() {
+    return {
+      isDone: false,
+      level: 1,
+      nextLetter: "",
+      rules: "List words that begin and end with the same letter",
+      listOfComputerWords: [],
+      listOfPlayerWords: [],
+      computer: "",
+      timer: 10
+    };
+  },
+  created: function created() {},
+  mounted: function mounted() {},
+  methods: {
+    startTimer: function startTimer() {
+      if (this.level > 1) {// setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+    playQuiz: function playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+      this.resetTimer();
+      this.startTimer();
+    },
+    checkBeforeSending: function checkBeforeSending() {
+      var word = this.$refs.word.value.trim();
+
+      if (word) {
+        this.verifyConditionsAreMet(word);
+      }
+    },
+    sendWord: function sendWord() {
+      var _this = this;
+
+      var word = this.$refs.word.value.trim();
+
+      if (word) {
+        if (this.listOfComputerWords.length > 0 && this.listOfPlayerWords.length > 0) {
+          this.checkIfWordAlreadyExists(word);
+        }
+
+        var data = {
+          word: word
+        };
+        data = JSON.stringify(data);
+        fetch("/api/bb", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: data
+        }).then(function (response) {
+          return response.json();
+        }).then(function (result) {
+          console.log(result);
+
+          if (result.length > 0) {
+            _this.listOfPlayerWords.push(word);
+
+            _this.resetTimer();
+
+            if (_this.listOfPlayerWords.length == 50) {
+              _this.resetTimer(); // this.endLevel();
+
+            } else {
+              _this.$refs.computerWord.textContent = result.word;
+              _this.computer = result.word;
+
+              _this.listOfComputerWords.push(result);
+            }
+          } else {
+            _this.gameOver();
+          }
+        });
+      }
+
+      this.$refs.word.value = "";
+    },
+    checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
+      var checkComputer = 0;
+      var checkPlayer = 0;
+
+      for (var i = 0; i < this.listOfComputerWords.length; i++) {
+        if (word === this.listOfComputerWords[i].word) {
+          checkComputer = checkComputer + 1;
+        }
+      }
+
+      for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+        if (word === this.listOfPlayerWords[i]) {
+          checkPlayer = checkPlayer + 1;
+        }
+      }
+
+      if (checkComputer > 0 || checkPlayer > 0) {
+        this.gameOver();
+      }
+    },
+    resetTimer: function resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+    stopTimer: function stopTimer() {},
+    verifyConditionsAreMet: function verifyConditionsAreMet(word) {
+      var lengthOfWord = word.length - 1;
+
+      if (word.charAt(0) === word.charAt(lengthOfWord)) {
+        this.sendWord();
+      } else {
+        this.gameOver();
+      }
+    },
+    gameOver: function gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
+    },
+    myTimer: function myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
+    },
+    proceedToNextChallenge: function proceedToNextChallenge() {
+      var next = parseInt(this.wordLength) + 1;
+      location.href = "/words/" + next;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: [],
+  data: function data() {
+    return {
+      vowels: ["a", "e", "i", "o", "u"],
+      vowelIndex: 0,
+      isDone: false,
+      level: 1,
+      letter: "",
+      rules: "Mention words that do not begin or end with a consonant. The word must contain at least two consonants. The consonants must not come one after another.",
+      listOfPlayerWords: [],
+      computer: "",
+      timer: 10
+    };
+  },
+  created: function created() {},
+  mounted: function mounted() {},
+  methods: {
+    startTimer: function startTimer() {
+      if (this.level > 1) {// setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+    playQuiz: function playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+      this.resetTimer();
+      this.startTimer();
+    },
+    checkBeforeSending: function checkBeforeSending() {
+      var word = this.$refs.word.value.trim();
+
+      if (word) {
+        this.verifyConditionsAreMet(word);
+      }
+    },
+    sendWord: function sendWord() {
+      var _this = this;
+
+      var word = this.$refs.word.value.trim();
+
+      if (word) {
+        // if (this.listOfPlayerWords.length > 0) {
+        //   this.checkIfWordAlreadyExists(word);
+        // }
+        var data = {
+          playerWord: word
+        };
+        data = JSON.stringify(data);
+        fetch("/api/words/vowel/uncluster", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: data
+        }).then(function (response) {
+          return response.json();
+        }).then(function (result) {
+          console.log(result);
+
+          if (result.length > 0) {
+            _this.listOfPlayerWords.push(word);
+
+            _this.resetTimer();
+
+            if (_this.listOfPlayerWords.length == 100) {
+              _this.resetTimer();
+
+              _this.finishedWithVowel();
+            }
+          } else {
+            _this.gameOver();
+          }
+        });
+      }
+
+      this.$refs.word.value = "";
+    },
+    checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
+      var checkPlayer = 0;
+
+      for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+        if (word === this.listOfPlayerWords[i]) {
+          checkPlayer = checkPlayer + 1;
+        }
+      }
+
+      if (checkPlayer > 0) {
+        this.gameOver();
+      } else {
+        this.sendWord();
+      }
+    },
+    resetTimer: function resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+    finishedWithVowel: function finishedWithVowel() {
+      this.listOfPlayerWords = [];
+    },
+    checkWord: function checkWord(word) {
+      var check = 0;
+      var lengthOfWord = word.length - 1;
+
+      if (word.charAt(0).match(/\b[bcdfghjklmnpqrstvwxyz]/) || word.charAt(lengthOfWord).match(/[bcdfghjklmnpqrstvwxyz]\b/)) {
+        this.gameOver();
+      } else {
+        var patt1 = /[bcdfghjklmnpqrstvwxyz][bcdfghjilmnpqrstvwxyz]*/g;
+        var result = word.match(patt1);
+
+        for (var i = 0; i < result.length; i++) {
+          if (result[i].match(/[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]+/g)) {
+            check += 1;
+            break;
+          }
+        }
+
+        if (check >= 1) {
+          this.gameOver();
+        } else {
+          var myPattern = /[bcdfghjklmnpqrstvwxyz]/gi;
+          var numOfConsonants = word.match(myPattern);
+
+          if (numOfConsonants.length < 2) {
+            this.gameOver();
+          } else {
+            // this.sendWord();
+            this.checkIfWordAlreadyExists(word);
+          }
+        }
+      }
+    },
+    verifyConditionsAreMet: function verifyConditionsAreMet(word) {
+      this.checkWord(word);
+    },
+    gameOver: function gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
+    },
+    myTimer: function myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -2241,7 +2693,7 @@ __webpack_require__.r(__webpack_exports__);
       position: 1,
       level: 1,
       letter: "",
-      rules: "The rules are simple. You and computer will trade words  that have " + this.letter + " in a certain position. Do not repeat a word you have mentioned already or a word computer has mentioned",
+      rules: "The rules are simple. You and computer will trade words  that have a letter in a certain position. Do not repeat a word you have mentioned already or a word computer has mentioned",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
@@ -2306,7 +2758,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 2) {
+            if (_this.listOfPlayerWords.length == 20) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -2397,7 +2849,6 @@ __webpack_require__.r(__webpack_exports__);
             this.sendWord();
           } else {
             this.gameOver();
-            this.timer = 0;
           }
 
           break;
@@ -2407,7 +2858,6 @@ __webpack_require__.r(__webpack_exports__);
             this.sendWord();
           } else {
             this.gameOver();
-            this.timer = 0;
           }
 
           break;
@@ -2417,7 +2867,6 @@ __webpack_require__.r(__webpack_exports__);
             this.sendWord();
           } else {
             this.gameOver();
-            this.timer = 0;
           }
 
           break;
@@ -2427,7 +2876,6 @@ __webpack_require__.r(__webpack_exports__);
             this.sendWord();
           } else {
             this.gameOver();
-            this.timer = 0;
           }
 
           break;
@@ -2546,6 +2994,44 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["listOfPlayerWords"],
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/VowelUnclusteredComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/VowelUnclusteredComponent.vue?vue&type=script&lang=js& ***!
@@ -2627,22 +3113,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["wordLength", "letters"],
+  props: [],
   data: function data() {
     return {
       vowels: ["a", "e", "i", "o", "u"],
       vowelIndex: 0,
       isDone: false,
       level: 1,
-      letter: "a",
-      rules: "Welcome to Vowel Unclustered. You and computer will trade " + this.wordLength + " letter words that contain the letter " + this.letter + ". But the " + this.letter + "'s must not come right after each other.",
-      listOfComputerWords: [],
+      letter: "",
+      rules: "Mention words that do not begin or end with a vowel. The word must contain at least two vowels. The vowels must not come one after another.",
       listOfPlayerWords: [],
       computer: "",
       timer: 10
@@ -2676,14 +3156,11 @@ __webpack_require__.r(__webpack_exports__);
       var word = this.$refs.word.value.trim();
 
       if (word) {
-        if (this.listOfComputerWords.length > 0 && this.listOfPlayerWords.length > 0) {
-          this.checkIfWordAlreadyExists(word);
-        }
-
+        // if (this.listOfPlayerWords.length > 0) {
+        //   this.checkIfWordAlreadyExists(word);
+        // }
         var data = {
-          length: this.wordLength,
-          playerWord: word,
-          letter: this.letter
+          playerWord: word
         };
         data = JSON.stringify(data);
         fetch("/api/words/vowel/uncluster", {
@@ -2702,15 +3179,10 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 2) {
+            if (_this.listOfPlayerWords.length == 100) {
               _this.resetTimer();
 
               _this.finishedWithVowel();
-            } else {
-              _this.$refs.computerWord.textContent = result[0].word;
-              _this.computer = result[0].word;
-
-              _this.listOfComputerWords.push(result[0]);
             }
           } else {
             _this.gameOver();
@@ -2721,14 +3193,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
-      var checkComputer = 0;
       var checkPlayer = 0;
-
-      for (var i = 0; i < this.listOfComputerWords.length; i++) {
-        if (word === this.listOfComputerWords[i].word) {
-          checkComputer = checkComputer + 1;
-        }
-      }
 
       for (var i = 0; i < this.listOfPlayerWords.length; i++) {
         if (word === this.listOfPlayerWords[i]) {
@@ -2736,97 +3201,53 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      if (checkComputer > 0 || checkPlayer > 0) {
+      if (checkPlayer > 0) {
         this.gameOver();
+      } else {
+        this.sendWord();
       }
-    },
-    nextLevel: function nextLevel() {
-      var alphabetLength = this.alphabet.length;
-      var getNextLetterIndex = Math.floor(Math.random() * alphabetLength + 1);
-      this.nextLetter = this.alphabet[getNextLetterIndex];
-      this.$refs.randomLetter.textContent = this.nextLetter.toUpperCase(); // this.playQuiz();
-
-      this.$refs.computerWord.textContent = "Let's go!";
     },
     resetTimer: function resetTimer() {
       clearInterval(this.myTimer);
       this.timer = 10;
     },
     finishedWithVowel: function finishedWithVowel() {
-      this.vowelIndex += 1;
       this.listOfPlayerWords = [];
-      this.listOfComputerWords = [];
-      this.letter = this.vowels[this.vowelIndex];
-      this.openModal();
-
-      if (this.vowelIndex == 4) {
-        this.endLevel();
-      }
-    },
-    endLevel: function endLevel() {
-      this.listOfPlayerWords = [];
-      this.listOfComputerWords = [];
-      this.level += 1;
-
-      if (this.level == 2) {
-        this.rules = "A letter would be selected at random. Your mission, should you accept would be to name " + this.wordLength + " letter words that begin with that letter. Goodluck!";
-      } else if (this.level == 3) {
-        this.rules = "A letter would be selected at random. Your mission, should you accept would be to name " + this.wordLength + " letter words that end with that letter. Goodluck!";
-      } else if (this.level == 4) {
-        this.rules = "A letter would be selected at random. Your mission, should you accept would be to name " + this.wordLength + " letter words that contains that letter but does not begin and/or end with it. Goodluck!";
-      } else {
-        this.isDone = true;
-        var nextChallenge = parseInt(this.wordLength) + 1;
-        this.rules = "You're done with " + this.wordLength + " letters. Want to take " + nextChallenge + " for a spin?";
-      }
-
-      this.$refs.rules.style.display = "block";
-      this.$refs.gameWrapper.style.display = "none";
-      this.nextLevel();
     },
     checkWord: function checkWord(word) {
       var check = 0;
+      var lengthOfWord = word.length - 1;
 
-      for (var i = 0; i < this.wordLength; i++) {
-        if (word.charAt(i) === this.letter) {
-          check += 1;
-        }
-      }
-
-      if (check >= 2) {
-        this.sendWord();
-      } else {
+      if (word.charAt(0).match(/\b[aeiou]/) || word.charAt(lengthOfWord).match(/[aeiou]\b/)) {
         this.gameOver();
+      } else {
+        var patt1 = /[aeiou][aeiou]*/g;
+        var result = word.match(patt1);
+
+        for (var i = 0; i < result.length; i++) {
+          if (result[i].match(/[aeiou][aeiou]+/g)) {
+            check += 1;
+            break;
+          }
+        }
+
+        if (check >= 1) {
+          this.gameOver();
+        } else {
+          var myPattern = /[aeiou]/gi;
+          var numOfVowels = word.match(myPattern);
+
+          if (numOfVowels.length < 2) {
+            this.gameOver();
+          } else {
+            // this.sendWord();
+            this.checkIfWordAlreadyExists(word);
+          }
+        }
       }
     },
     verifyConditionsAreMet: function verifyConditionsAreMet(word) {
-      if (word.length == this.wordLength) {
-        switch (this.level) {
-          case 1:
-            this.checkWord(word);
-            break;
-
-          case 2:
-            this.checkWord(word);
-            break;
-
-          case 3:
-            this.checkWord(word);
-            break;
-
-          case 4:
-            this.checkWord(word);
-            break;
-
-          case 5:
-            this.checkWord(word);
-            break;
-
-          default:
-        }
-      } else {
-        this.gameOver();
-      }
+      this.checkWord(word);
     },
     gameOver: function gameOver() {
       this.$refs.playAgain.style.display = "block";
@@ -2838,18 +3259,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.timer -= 1;
       }
-    },
-    proceedToNextChallenge: function proceedToNextChallenge() {
-      var next = parseInt(this.wordLength) + 1;
-      location.href = "/words/" + next;
-    },
-    openModal: function openModal() {
-      this.$refs.finish.style.width = "100%";
-    },
-    closeModal: function closeModal() {
-      this.$refs.finish.style.width = "0%";
-      this.resetTimer();
-      this.startTimer();
     }
   }
 });
@@ -3267,7 +3676,10 @@ Vue.component('rules', __webpack_require__(/*! ./components/RulesComponent.vue *
 Vue.component('word-tally', __webpack_require__(/*! ./components/WordTallyComponent.vue */ "./resources/js/components/WordTallyComponent.vue").default);
 Vue.component('game-over', __webpack_require__(/*! ./components/GameOverComponent.vue */ "./resources/js/components/GameOverComponent.vue").default);
 Vue.component('nth-position', __webpack_require__(/*! ./components/NthPositionComponent.vue */ "./resources/js/components/NthPositionComponent.vue").default);
-Vue.component('vowel-unclustered', __webpack_require__(/*! ./components/VowelUnclusteredComponent.vue */ "./resources/js/components/VowelUnclusteredComponent.vue").default); // Modal
+Vue.component('vowel-unclustered', __webpack_require__(/*! ./components/VowelUnclusteredComponent.vue */ "./resources/js/components/VowelUnclusteredComponent.vue").default);
+Vue.component('consonant-unclustered', __webpack_require__(/*! ./components/ConsonantUnclusteredComponent.vue */ "./resources/js/components/ConsonantUnclusteredComponent.vue").default);
+Vue.component('begin-end', __webpack_require__(/*! ./components/BeginAndEndComponent.vue */ "./resources/js/components/BeginAndEndComponent.vue").default);
+Vue.component('single-player-tally', __webpack_require__(/*! ./components/SinglePlayerTallyComponent.vue */ "./resources/js/components/SinglePlayerTallyComponent.vue").default); // Modal
 
 Vue.component('modal', __webpack_require__(/*! ./components/ModalComponent.vue */ "./resources/js/components/ModalComponent.vue").default);
 /**
@@ -38709,6 +39121,84 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./resources/js/components/BeginAndEndComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/BeginAndEndComponent.vue ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _BeginAndEndComponent_vue_vue_type_template_id_72c6eedb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BeginAndEndComponent.vue?vue&type=template&id=72c6eedb& */ "./resources/js/components/BeginAndEndComponent.vue?vue&type=template&id=72c6eedb&");
+/* harmony import */ var _BeginAndEndComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BeginAndEndComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/BeginAndEndComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _BeginAndEndComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _BeginAndEndComponent_vue_vue_type_template_id_72c6eedb___WEBPACK_IMPORTED_MODULE_0__.render,
+  _BeginAndEndComponent_vue_vue_type_template_id_72c6eedb___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/BeginAndEndComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ConsonantUnclusteredComponent.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/ConsonantUnclusteredComponent.vue ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ConsonantUnclusteredComponent_vue_vue_type_template_id_6ceb1899___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConsonantUnclusteredComponent.vue?vue&type=template&id=6ceb1899& */ "./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=template&id=6ceb1899&");
+/* harmony import */ var _ConsonantUnclusteredComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ConsonantUnclusteredComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ConsonantUnclusteredComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ConsonantUnclusteredComponent_vue_vue_type_template_id_6ceb1899___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ConsonantUnclusteredComponent_vue_vue_type_template_id_6ceb1899___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ConsonantUnclusteredComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
@@ -38943,6 +39433,45 @@ component.options.__file = "resources/js/components/RulesComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/SinglePlayerTallyComponent.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/SinglePlayerTallyComponent.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _SinglePlayerTallyComponent_vue_vue_type_template_id_29b5e776___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SinglePlayerTallyComponent.vue?vue&type=template&id=29b5e776& */ "./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=template&id=29b5e776&");
+/* harmony import */ var _SinglePlayerTallyComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SinglePlayerTallyComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _SinglePlayerTallyComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _SinglePlayerTallyComponent_vue_vue_type_template_id_29b5e776___WEBPACK_IMPORTED_MODULE_0__.render,
+  _SinglePlayerTallyComponent_vue_vue_type_template_id_29b5e776___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SinglePlayerTallyComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/VowelUnclusteredComponent.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/components/VowelUnclusteredComponent.vue ***!
@@ -39060,6 +39589,38 @@ component.options.__file = "resources/js/components/WordTallyComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/BeginAndEndComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/BeginAndEndComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginAndEndComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BeginAndEndComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginAndEndComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginAndEndComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ConsonantUnclusteredComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ConsonantUnclusteredComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ConsonantUnclusteredComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -39156,6 +39717,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SinglePlayerTallyComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SinglePlayerTallyComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SinglePlayerTallyComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/VowelUnclusteredComponent.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************!*\
   !*** ./resources/js/components/VowelUnclusteredComponent.vue?vue&type=script&lang=js& ***!
@@ -39201,6 +39778,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WordTallyComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WordTallyComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WordTallyComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WordTallyComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/BeginAndEndComponent.vue?vue&type=template&id=72c6eedb&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/BeginAndEndComponent.vue?vue&type=template&id=72c6eedb& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginAndEndComponent_vue_vue_type_template_id_72c6eedb___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginAndEndComponent_vue_vue_type_template_id_72c6eedb___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginAndEndComponent_vue_vue_type_template_id_72c6eedb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BeginAndEndComponent.vue?vue&type=template&id=72c6eedb& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginAndEndComponent.vue?vue&type=template&id=72c6eedb&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=template&id=6ceb1899&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=template&id=6ceb1899& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConsonantUnclusteredComponent_vue_vue_type_template_id_6ceb1899___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConsonantUnclusteredComponent_vue_vue_type_template_id_6ceb1899___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConsonantUnclusteredComponent_vue_vue_type_template_id_6ceb1899___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ConsonantUnclusteredComponent.vue?vue&type=template&id=6ceb1899& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=template&id=6ceb1899&");
+
 
 /***/ }),
 
@@ -39306,6 +39917,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=template&id=29b5e776&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=template&id=29b5e776& ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SinglePlayerTallyComponent_vue_vue_type_template_id_29b5e776___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SinglePlayerTallyComponent_vue_vue_type_template_id_29b5e776___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SinglePlayerTallyComponent_vue_vue_type_template_id_29b5e776___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SinglePlayerTallyComponent.vue?vue&type=template&id=29b5e776& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=template&id=29b5e776&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/VowelUnclusteredComponent.vue?vue&type=template&id=3820fff2&":
 /*!**********************************************************************************************!*\
   !*** ./resources/js/components/VowelUnclusteredComponent.vue?vue&type=template&id=3820fff2& ***!
@@ -39353,6 +39981,301 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WordTallyComponent_vue_vue_type_template_id_f8915a74___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WordTallyComponent_vue_vue_type_template_id_f8915a74___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WordTallyComponent.vue?vue&type=template&id=f8915a74& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WordTallyComponent.vue?vue&type=template&id=f8915a74&");
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginAndEndComponent.vue?vue&type=template&id=72c6eedb&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginAndEndComponent.vue?vue&type=template&id=72c6eedb& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w3-container" }, [
+    _c(
+      "div",
+      { ref: "rules" },
+      [
+        _c("rules", {
+          attrs: { level: _vm.level, rules: _vm.rules, "is-done": _vm.isDone },
+          on: { "play-quiz": _vm.playQuiz }
+        }),
+        _vm._v(" "),
+        _vm.isDone == true
+          ? _c("div", { staticClass: "w3-container w3-center" }, [
+              _c(
+                "button",
+                {
+                  ref: "nextChallenge",
+                  staticClass: "w3-button",
+                  on: { click: _vm.proceedToNextChallenge }
+                },
+                [_vm._v("\n        Proceed to next challenge\n      ")]
+              )
+            ])
+          : _vm._e()
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "gameWrapper",
+        staticClass: "w3-row-padding",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", {
+            ref: "randomLetter",
+            staticClass: "flex-grow-1 w3-padding",
+            staticStyle: { "font-size": "21px" }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "timer",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [
+              _vm._v("\n        00:"),
+              _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w3-container" }, [
+          _c("div", { staticClass: "w3-container" }, [
+            _c(
+              "div",
+              {
+                ref: "playAgain",
+                staticClass: "w3-container w3-center",
+                staticStyle: { display: "none" }
+              },
+              [_c("game-over")],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { ref: "gameContainer" }, [
+              _c("div", { staticClass: "w3-container" }, [
+                _c(
+                  "div",
+                  {
+                    ref: "computerWord",
+                    staticClass: "w3-center",
+                    staticStyle: { "font-size": "21px" }
+                  },
+                  [_vm._v("\n              Let's go!\n            ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("input", {
+                  ref: "word",
+                  staticClass: "form-control input-sm",
+                  attrs: {
+                    type: "text",
+                    name: "word",
+                    placeholder: "Enter your word here..."
+                  },
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.checkBeforeSending.apply(null, arguments)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "w3-container" },
+          [
+            _c("word-tally", {
+              attrs: {
+                listOfComputerWords: _vm.listOfComputerWords,
+                listOfPlayerWords: _vm.listOfPlayerWords
+              }
+            })
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=template&id=6ceb1899&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConsonantUnclusteredComponent.vue?vue&type=template&id=6ceb1899& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w3-container" }, [
+    _c(
+      "div",
+      { ref: "rules" },
+      [
+        _c("rules", {
+          attrs: { level: _vm.level, rules: _vm.rules, "is-done": _vm.isDone },
+          on: { "play-quiz": _vm.playQuiz }
+        }),
+        _vm._v(" "),
+        _vm.isDone == true
+          ? _c("div", { staticClass: "w3-container w3-center" }, [
+              _c(
+                "button",
+                {
+                  ref: "nextChallenge",
+                  staticClass: "w3-button",
+                  on: { click: _vm.proceedToNextChallenge }
+                },
+                [_vm._v("\n        Proceed to next challenge\n      ")]
+              )
+            ])
+          : _vm._e()
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "gameWrapper",
+        staticClass: "w3-row-padding",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", {
+            ref: "randomLetter",
+            staticClass: "flex-grow-1 w3-padding",
+            staticStyle: { "font-size": "21px" }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "timer",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [
+              _vm._v("\n        00:"),
+              _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w3-container" }, [
+          _c("div", { staticClass: "w3-container" }, [
+            _c(
+              "div",
+              {
+                ref: "playAgain",
+                staticClass: "w3-container w3-center",
+                staticStyle: { display: "none" }
+              },
+              [_c("game-over")],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { ref: "gameContainer" }, [
+              _c("div", { staticClass: "w3-container" }, [
+                _c(
+                  "div",
+                  {
+                    ref: "computerWord",
+                    staticClass: "w3-center",
+                    staticStyle: { "font-size": "21px" }
+                  },
+                  [_vm._v("\n              Let's go!\n            ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("input", {
+                  ref: "word",
+                  staticClass: "form-control input-sm",
+                  attrs: {
+                    type: "text",
+                    name: "word",
+                    placeholder: "Enter your word here..."
+                  },
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.checkBeforeSending.apply(null, arguments)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "w3-container" },
+          [
+            _c("single-player-tally", {
+              attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
+            })
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
 
 
 /***/ }),
@@ -39590,17 +40513,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c(
-      "a",
-      {
-        staticClass: "closebtn",
-        attrs: { href: "javascript:void(0)" },
-        on: { click: _vm.closeModal }
-      },
-      [_vm._v("×")]
-    ),
-    _vm._v(" "),
-    _vm._m(0)
+    _c("div", { ref: "finish", staticClass: "overlay" }, [
+      _c(
+        "a",
+        {
+          staticClass: "closebtn",
+          attrs: { href: "javascript:void(0)" },
+          on: { click: _vm.closeModal }
+        },
+        [_vm._v("×")]
+      ),
+      _vm._v(" "),
+      _vm._m(0)
+    ])
   ])
 }
 var staticRenderFns = [
@@ -39841,6 +40766,57 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=template&id=29b5e776&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SinglePlayerTallyComponent.vue?vue&type=template&id=29b5e776& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w3-container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticStyle: { overflow: "scroll", height: "400px" } }, [
+      _c("div", { staticClass: "w3-container" }, [
+        _c(
+          "div",
+          { staticClass: "w3-center" },
+          _vm._l(_vm.listOfPlayerWords, function(w, i) {
+            return _c("div", { key: i }, [
+              _c("div", { staticClass: "w3-border" }, [_vm._v(_vm._s(w))])
+            ])
+          }),
+          0
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("h4", { staticClass: "w3-center" }, [_vm._v("Word tally")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/VowelUnclusteredComponent.vue?vue&type=template&id=3820fff2&":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/VowelUnclusteredComponent.vue?vue&type=template&id=3820fff2& ***!
@@ -39876,7 +40852,7 @@ var render = function() {
                   staticClass: "w3-button",
                   on: { click: _vm.proceedToNextChallenge }
                 },
-                [_vm._v("\n          Proceed to next challenge\n        ")]
+                [_vm._v("\n        Proceed to next challenge\n      ")]
               )
             ])
           : _vm._e()
@@ -39907,9 +40883,9 @@ var render = function() {
               staticStyle: { "font-size": "21px" }
             },
             [
-              _vm._v("\n          00:"),
+              _vm._v("\n        00:"),
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
-              _vm._v(_vm._s(_vm.timer) + "\n        ")
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
           )
         ]),
@@ -39936,7 +40912,7 @@ var render = function() {
                     staticClass: "w3-center",
                     staticStyle: { "font-size": "21px" }
                   },
-                  [_vm._v("\n                Let's go!\n              ")]
+                  [_vm._v("\n              Let's go!\n            ")]
                 )
               ]),
               _vm._v(" "),
@@ -39970,28 +40946,14 @@ var render = function() {
           "div",
           { staticClass: "w3-container" },
           [
-            _c("word-tally", {
-              attrs: {
-                listOfComputerWords: _vm.listOfComputerWords,
-                listOfPlayerWords: _vm.listOfPlayerWords
-              }
+            _c("single-player-tally", {
+              attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
             })
           ],
           1
         )
       ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { ref: "finish", staticClass: "overlay" },
-      [_c("modal", { on: { "close-modal": _vm.closeModal } })],
-      1
-    ),
-    _vm._v(" "),
-    _c("button", { ref: "openModal", on: { click: _vm.openModal } }, [
-      _vm._v("btn")
-    ])
+    )
   ])
 }
 var staticRenderFns = []

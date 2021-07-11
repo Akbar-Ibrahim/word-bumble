@@ -75,9 +75,7 @@ export default {
       level: 1,
       letter: "",
       rules:
-        "The rules are simple. You and computer will trade words  that have " +
-        this.letter +
-        " in a certain position. Do not repeat a word you have mentioned already or a word computer has mentioned",
+        "The rules are simple. You and computer will trade words  that have a letter in a certain position. Do not repeat a word you have mentioned already or a word computer has mentioned",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
@@ -152,7 +150,7 @@ export default {
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 2) {
+              if (this.listOfPlayerWords.length == 20) {
                 this.resetTimer();
                 this.endLevel();
               } else {
@@ -275,7 +273,7 @@ export default {
             this.sendWord();
           } else {
             this.gameOver();
-            this.timer = 0;  
+            
           }
           break;
         case 2:
@@ -283,7 +281,7 @@ export default {
             this.sendWord();
           } else {
             this.gameOver();
-            this.timer = 0;  
+            
           }
           break;
         case 3:
@@ -291,7 +289,7 @@ export default {
             this.sendWord();
           } else {
             this.gameOver();
-            this.timer = 0;  
+            
           }
           break;
         case 4:
@@ -299,7 +297,7 @@ export default {
             this.sendWord();
           } else {
             this.gameOver();
-            this.timer = 0;  
+            
           }
 
           break;

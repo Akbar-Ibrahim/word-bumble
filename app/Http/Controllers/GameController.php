@@ -47,13 +47,20 @@ class GameController extends Controller
         return view('nthPosition', compact( 'letters'));
     }
 
-    public function vowelUnclustered($length, UtilService $utilService){
+    public function vowelUnclustered(){
         
-        if (!is_numeric($length) || ($length < 4 || $length > 10)) {
-            return 404;
-        }
 
-        $letters = $utilService->smallLetters();
-        return view('vowelUnclustered', compact('length', 'letters'));
+        return view('vowelUnclustered');
+    }
+
+    public function consonantUnclustered(){
+        
+
+        return view('consonantUnclustered');
+    }
+
+    public function beginingAndEnd(){
+
+        return view('beginingAndEnd');
     }
 }

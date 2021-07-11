@@ -10,7 +10,7 @@
 
                 <div class="card-body">
 
-                <vowel-unclustered></vowel-unclustered>
+                <consonant-unclustered></consonant-unclustered>
                 </div>
             </div>
         </div>

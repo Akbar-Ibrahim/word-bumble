@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    
+<div ref="finish" class="overlay">    
       <a href="javascript:void(0)" class="closebtn" @click="closeModal"
         >&times;</a
       >
@@ -10,7 +10,7 @@
         <a href="#">Clients</a>
         <a href="#">Contact</a>
       </div>
-
+</div>
   </div>
 </template>
 

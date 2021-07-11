@@ -60,9 +60,10 @@
       </div>
 
       <div class="w3-container">
-        <single-player-tally
+        <word-tally
+          :listOfComputerWords="listOfComputerWords"
           :listOfPlayerWords="listOfPlayerWords"
-        ></single-player-tally>
+        ></word-tally>
       </div>
     </div>
   </div>
@@ -74,13 +75,11 @@ export default {
 
   data() {
     return {
-      vowels: ["a", "e", "i", "o", "u"],
-      vowelIndex: 0,
       isDone: false,
       level: 1,
-      letter: "",
-      rules:
-        "Mention words that do not begin or end with a vowel. The word must contain at least two vowels. The vowels must not come one after another.",
+      nextLetter: "",
+      rules: "List words that begin and end with the same letter",
+      listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
@@ -110,7 +109,7 @@ export default {
 
     checkBeforeSending() {
       var word = this.$refs.word.value.trim();
-
+      
       if (word) {
         this.verifyConditionsAreMet(word);
       }
@@ -119,17 +118,22 @@ export default {
     sendWord() {
       var word = this.$refs.word.value.trim();
       if (word) {
-        // if (this.listOfPlayerWords.length > 0) {
-        //   this.checkIfWordAlreadyExists(word);
-        // }
+        if (
+          this.listOfComputerWords.length > 0 &&
+          this.listOfPlayerWords.length > 0
+        ) {
+          this.checkIfWordAlreadyExists(word);
+        }
 
         var data = {
-          playerWord: word,
+          word: word,
+
         };
+
 
         data = JSON.stringify(data);
 
-        fetch("/api/words/vowel/uncluster", {
+        fetch("/api/bb", {
           method: "post",
           headers: {
             "Content-Type": "application/json",
@@ -144,9 +148,13 @@ export default {
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 100) {
+              if (this.listOfPlayerWords.length == 50) {
                 this.resetTimer();
-                this.finishedWithVowel();
+                // this.endLevel();
+              } else {
+                this.$refs.computerWord.textContent = result.word;
+                this.computer = result.word;
+                this.listOfComputerWords.push(result);
               }
             } else {
               this.gameOver();
@@ -157,7 +165,13 @@ export default {
     },
 
     checkIfWordAlreadyExists(word) {
+      var checkComputer = 0;
       var checkPlayer = 0;
+      for (var i = 0; i < this.listOfComputerWords.length; i++) {
+        if (word === this.listOfComputerWords[i].word) {
+          checkComputer = checkComputer + 1;
+        }
+      }
 
       for (var i = 0; i < this.listOfPlayerWords.length; i++) {
         if (word === this.listOfPlayerWords[i]) {
@@ -165,62 +179,29 @@ export default {
         }
       }
 
-      if (checkPlayer > 0) {
+      if (checkComputer > 0 || checkPlayer > 0) {
         this.gameOver();
-      } else {
-        this.sendWord();
       }
     },
 
+
+    
     resetTimer() {
       clearInterval(this.myTimer);
       this.timer = 10;
     },
 
-    finishedWithVowel() {
-      this.listOfPlayerWords = [];
-    },
+    stopTimer() {},
 
-    checkWord(word) {
-      var check = 0;
-      var lengthOfWord = word.length - 1;
-
-      if (
-        word.charAt(0).match(/\b[aeiou]/) ||
-        word.charAt(lengthOfWord).match(/[aeiou]\b/)
-      ) {
-        this.gameOver();
-      } else {
-        var patt1 = /[aeiou][aeiou]*/g;
-        var result = word.match(patt1);
-
-        for (var i = 0; i < result.length; i++) {
-          if (result[i].match(/[aeiou][aeiou]+/g)) {
-            check += 1;
-            break;
-          }
-        }
-
-if (check >= 1) {
-        this.gameOver();
-      } else {
-        var myPattern = /[aeiou]/gi;
-        var numOfVowels = word.match(myPattern);
-
-        if (numOfVowels.length < 2) {
-          this.gameOver();
-        } else {
-          // this.sendWord();
-          this.checkIfWordAlreadyExists(word);
-        }
-      }
-      }
-
-      
-    },
+    
 
     verifyConditionsAreMet(word) {
-      this.checkWord(word);
+      var lengthOfWord = word.length - 1;
+        if (word.charAt(0) === word.charAt(lengthOfWord)) {
+          this.sendWord();
+        } else {
+          this.gameOver();
+        }
     },
 
     gameOver() {
@@ -236,7 +217,10 @@ if (check >= 1) {
       }
     },
 
-
+    proceedToNextChallenge() {
+      var next = parseInt(this.wordLength) + 1;
+      location.href = "/words/" + next;
+    },
   },
 };
 </script>
