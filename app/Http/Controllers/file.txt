@@ -1,0 +1,10 @@
+foreach ($words as $word) {
+            
+            if (strpos($word->word, $letter) !== false) {
+                for ($i = 0; $i < strlen($letter); $i++) {
+                    if ($word->word[$i] === $letter[$i]){
+                array_push($result, $word->word);
+            }
+        }
+        }
+        }
