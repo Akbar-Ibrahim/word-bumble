@@ -83,7 +83,7 @@ export default {
       level: 1,
       letter: "",
       rules:
-        "Mention words that do not begin or end with a vowel. The word must contain at least two vowels. The vowels must not come one after another.",
+        "Mention words that begin and end with a vowel",
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
@@ -147,7 +147,7 @@ export default {
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 2) {
+              if (this.listOfPlayerWords.length == 10) {
                 this.resetTimer();
                 this.endLevel();
               }
@@ -192,34 +192,13 @@ export default {
       var lengthOfWord = word.length - 1;
 
       if (
-        word.charAt(0).match(/\b[aeiou]/) ||
+        word.charAt(0).match(/\b[aeiou]/) &&
         word.charAt(lengthOfWord).match(/[aeiou]\b/)
       ) {
-        this.gameOver();
+        this.checkIfWordAlreadyExists(word);
       } else {
-        var patt1 = /[aeiou][aeiou]*/g;
-        var result = word.match(patt1);
-
-        for (var i = 0; i < result.length; i++) {
-          if (result[i].match(/[aeiou][aeiou]+/g)) {
-            check += 1;
-            break;
-          }
-        }
-
-if (check >= 1) {
         this.gameOver();
-      } else {
-        var myPattern = /[aeiou]/gi;
-        var numOfVowels = word.match(myPattern);
-
-        if (numOfVowels.length < 2) {
-          this.gameOver();
-        } else {
-          // this.sendWord();
-          this.checkIfWordAlreadyExists(word);
-        }
-      }
+      
       }
 
       

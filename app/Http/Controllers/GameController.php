@@ -53,14 +53,42 @@ class GameController extends Controller
         return view('vowelUnclustered');
     }
 
+    public function vowelClusters(){
+        
+
+        return view('vowelClusters');
+    }
+
     public function consonantUnclustered(){
         
 
         return view('consonantUnclustered');
     }
 
+    public function consonantClusters(){
+        
+
+        return view('consonantClusters');
+    }
+
     public function beginingAndEnd(){
 
         return view('beginingAndEnd');
+    }
+
+    public function meBeforeYouVowel(){
+        return view('meBeforeYouVowel');
+    }
+
+    public function meBeforeYouConsonant(){
+        return view('meBeforeYouConsonant');
+    }
+
+    public function beginAndEndVowel(){
+        return view('beginAndEndVowel');
+    }
+
+    public function beginAndEndConsonant(){
+        return view('beginAndEndConsonant');
     }
 }

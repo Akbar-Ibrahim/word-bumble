@@ -27,7 +27,8 @@ export default {
         "Maybe you want to try a word game in your native language?",
         "It's just words, fam. I don't know why it's so difficult for you.",
         "Let's never speak of this.",
-        "You were such a cute kid with so much potential."
+        "You were such a cute kid with so much potential.",
+        "English is not for everybody"
       ];
 
       var messageLength = messages.length;

@@ -127,6 +127,8 @@ class BeginingAndEndController extends Controller
                     case "p":
                         return Dictionary::where("id", "!=", $check->id)->where("word", "like", $letter . "%" . $letter)->inRandomOrder()->first();
                         break;
+
+                        
                     case "r":
                         return Dictionary::where("id", "!=", $check->id)->where("word", "like", $letter . "%" . $$letter)->inRandomOrder()->first();
                         break;

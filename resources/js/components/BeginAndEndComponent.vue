@@ -1,5 +1,8 @@
 <template>
   <div class="w3-container">
+    <div ref="congrats" style="display: none;">
+      <congrats></congrats>
+    </div>
     <div ref="rules">
       <rules
         :level="level"
@@ -148,9 +151,9 @@ export default {
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 50) {
+              if (this.listOfPlayerWords.length == 5) {
                 this.resetTimer();
-                // this.endLevel();
+                this.endLevel();
               } else {
                 this.$refs.computerWord.textContent = result.word;
                 this.computer = result.word;
@@ -202,6 +205,13 @@ export default {
         } else {
           this.gameOver();
         }
+    },
+
+endLevel() {
+      // this.level += 1;
+      this.listOfPlayerWords = [];
+      this.$refs.congrats.style.display = "block";
+      this.$refs.gameWrapper.style.display = "none";
     },
 
     gameOver() {

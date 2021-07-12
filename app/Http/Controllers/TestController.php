@@ -41,7 +41,8 @@ class TestController extends Controller
 
         // $result = DB::table('dictionaries')->where('word', 'like', '%' . $check . '%')->whereRaw('LENGTH(word) > ' . 4)->get();
         // $result = DB::table('dictionaries')->whereRaw("word regex '[a-z]'")->get();
-        $result = Dictionary::where('word', 'like',  $letter . '%' . $letter)->get();
-        return count($result);
+        // $result = Dictionary::where('word', 'like',  $letter . '%' . $letter)->take(100)->get();
+        return DB::table('dictionaries')->where('word', 'like', '%' . $letter . '%')->whereRaw('LENGTH(word) > ' . 18)->limit(300)->get();
+        // return $result;
     }
 }

@@ -23,12 +23,25 @@ Route::get('/', 'WelcomeController@welcome');
 Route::get('/words', 'DictionaryController@words');
 Route::get('/last/letter', 'GameController@lastLetter');
 Route::get('/words/{length}/', 'GameController@wordLength');
-Route::get('/letters/{letter}/', 'GameController@letter')->name('letters.letter');
-Route::get('/letter/nth-position/', 'GameController@nthPosition')->name('nth.position');
+// Route::get('/letters/{letter}/', 'GameController@letter')->name('letters.letter');
+Route::get('/nth-position/', 'GameController@nthPosition')->name('nth.position');
+
+// clusters
 Route::get('/vowel/unclustered/', 'GameController@vowelUnclustered');
 Route::get('/consonant/unclustered/', 'GameController@consonantUnclustered');
+Route::get('/vowel/clusters/', 'GameController@vowelClusters');
+Route::get('/consonant/clusters/', 'GameController@consonantClusters');
 
 Route::get('/begining-and-end/', 'GameController@beginingAndEnd');
+
+Route::get('me-before-you/vowel', 'GameController@meBeforeYouVowel');
+Route::get('me-before-you/consonant', 'GameController@meBeforeYouConsonant');
+
+
+Route::get('begin-and-end/vowel', 'GameController@beginAndEndVowel');
+Route::get('begin-and-end/consonant', 'GameController@beginAndEndConsonant');
+
+
 
 Route::get('/insert', function(){
 //     $myfile = fopen("word.txt", "r") or die("Unable to open file!");

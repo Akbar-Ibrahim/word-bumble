@@ -1,5 +1,8 @@
 <template>
   <div class="w3-container">
+    <div ref="congrats" style="display: none;">
+      <congrats></congrats>
+    </div>
     <div ref="rules">
       <rules
         :level="level"
@@ -146,7 +149,7 @@ export default {
               this.resetTimer();
               if (this.listOfPlayerWords.length == 100) {
                 this.resetTimer();
-                this.finishedWithVowel();
+                this.endLevel();
               }
             } else {
               this.gameOver();
@@ -177,8 +180,11 @@ export default {
       this.timer = 10;
     },
 
-    finishedWithVowel() {
+    endLevel() {
+      // this.level += 1;
       this.listOfPlayerWords = [];
+      this.$refs.congrats.style.display = "block";
+      this.$refs.gameWrapper.style.display = "none";
     },
 
     checkWord(word) {
@@ -191,7 +197,7 @@ export default {
       ) {
         this.gameOver();
       } else {
-        var patt1 = /[bcdfghjklmnpqrstvwxyz][bcdfghjilmnpqrstvwxyz]*/g;
+        var patt1 = /[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]*/g;
         var result = word.match(patt1);
 
         for (var i = 0; i < result.length; i++) {

@@ -81,9 +81,8 @@ export default {
       vowelIndex: 0,
       isDone: false,
       level: 1,
-      letter: "",
       rules:
-        "Mention words that do not begin or end with a vowel. The word must contain at least two vowels. The vowels must not come one after another.",
+        "Mention words that have only one consonant cluster. That is multiple consonants coming one after another",
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
@@ -147,7 +146,7 @@ export default {
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 2) {
+              if (this.listOfPlayerWords.length == 100) {
                 this.resetTimer();
                 this.endLevel();
               }
@@ -181,48 +180,56 @@ export default {
     },
 
     endLevel() {
-      // this.level += 1;
       this.listOfPlayerWords = [];
+      this.level += 1;
+      this.rules = "Mention words that have more than one consonant cluster. That is multiple consonants coming one after another";
+      
+      if (this.level == 3) {
       this.$refs.congrats.style.display = "block";
       this.$refs.gameWrapper.style.display = "none";
+      } else {
+        this.$refs.rules.style.display = "block";
+      this.$refs.gameWrapper.style.display = "none";
+      }
     },
 
     checkWord(word) {
       var check = 0;
       var lengthOfWord = word.length - 1;
 
-      if (
-        word.charAt(0).match(/\b[aeiou]/) ||
-        word.charAt(lengthOfWord).match(/[aeiou]\b/)
-      ) {
-        this.gameOver();
-      } else {
-        var patt1 = /[aeiou][aeiou]*/g;
-        var result = word.match(patt1);
+      var patt1 = /[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]*/g;
+      var result = word.match(patt1);
 
-        for (var i = 0; i < result.length; i++) {
-          if (result[i].match(/[aeiou][aeiou]+/g)) {
-            check += 1;
-            break;
-          }
+      for (var i = 0; i < result.length; i++) {
+        if (
+          // result[i].match(/[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]+/g)
+          result[i].length >= 2
+        ) {
+          check += 1;
         }
-
-if (check >= 1) {
-        this.gameOver();
-      } else {
-        var myPattern = /[aeiou]/gi;
-        var numOfVowels = word.match(myPattern);
-
-        if (numOfVowels.length < 2) {
-          this.gameOver();
+      }
+switch(this.level) {
+  case 1:
+      if (check < 2) {
+        if (check > 0){
+        this.checkIfWordAlreadyExists(word);
         } else {
-          // this.sendWord();
-          this.checkIfWordAlreadyExists(word);
+          this.gameOver();
         }
+      } else {
+        this.gameOver();
       }
-      }
+      break;
 
-      
+      case 2:
+      if (check >= 2) {
+        this.checkIfWordAlreadyExists(word);
+      } else {
+        this.gameOver();
+      }
+      break;
+default:
+}
     },
 
     verifyConditionsAreMet(word) {
@@ -241,8 +248,6 @@ if (check >= 1) {
         this.timer -= 1;
       }
     },
-
-
   },
 };
 </script>

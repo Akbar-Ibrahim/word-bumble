@@ -69,6 +69,7 @@ export default {
       playerWords: [],
       computer: "",
       timerCount: 10,
+      wordLength: 0,
     };
   },
 
@@ -76,21 +77,6 @@ export default {
 
   mounted() {},
 
-  //   watch: {
-  //     timerCount: {
-  //       handler(value) {
-  //         if (value > 0) {
-  //           setTimeout(() => {
-  //             this.timerCount--;
-  //           }, 1000);
-  //         } else {
-  //           this.$refs.playAgain.style.display = "block";
-  //           this.$refs.gameContainer.style.display = "none";
-  //         }
-  //       },
-  //       immediate: true, // This ensures the watcher is triggered upon creation
-  //     },
-  //   },
 
   methods: {
     playAgain() {

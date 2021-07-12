@@ -6,11 +6,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"> Consonant Unclustered </div>
+                <div class="card-header"> Consonant Clusters </div>
 
                 <div class="card-body">
 
-                <consonant-unclustered></consonant-unclustered>
+                <consonant-clusters></consonant-clusters>
                 </div>
             </div>
         </div>

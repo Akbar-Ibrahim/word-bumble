@@ -6,11 +6,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"> Consonant Unclustered </div>
+                <div class="card-header"> Me Before You | Vowels </div>
 
                 <div class="card-body">
 
-                <consonant-unclustered></consonant-unclustered>
+                <me-before-you-vowel></me-before-you-vowel>
                 </div>
             </div>
         </div>
