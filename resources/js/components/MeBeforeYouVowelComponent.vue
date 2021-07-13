@@ -200,8 +200,13 @@ export default {
       var patt1 = /[aeiou][bcdfghjklmnpqrstvwxyz]*/g;
       var result = word.match(patt1);
 
-if (word.charAt(0) ===)
-      for (var i = 0; i < result.length; i++) {
+var consonant = /[bcdfghjklmnpqrstvwxyz]+/g;
+var vowel = /[aeiou]+/g;
+
+if (word.charAt(0).match(consonant) || word.charAt(lengthOfWord).match(vowel) ) {
+      this.gameOver();
+} else {
+for (var i = 0; i < result.length; i++) {
         if (
           // result[i].match(/[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]+/g)
           result[i].length < 2
@@ -216,7 +221,7 @@ if (word.charAt(0) ===)
       } else {
         this.gameOver();
       }
-      
+}
     },
 
     verifyConditionsAreMet(word) {

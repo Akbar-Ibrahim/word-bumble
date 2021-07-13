@@ -109,7 +109,7 @@
       <div class="w3-container w3-center">
         <h3>Me Before You: Vowels</h3>
         <div class="w3-container w3-center w3-margin">
-            <!-- <button route="/me-before-you/vowel" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border">Play</button> -->
+            <button route="/me-before-you/vowel" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border">Play</button>
         </div>
       </div>
     </div>
@@ -124,7 +124,7 @@
       <div class="w3-container w3-center">
         <h3>Me Before You: Consonants</h3>
         <div class="w3-container w3-center w3-margin">
-            <!-- <button route="/me-before-you/consonant" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border">Play</button> -->
+            <button route="/me-before-you/consonant" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border">Play</button>
         </div>
       </div>
     </div>

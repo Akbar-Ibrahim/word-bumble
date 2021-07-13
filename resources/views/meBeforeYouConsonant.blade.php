@@ -10,12 +10,9 @@
 
                 <div class="card-body">
 
-                @if(1>2)
+                
                 <me-before-you-consonant></me-before-you-consonant>
-                @else
-                    <h1 class="w3-center"> :) </h1>
-                    <p class="w3-center"> Come back later </p>
-                @endif
+                
                 </div>
             </div>
         </div>
