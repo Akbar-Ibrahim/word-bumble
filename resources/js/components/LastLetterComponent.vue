@@ -1,5 +1,5 @@
 <template>
-  <div class="w3-container">
+  <div class="">
     <div ref="rules">
       <rules
         :level="level"
@@ -8,7 +8,7 @@
         :is-done="isDone"
       ></rules>
     </div>
-    <div ref="gameWrapper" class="w3-row-padding" style="display: none">
+    <div ref="gameWrapper" class="w3-row" style="display: none">
       <div class="d-flex">
         <div ref="wLength"></div>
         <div
@@ -20,10 +20,10 @@
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
       </div>
-      <div class="w3-container">
-        <div class="w3-container">
+      <div class="">
+        <div class="">
           <div
-            class="w3-container w3-center"
+            class=" w3-center"
             ref="playAgain"
             style="display: none"
           >
@@ -31,7 +31,7 @@
           </div>
 
           <div ref="gameContainer" class="">
-            <div class="w3-container">
+            <div class="">
               <div style="font-size: 21px" class="w3-center" ref="computerWord">
                 Let's go!
               </div>
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <div class="w3-container">
+      <div class="">
         <word-tally
           :listOfComputerWords="listOfComputerWords"
           :listOfPlayerWords="listOfPlayerWords"
@@ -74,6 +74,7 @@ export default {
       numbers: [4,5,6,7,8,9,10,11,12,13,14,15,16],
       listOfComputerWords: [],
       listOfPlayerWords: [],
+      wordLength: 0,
       computer: "",
       timerCount: 10,
       timer: 10,
@@ -106,28 +107,52 @@ export default {
     },
 
     checkBeforeSending() {
-      if (this.computer.length > 0) {
-        var word = this.$refs.word.value.trim();
+      var word = this.$refs.word.value.trim();
         var lengthOfComputerWord = this.computer.length - 1;
+      if (this.computer.length > 0) {
+        
 
         if (this.computer.charAt(lengthOfComputerWord) === word.charAt(0)) {
-          if (this.level > 1) {
-            this.levelTwoConditions()
-          }
-          this.checkIfWordAlreadyExists(word);
+
+switch(this.level){
+          case 1:
+            this.checkIfWordAlreadyExists(word);
+            break;
+          case 2:
+            if (word.length == this.wordLength){
+              this.checkIfWordAlreadyExists(word);
+              
+            } else {
+              this.gameOver();
+            }
+          break;
+          default:
+        }
+          
         } else {
           this.gameOver();
         }
       } else {
-        if (this.level > 1) {
-            this.levelTwoConditions()
-          }
-        this.sendWord();
+        switch(this.level){
+          case 1:
+            this.sendWord();
+            break;
+          case 2:
+            if (word.length == this.wordLength){
+              this.sendWord();
+              
+            } else {
+              this.gameOver();
+            }
+          break;
+          default:
+        }
+        
       }
     },
 
     sendWord() {
-      var word = this.$refs.word.value;
+      var word = this.$refs.word.value.trim();
       
       var data = {
         word: word,
@@ -151,7 +176,7 @@ export default {
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 20) {
+              if (this.listOfPlayerWords.length == 50) {
                 this.resetTimer();
                 this.endLevel();
               } else {
@@ -218,11 +243,14 @@ export default {
       this.$refs.gameWrapper.style.display = "none";
       this.$refs.computerWord.textContent = "Let's go!";
       this.computer = "";
+
+      this.getRandomNumber();
     },
 
-    levelTwoConditions(){
+    getRandomNumber(){
       var getRandomNumber = Math.floor(Math.random() * this.numbers.length + 1);
         this.wordLength = this.numbers[getRandomNumber];
+        this.wordLength = 5;
         this.$refs.wLength.textContent = this.wordLength;
         
     },

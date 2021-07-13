@@ -35,7 +35,8 @@ class BeginingAndEndController extends Controller
 
         if ($request->has('word') && !empty($request->input('word'))) {
             $word = $request->word;
-            $length = strlen($word);
+            // $length = strlen($word);
+            $length = $request->length;
             $last_letter = $word[-1];
 
             $check = Dictionary::where(["word" => $word])->first();
@@ -43,7 +44,7 @@ class BeginingAndEndController extends Controller
             if ($check) {
                 return DB::table('dictionaries')->where('id', '!=', $check->id)->where('word', 'like', $last_letter . '%')->whereRaw('LENGTH(word) = ' . $length)->inRandomOrder()->limit(1)->get();
             } else {
-                return "not a word";
+                return [];
             }
         } else {
             return "hello";

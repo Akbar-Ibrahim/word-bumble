@@ -1985,7 +1985,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 5) {
+            if (_this.listOfPlayerWords.length == 50) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -2213,7 +2213,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 10) {
+            if (_this.listOfPlayerWords.length == 50) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -2430,7 +2430,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 10) {
+            if (_this.listOfPlayerWords.length == 50) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -2491,6 +2491,235 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.timer -= 1;
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndEqualComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndEqualComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: [],
+  data: function data() {
+    return {
+      isDone: false,
+      rules: "The rules are simple. You'll name a word with a specified length and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
+      level: 1,
+      numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      listOfComputerWords: [],
+      listOfPlayerWords: [],
+      wordLength: 4,
+      computer: "",
+      timerCount: 10,
+      timer: 10
+    };
+  },
+  created: function created() {},
+  mounted: function mounted() {},
+  methods: {
+    startTimer: function startTimer() {
+      if (this.level > 1) {// setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+    playQuiz: function playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+      this.resetTimer();
+      this.startTimer();
+    },
+    playAgain: function playAgain() {
+      location.href = "/begining/end";
+    },
+    checkBeforeSending: function checkBeforeSending() {
+      var word = this.$refs.word.value.trim();
+      var lengthOfComputerWord = this.computer.length - 1;
+
+      if (this.computer.length > 0) {
+        if (this.computer.charAt(lengthOfComputerWord) === word.charAt(0) && word.length == this.wordLength) {
+          this.checkIfWordAlreadyExists(word);
+        } else {
+          this.gameOver();
+        }
+      } else {
+        if (word.length == this.wordLength) {
+          this.sendWord();
+        } else {
+          this.gameOver();
+        }
+      }
+    },
+    sendWord: function sendWord() {
+      var _this = this;
+
+      var word = this.$refs.word.value.trim();
+      var data = {
+        word: word,
+        length: this.wordLength
+      };
+      data = JSON.stringify(data);
+
+      if (word) {
+        fetch("/api/words/bande/specific", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: data
+        }).then(function (response) {
+          return response.json();
+        }).then(function (result) {
+          console.log(result);
+
+          if (result.length > 0) {
+            _this.listOfPlayerWords.push(word);
+
+            _this.resetTimer();
+
+            if (_this.listOfPlayerWords.length == 50) {
+              _this.resetTimer();
+
+              _this.endLevel();
+            } else {
+              _this.$refs.computerWord.textContent = result[0].word;
+              _this.computer = result[0].word;
+
+              _this.listOfComputerWords.push(result[0]);
+            }
+          } else {
+            _this.gameOver();
+          }
+        });
+      }
+
+      this.$refs.word.value = "";
+    },
+    checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
+      var check = 0;
+
+      if (this.listOfComputerWords.length > 0 && this.listOfPlayerWords.length > 0) {
+        for (var i = 0; i < this.listOfComputerWords.length; i++) {
+          if (word === this.listOfComputerWords[i]) {
+            check = check + 1;
+          }
+        }
+
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            check = check + 1;
+          }
+        }
+
+        if (check > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord();
+        }
+      }
+    },
+    myTimer: function myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
+    },
+    resetTimer: function resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+    endLevel: function endLevel() {
+      this.listOfPlayerWords = [];
+      this.listOfComputerWords = [];
+      this.level += 1; // this.rules = "Now, you are going to form words with the last letter of computer's words but with a specified length."
+
+      this.$refs.rules.style.display = "block";
+      this.$refs.gameWrapper.style.display = "none";
+      this.$refs.computerWord.textContent = "Let's go!";
+      this.computer = "";
+      this.wordLength += 1;
+      this.nextLevel();
+    },
+    nextLevel: function nextLevel() {
+      this.rules = "Go on to " + this.wordLength + " words now.";
+    },
+    gameOver: function gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
     }
   }
 });
@@ -3182,6 +3411,7 @@ __webpack_require__.r(__webpack_exports__);
       numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
       listOfComputerWords: [],
       listOfPlayerWords: [],
+      wordLength: 0,
       computer: "",
       timerCount: 10,
       timer: 10
@@ -3206,31 +3436,53 @@ __webpack_require__.r(__webpack_exports__);
       location.href = "/begining/end";
     },
     checkBeforeSending: function checkBeforeSending() {
+      var word = this.$refs.word.value.trim();
+      var lengthOfComputerWord = this.computer.length - 1;
+
       if (this.computer.length > 0) {
-        var word = this.$refs.word.value.trim();
-        var lengthOfComputerWord = this.computer.length - 1;
-
         if (this.computer.charAt(lengthOfComputerWord) === word.charAt(0)) {
-          if (this.level > 1) {
-            this.levelTwoConditions();
-          }
+          switch (this.level) {
+            case 1:
+              this.checkIfWordAlreadyExists(word);
+              break;
 
-          this.checkIfWordAlreadyExists(word);
+            case 2:
+              if (word.length == this.wordLength) {
+                this.checkIfWordAlreadyExists(word);
+              } else {
+                this.gameOver();
+              }
+
+              break;
+
+            default:
+          }
         } else {
           this.gameOver();
         }
       } else {
-        if (this.level > 1) {
-          this.levelTwoConditions();
-        }
+        switch (this.level) {
+          case 1:
+            this.sendWord();
+            break;
 
-        this.sendWord();
+          case 2:
+            if (word.length == this.wordLength) {
+              this.sendWord();
+            } else {
+              this.gameOver();
+            }
+
+            break;
+
+          default:
+        }
       }
     },
     sendWord: function sendWord() {
       var _this = this;
 
-      var word = this.$refs.word.value;
+      var word = this.$refs.word.value.trim();
       var data = {
         word: word
       };
@@ -3253,7 +3505,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 20) {
+            if (_this.listOfPlayerWords.length == 50) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -3314,10 +3566,12 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.gameWrapper.style.display = "none";
       this.$refs.computerWord.textContent = "Let's go!";
       this.computer = "";
+      this.getRandomNumber();
     },
-    levelTwoConditions: function levelTwoConditions() {
+    getRandomNumber: function getRandomNumber() {
       var getRandomNumber = Math.floor(Math.random() * this.numbers.length + 1);
       this.wordLength = this.numbers[getRandomNumber];
+      this.wordLength = 5;
       this.$refs.wLength.textContent = this.wordLength;
     },
     gameOver: function gameOver() {
@@ -3973,7 +4227,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 20) {
+            if (_this.listOfPlayerWords.length == 2) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -4650,7 +4904,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 2) {
+            if (_this.listOfPlayerWords.length == 20) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -4890,7 +5144,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 20) {
+            if (_this.listOfPlayerWords.length == 2) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -5161,6 +5415,7 @@ Vue.component('consonant-clusters', __webpack_require__(/*! ./components/Consona
 Vue.component('begin-end', __webpack_require__(/*! ./components/BeginAndEndComponent.vue */ "./resources/js/components/BeginAndEndComponent.vue").default);
 Vue.component('begin-end-vowel', __webpack_require__(/*! ./components/BeginAndEndVowelComponent.vue */ "./resources/js/components/BeginAndEndVowelComponent.vue").default);
 Vue.component('begin-end-consonant', __webpack_require__(/*! ./components/BeginAndEndConsonantComponent.vue */ "./resources/js/components/BeginAndEndConsonantComponent.vue").default);
+Vue.component('begin-end-equal', __webpack_require__(/*! ./components/BeginEndEqualComponent.vue */ "./resources/js/components/BeginEndEqualComponent.vue").default);
 Vue.component('single-player-tally', __webpack_require__(/*! ./components/SinglePlayerTallyComponent.vue */ "./resources/js/components/SinglePlayerTallyComponent.vue").default); // Modal
 
 Vue.component('modal', __webpack_require__(/*! ./components/ModalComponent.vue */ "./resources/js/components/ModalComponent.vue").default);
@@ -40720,6 +40975,45 @@ component.options.__file = "resources/js/components/BeginAndEndVowelComponent.vu
 
 /***/ }),
 
+/***/ "./resources/js/components/BeginEndEqualComponent.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/BeginEndEqualComponent.vue ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _BeginEndEqualComponent_vue_vue_type_template_id_dc92ea34___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BeginEndEqualComponent.vue?vue&type=template&id=dc92ea34& */ "./resources/js/components/BeginEndEqualComponent.vue?vue&type=template&id=dc92ea34&");
+/* harmony import */ var _BeginEndEqualComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BeginEndEqualComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/BeginEndEqualComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _BeginEndEqualComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _BeginEndEqualComponent_vue_vue_type_template_id_dc92ea34___WEBPACK_IMPORTED_MODULE_0__.render,
+  _BeginEndEqualComponent_vue_vue_type_template_id_dc92ea34___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/BeginEndEqualComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/CongratsComponent.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/components/CongratsComponent.vue ***!
@@ -41392,6 +41686,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/BeginEndEqualComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/BeginEndEqualComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginEndEqualComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BeginEndEqualComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndEqualComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginEndEqualComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/CongratsComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************!*\
   !*** ./resources/js/components/CongratsComponent.vue?vue&type=script&lang=js& ***!
@@ -41699,6 +42009,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/BeginEndEqualComponent.vue?vue&type=template&id=dc92ea34&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/BeginEndEqualComponent.vue?vue&type=template&id=dc92ea34& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginEndEqualComponent_vue_vue_type_template_id_dc92ea34___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginEndEqualComponent_vue_vue_type_template_id_dc92ea34___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginEndEqualComponent_vue_vue_type_template_id_dc92ea34___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BeginEndEqualComponent.vue?vue&type=template&id=dc92ea34& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndEqualComponent.vue?vue&type=template&id=dc92ea34&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/CongratsComponent.vue?vue&type=template&id=61e64e62&":
 /*!**************************************************************************************!*\
   !*** ./resources/js/components/CongratsComponent.vue?vue&type=template&id=61e64e62& ***!
@@ -41987,7 +42314,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "congrats", staticStyle: { display: "none" } },
@@ -42025,7 +42352,7 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
@@ -42051,13 +42378,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -42105,7 +42432,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("word-tally", {
               attrs: {
@@ -42143,7 +42470,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "congrats", staticStyle: { display: "none" } },
@@ -42161,7 +42488,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center" }, [
+          ? _c("div", { staticClass: "w3-center" }, [
               _c(
                 "button",
                 {
@@ -42181,7 +42508,7 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
@@ -42207,13 +42534,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -42221,7 +42548,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
-              _c("div", { staticClass: "w3-container" }, [
+              _c("div", {}, [
                 _c(
                   "div",
                   {
@@ -42261,7 +42588,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("single-player-tally", {
               attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
@@ -42296,7 +42623,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "congrats", staticStyle: { display: "none" } },
@@ -42334,7 +42661,7 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
@@ -42360,8 +42687,8 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
@@ -42414,10 +42741,151 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("single-player-tally", {
               attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
+            })
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndEqualComponent.vue?vue&type=template&id=dc92ea34&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndEqualComponent.vue?vue&type=template&id=dc92ea34& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c(
+      "div",
+      { ref: "rules" },
+      [
+        _c("rules", {
+          attrs: { level: _vm.level, rules: _vm.rules, "is-done": _vm.isDone },
+          on: { "play-quiz": _vm.playQuiz }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "gameWrapper",
+        staticClass: "w3-row",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", { ref: "wLength" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "randomLetter",
+              staticClass: "flex-grow-1 w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v(" " + _vm._s(_vm.wordLength) + " letter words ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "timer",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [
+              _vm._v("\n        00:"),
+              _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [
+          _c("div", {}, [
+            _c(
+              "div",
+              {
+                ref: "playAgain",
+                staticClass: " w3-center",
+                staticStyle: { display: "none" }
+              },
+              [_c("game-over")],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { ref: "gameContainer" }, [
+              _c("div", {}, [
+                _c(
+                  "div",
+                  {
+                    ref: "computerWord",
+                    staticClass: "w3-center",
+                    staticStyle: { "font-size": "21px" }
+                  },
+                  [_vm._v("\n              Let's go!\n            ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("input", {
+                  ref: "word",
+                  staticClass: "form-control input-sm",
+                  attrs: {
+                    type: "text",
+                    name: "word",
+                    placeholder: "Enter your word here..."
+                  },
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.checkBeforeSending.apply(null, arguments)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {},
+          [
+            _c("word-tally", {
+              attrs: {
+                listOfComputerWords: _vm.listOfComputerWords,
+                listOfPlayerWords: _vm.listOfPlayerWords
+              }
             })
           ],
           1
@@ -42492,7 +42960,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "congrats", staticStyle: { display: "none" } },
@@ -42530,7 +42998,7 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
@@ -42556,13 +43024,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -42570,17 +43038,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
-              _c("div", { staticClass: "w3-container" }, [
-                _c(
-                  "div",
-                  {
-                    ref: "computerWord",
-                    staticClass: "w3-center",
-                    staticStyle: { "font-size": "21px" }
-                  },
-                  [_vm._v("\n              Let's go!\n            ")]
-                )
-              ]),
+              _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("input", {
@@ -42610,7 +43068,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("single-player-tally", {
               attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
@@ -42645,7 +43103,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "congrats", staticStyle: { display: "none" } },
@@ -42683,7 +43141,7 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
@@ -42709,13 +43167,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -42723,17 +43181,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
-              _c("div", { staticClass: "w3-container" }, [
-                _c(
-                  "div",
-                  {
-                    ref: "computerWord",
-                    staticClass: "w3-center",
-                    staticStyle: { "font-size": "21px" }
-                  },
-                  [_vm._v("\n              Let's go!\n            ")]
-                )
-              ]),
+              _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("input", {
@@ -42763,7 +43211,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("single-player-tally", {
               attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
@@ -42879,7 +43327,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "rules" },
@@ -42896,7 +43344,7 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
@@ -42924,13 +43372,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -42938,7 +43386,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
-              _c("div", { staticClass: "w3-container" }, [
+              _c("div", {}, [
                 _c(
                   "div",
                   {
@@ -42978,7 +43426,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("word-tally", {
               attrs: {
@@ -43016,7 +43464,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "congrats", staticStyle: { display: "none" } },
@@ -43054,7 +43502,7 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
@@ -43080,13 +43528,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -43094,17 +43542,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
-              _c("div", { staticClass: "w3-container" }, [
-                _c(
-                  "div",
-                  {
-                    ref: "computerWord",
-                    staticClass: "w3-center",
-                    staticStyle: { "font-size": "21px" }
-                  },
-                  [_vm._v("\n              Let's go!\n            ")]
-                )
-              ]),
+              _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("input", {
@@ -43134,7 +43572,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("single-player-tally", {
               attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
@@ -43169,7 +43607,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "congrats", staticStyle: { display: "none" } },
@@ -43207,7 +43645,7 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
@@ -43233,13 +43671,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -43247,17 +43685,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
-              _c("div", { staticClass: "w3-container" }, [
-                _c(
-                  "div",
-                  {
-                    ref: "computerWord",
-                    staticClass: "w3-center",
-                    staticStyle: { "font-size": "21px" }
-                  },
-                  [_vm._v("\n              Let's go!\n            ")]
-                )
-              ]),
+              _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("input", {
@@ -43287,7 +43715,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("single-player-tally", {
               attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
@@ -43376,7 +43804,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "rules" },
@@ -43393,16 +43821,18 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
         _c("div", { staticClass: "d-flex" }, [
           _vm.level == 1
-            ? _c("div", [
-                _c("button", { on: { click: _vm.nextLevel } }, [
-                  _vm._v("Get Another Letter")
-                ])
+            ? _c("div", { staticClass: "w3-padding" }, [
+                _c(
+                  "button",
+                  { staticClass: "w3-button", on: { click: _vm.nextLevel } },
+                  [_vm._v("Get Another Letter")]
+                )
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -43427,13 +43857,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -43441,7 +43871,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
-              _c("div", { staticClass: "w3-container" }, [
+              _c("div", {}, [
                 _c(
                   "div",
                   {
@@ -43481,7 +43911,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("word-tally", {
               attrs: {
@@ -43519,55 +43949,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "w3-container", staticStyle: { "margin-bottom": "20px" } },
-    [
-      _vm.level == 1
-        ? _c("div", [
-            _c("h1", { staticClass: "w3-center" }, [
-              _vm._v(" Level " + _vm._s(_vm.level) + " ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "w3-container w3-center" }, [
-              _vm._v("\n      " + _vm._s(_vm.rules) + "\n    ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "w3-center" }, [
-              _c(
-                "button",
-                { staticClass: "w3-button", on: { click: _vm.playQuiz } },
-                [_vm._v("Play")]
-              )
-            ])
-          ])
-        : _vm.level > 1
-        ? _c("div", [
-            _c("h1", { staticClass: "w3-center" }, [_vm._v("Congrats!")]),
-            _vm._v(" "),
+  return _c("div", { staticStyle: { "margin-bottom": "20px" } }, [
+    _vm.level == 1
+      ? _c("div", [
+          _c("h1", { staticClass: "w3-center" }, [
+            _vm._v(" Level " + _vm._s(_vm.level) + " ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: " w3-center" }, [
+            _vm._v("\n      " + _vm._s(_vm.rules) + "\n    ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w3-center" }, [
             _c(
-              "div",
-              { staticClass: "w3-container w3-center w3-margin w3-padding" },
-              [_vm._v("You made it to level " + _vm._s(_vm.level) + ".")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "w3-container w3-center" }, [
-              _vm._v("\n      " + _vm._s(_vm.rules) + "\n    ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "w3-center" }, [
-              _vm.isDone == false
-                ? _c(
-                    "button",
-                    { staticClass: "w3-button", on: { click: _vm.playQuiz } },
-                    [_vm._v("Play")]
-                  )
-                : _vm._e()
-            ])
+              "button",
+              { staticClass: "w3-button", on: { click: _vm.playQuiz } },
+              [_vm._v("Play")]
+            )
           ])
-        : _vm._e()
-    ]
-  )
+        ])
+      : _vm.level > 1
+      ? _c("div", [
+          _c("h1", { staticClass: "w3-center" }, [_vm._v("Congrats!")]),
+          _vm._v(" "),
+          _c("div", { staticClass: " w3-center w3-margin w3-padding" }, [
+            _vm._v("You made it to level " + _vm._s(_vm.level) + ".")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w3-container w3-center" }, [
+            _vm._v("\n      " + _vm._s(_vm.rules) + "\n    ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w3-center" }, [
+            _vm.isDone == false
+              ? _c(
+                  "button",
+                  { staticClass: "w3-button", on: { click: _vm.playQuiz } },
+                  [_vm._v("Play")]
+                )
+              : _vm._e()
+          ])
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -43592,7 +44016,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticStyle: { overflow: "scroll", height: "400px" } }, [
@@ -43643,7 +44067,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "congrats", staticStyle: { display: "none" } },
@@ -43681,7 +44105,7 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
@@ -43707,13 +44131,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -43721,17 +44145,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
-              _c("div", { staticClass: "w3-container" }, [
-                _c(
-                  "div",
-                  {
-                    ref: "computerWord",
-                    staticClass: "w3-center",
-                    staticStyle: { "font-size": "21px" }
-                  },
-                  [_vm._v("\n              Let's go!\n            ")]
-                )
-              ]),
+              _c("div", {}),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("input", {
@@ -43761,7 +44175,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("single-player-tally", {
               attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
@@ -43796,7 +44210,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "congrats", staticStyle: { display: "none" } },
@@ -43834,7 +44248,7 @@ var render = function() {
       "div",
       {
         ref: "gameWrapper",
-        staticClass: "w3-row-padding",
+        staticClass: "w3-row",
         staticStyle: { display: "none" }
       },
       [
@@ -43860,13 +44274,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -43874,17 +44288,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
-              _c("div", { staticClass: "w3-container" }, [
-                _c(
-                  "div",
-                  {
-                    ref: "computerWord",
-                    staticClass: "w3-center",
-                    staticStyle: { "font-size": "21px" }
-                  },
-                  [_vm._v("\n              Let's go!\n            ")]
-                )
-              ]),
+              _c("div", {}),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("input", {
@@ -43914,7 +44318,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("single-player-tally", {
               attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
@@ -43949,7 +44353,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _c(
       "div",
       { ref: "rules" },
@@ -44006,13 +44410,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w3-container" }, [
-          _c("div", { staticClass: "w3-container" }, [
+        _c("div", {}, [
+          _c("div", {}, [
             _c(
               "div",
               {
                 ref: "playAgain",
-                staticClass: "w3-container w3-center",
+                staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -44020,7 +44424,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
-              _c("div", { staticClass: "w3-container" }, [
+              _c("div", {}, [
                 _c(
                   "div",
                   {
@@ -44060,7 +44464,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w3-container" },
+          {},
           [
             _c("word-tally", {
               attrs: {
@@ -44098,7 +44502,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-container" }, [
+  return _c("div", {}, [
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticStyle: { overflow: "scroll", height: "400px" } }, [

@@ -1,5 +1,5 @@
 <template>
-  <div class="w3-container">
+  <div class="">
     <div ref="rules">
       <rules
         :level="level"
@@ -8,10 +8,10 @@
         :is-done="isDone"
       ></rules>
     </div>
-    <div ref="gameWrapper" class="w3-row-padding" style="display: none">
+    <div ref="gameWrapper" class="w3-row" style="display: none">
       <div class="d-flex">
-        <div v-if="level == 1">
-          <button @click="nextLevel">Get Another Letter</button>
+        <div v-if="level == 1" class="w3-padding">
+          <button class="w3-button" @click="nextLevel">Get Another Letter</button>
         </div>
         <div
           style="font-size: 21px"
@@ -22,10 +22,10 @@
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
       </div>
-      <div class="w3-container">
-        <div class="w3-container">
+      <div class="">
+        <div class="">
           <div
-            class="w3-container w3-center"
+            class=" w3-center"
             ref="playAgain"
             style="display: none"
           >
@@ -33,7 +33,7 @@
           </div>
 
           <div ref="gameContainer" class="">
-            <div class="w3-container">
+            <div class="">
               <div style="font-size: 21px" class="w3-center" ref="computerWord">
                 Let's go!
               </div>
@@ -53,7 +53,7 @@
         </div>
       </div>
 
-      <div class="w3-container">
+      <div class="">
         <word-tally
           :listOfComputerWords="listOfComputerWords"
           :listOfPlayerWords="listOfPlayerWords"
@@ -150,7 +150,7 @@ export default {
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 20) {
+              if (this.listOfPlayerWords.length == 2) {
                 this.resetTimer();
                 this.endLevel();
               } else {

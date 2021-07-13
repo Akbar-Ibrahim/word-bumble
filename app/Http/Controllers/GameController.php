@@ -91,4 +91,9 @@ class GameController extends Controller
     public function beginAndEndConsonant(){
         return view('beginAndEndConsonant');
     }
+
+    public function beginEndEqual(){
+
+        return view('beginEndEqual');
+    }
 }

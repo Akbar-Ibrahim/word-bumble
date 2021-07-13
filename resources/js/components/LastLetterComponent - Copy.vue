@@ -1,30 +1,39 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">
-            The begining is the end. The end is the begining.
-          </div>
-          <h1>{{ timerCount }}</h1>
+  <div class="w3-container">
+    <div ref="rules">
+      <rules
+        :level="level"
+        :rules="rules"
+        @play-quiz="playQuiz"
+        :is-done="isDone"
+      ></rules>
+    </div>
+    <div ref="gameWrapper" class="w3-row-padding" style="display: none">
+      <div class="d-flex">
+        <div ref="wLength"></div>
+        <div
+          style="font-size: 21px"
+          class="flex-grow-1 w3-padding"
+          ref="randomLetter"
+        ></div>
+        <div style="font-size: 21px" class="w3-padding" ref="timer">
+          00:<span v-if="timer < 10">0</span>{{ timer }}
+        </div>
+      </div>
+      <div class="w3-container">
+        <div class="w3-container">
           <div
             class="w3-container w3-center"
             ref="playAgain"
             style="display: none"
           >
-            <h4>Game over!</h4>
-            <div>You suck! :)</div>
-            <button @click="playAgain" class="w3-button">Play Again</button>
+            <game-over></game-over>
           </div>
 
-          <div v-for="(w, i) in myWords" :key="i">
-            <div>{{ w.word }}</div>
-          </div>
-
-          <div ref="gameContainer">
-            <div class="w3-container w3-padding">
+          <div ref="gameContainer" class="">
+            <div class="w3-container">
               <div style="font-size: 21px" class="w3-center" ref="computerWord">
-                Come on, show me what you got!
+                Let's go!
               </div>
             </div>
 
@@ -39,20 +48,14 @@
               />
             </div>
           </div>
-
-          <div class="d-flex">
-            <div class="flex-fill">
-              <div v-for="(w, i) in computerWords" :key="i">
-                <div>{{ w.word }}</div>
-              </div>
-            </div>
-            <div class="flex-fill">
-              <div v-for="(w, i) in playerWords" :key="i">
-                <div>{{ w }}</div>
-              </div>
-            </div>
-          </div>
         </div>
+      </div>
+
+      <div class="w3-container">
+        <word-tally
+          :listOfComputerWords="listOfComputerWords"
+          :listOfPlayerWords="listOfPlayerWords"
+        ></word-tally>
       </div>
     </div>
   </div>
@@ -60,16 +63,20 @@
 
 <script>
 export default {
-  props: ["words"],
+  props: [],
 
   data() {
     return {
-      myWords: JSON.parse(this.words),
-      computerWords: [],
-      playerWords: [],
+      isDone: false,
+      rules:
+        "The rules are simple. You'll name a word and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
+      level: 1,
+      numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      listOfComputerWords: [],
+      listOfPlayerWords: [],
       computer: "",
       timerCount: 10,
-      wordLength: 0,
+      timer: 10,
     };
   },
 
@@ -77,74 +84,51 @@ export default {
 
   mounted() {},
 
-
   methods: {
+    startTimer() {
+      if (this.level > 1) {
+        // setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+
+    playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+
+      this.resetTimer();
+      this.startTimer();
+    },
+
     playAgain() {
       location.href = "/begining/end";
     },
 
     checkBeforeSending() {
-      var word = this.$refs.word.value;
-
       if (this.computer.length > 0) {
+        var word = this.$refs.word.value.trim();
         var lengthOfComputerWord = this.computer.length - 1;
 
         if (this.computer.charAt(lengthOfComputerWord) === word.charAt(0)) {
-          if (this.computerWords.length > 0 && this.playerWords.length > 0) {
+          if (this.level > 1) {
+            this.levelTwoConditions(word);
+          } else {
             this.checkIfWordAlreadyExists(word);
           }
-          this.checkMyWords(word);
-          
         } else {
-          alert("you lose");
+          this.gameOver();
         }
       } else {
-        this.checkMyWords(word);
-      }
-    },
-
-    checkMyWords(word) {
-      var check = 0;
-      for (var i = 0; i < this.myWords.length; i++) {
-        if (word === this.myWords[i].word) {
-          check = check + 1;
-          this.playerWords.push(this.myWords[i].word);
-          this.myWords.splice(i, 1);
-          break;
+        if (this.level > 1) {
+          this.levelTwoConditions(word);
+        } else {
+          this.sendWord();
         }
       }
-
-      this.$refs.word.value = "";
-
-      if (check > 0) {
-        // alert("game over");
-        this.computerChoice(word);
-      } else {
-        this.sendWord(word);
-      }
     },
 
-    computerChoice(word){
-      var lengthOfPlayerWord = word.length - 1;
-      var check = this.myWords.length;
-      for (var i = 0; i < this.myWords.length; i++){
-          if (word.charAt(lengthOfPlayerWord) === this.myWords[i].word.charAt(0)) {
-              this.$refs.computerWord.textContent = this.myWords[i].word;
-              this.computer = this.myWords[i].word;
-              this.computerWords.push(this.myWords[i]);
-              
-        break;
-      } else {
-        check = check - 1;
-      }
-      }
-
-      if (check = 0) {
-        this.sendWord(word);
-      }
-    },
-
-    sendWord(playerWord) {
+    sendWord() {
       var word = this.$refs.word.value;
 
       var data = {
@@ -167,12 +151,18 @@ export default {
           .then((result) => {
             console.log(result);
             if (result.length > 0) {
-              this.$refs.computerWord.textContent = result.word;
-              this.computer = result.word;
-              this.computerWords.push(result);
-              this.playerWords.push(playerWord);
+              this.listOfPlayerWords.push(word);
+              this.resetTimer();
+              if (this.listOfPlayerWords.length == 50) {
+                this.resetTimer();
+                this.endLevel();
+              } else {
+                this.$refs.computerWord.textContent = result.word;
+                this.computer = result.word;
+                this.listOfComputerWords.push(result);
+              }
             } else {
-              alert("not a word");
+              this.gameOver();
             }
           });
       }
@@ -181,22 +171,76 @@ export default {
 
     checkIfWordAlreadyExists(word) {
       var check = 0;
-      for (var i = 0; i < this.computerWords.length; i++) {
-        if (word === this.computerWords[i].word) {
-          check = check + 1;
+      if (
+        this.listOfComputerWords.length > 0 &&
+        this.listOfPlayerWords.length > 0
+      ) {
+        for (var i = 0; i < this.listOfComputerWords.length; i++) {
+          if (word === this.listOfComputerWords[i]) {
+            check = check + 1;
+          }
+        }
+
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            check = check + 1;
+          }
+        }
+
+        if (check > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord();
         }
       }
+    },
 
-      for (var i = 0; i < this.playerWords.length; i++) {
-        if (word === this.playerWords[i]) {
-          check = check + 1;
-        }
+    myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
       }
+    },
 
-      if (check > 0) {
-        this.$refs.playAgain.style.display = "block";
-        this.$refs.gameContainer.style.display = "none";
+    resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+
+    endLevel() {
+      this.listOfPlayerWords = [];
+      this.listOfComputerWords = [];
+      this.level += 1;
+      this.rules =
+        "Now, you are going to form words with the last letter of computer's words but with a specified length.";
+
+      this.$refs.rules.style.display = "block";
+      this.$refs.gameWrapper.style.display = "none";
+      this.$refs.computerWord.textContent = "Let's go!";
+      this.computer = "";
+
+      this.getRandomNumber();
+    },
+
+    levelTwoConditions(word) {
+      if (word.length == this.wordLength.length) {
+        this.checkIfWordAlreadyExists(word);
+      } else {
+        this.gameOver();
       }
+    },
+
+    getRandomNumber() {
+      var getRandomNumber = Math.floor(Math.random() * this.numbers.length + 1);
+      this.wordLength = this.numbers[getRandomNumber];
+      this.$refs.wLength.textContent = this.wordLength;
+      this.$refs.wLength.textContent = 5;
+    },
+
+    gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
     },
   },
 };

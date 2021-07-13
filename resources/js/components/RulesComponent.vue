@@ -1,8 +1,8 @@
 <template>
-  <div class="w3-container" style="margin-bottom: 20px">
+  <div class="" style="margin-bottom: 20px">
     <div v-if="level == 1">
       <h1 class="w3-center"> Level {{ level }} </h1>
-      <div class="w3-container w3-center">
+      <div class=" w3-center">
         {{ rules }}
       </div>
 
@@ -12,7 +12,7 @@
     </div>
     <div v-else-if="level > 1">
       <h1 class="w3-center">Congrats!</h1>
-      <div class="w3-container w3-center w3-margin w3-padding">You made it to level {{ level }}.</div>
+      <div class=" w3-center w3-margin w3-padding">You made it to level {{ level }}.</div>
 
       <div class="w3-container w3-center">
         {{ rules }}

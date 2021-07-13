@@ -34,6 +34,8 @@ Route::get('/consonant/clusters/', 'GameController@consonantClusters');
 
 Route::get('/begining-and-end/', 'GameController@beginingAndEnd');
 
+Route::get('/begining-and-end/equal', 'GameController@beginEndEqual');
+
 Route::get('me-before-you/vowel', 'GameController@meBeforeYouVowel');
 Route::get('me-before-you/consonant', 'GameController@meBeforeYouConsonant');
 

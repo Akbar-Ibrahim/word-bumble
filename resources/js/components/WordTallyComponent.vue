@@ -1,5 +1,5 @@
 <template>
-    <div class="w3-container">
+    <div class="">
         <div>
           <h4 class="w3-center">Word tally</h4>
           <div class="d-flex w3-center">

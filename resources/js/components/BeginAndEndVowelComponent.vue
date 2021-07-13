@@ -1,5 +1,5 @@
 <template>
-  <div class="w3-container">
+  <div class="">
     <div ref="congrats" style="display: none;">
       <congrats></congrats>
     </div>
@@ -20,7 +20,7 @@
         </button>
       </div>
     </div>
-    <div ref="gameWrapper" class="w3-row-padding" style="display: none">
+    <div ref="gameWrapper" class="w3-row" style="display: none">
       <div class="d-flex">
         <div
           style="font-size: 21px"
@@ -31,8 +31,8 @@
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
       </div>
-      <div class="w3-container">
-        <div class="w3-container">
+      <div class="">
+        <div class="">
           <div
             class="w3-container w3-center"
             ref="playAgain"
@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <div class="w3-container">
+      <div class="">
         <single-player-tally
           :listOfPlayerWords="listOfPlayerWords"
         ></single-player-tally>
@@ -147,7 +147,7 @@ export default {
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 10) {
+              if (this.listOfPlayerWords.length == 50) {
                 this.resetTimer();
                 this.endLevel();
               }

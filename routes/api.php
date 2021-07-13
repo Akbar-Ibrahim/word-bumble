@@ -37,7 +37,7 @@ Route::get("words/begins-and-ends", "BeginsWithController@beginsAndEndWithSameLe
 
 // Begining and end
 Route::post("words/bande", "BeginingAndEndController@beginingAndEnd");
-Route::get("words/bande/specific", "BeginingAndEndController@beginingAndEndWithSpecificLength");
+Route::post("words/bande/specific", "BeginingAndEndController@beginingAndEndWithSpecificLength");
 
 // Alternating
 Route::get('try', 'AlternatingController@consonantAlt');
