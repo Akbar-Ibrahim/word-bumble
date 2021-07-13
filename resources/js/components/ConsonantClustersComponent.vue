@@ -146,7 +146,7 @@ export default {
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 100) {
+              if (this.listOfPlayerWords.length == 50) {
                 this.resetTimer();
                 this.endLevel();
               }

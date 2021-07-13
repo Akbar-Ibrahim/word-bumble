@@ -200,6 +200,7 @@ export default {
       var patt1 = /[aeiou][bcdfghjklmnpqrstvwxyz]*/g;
       var result = word.match(patt1);
 
+if (word.charAt(0) ===)
       for (var i = 0; i < result.length; i++) {
         if (
           // result[i].match(/[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]+/g)

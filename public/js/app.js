@@ -2911,7 +2911,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 100) {
+            if (_this.listOfPlayerWords.length == 50) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -3814,226 +3814,9 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MeBeforeYouVowelComponent.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: [],
-  data: function data() {
-    return {
-      vowels: ["a", "e", "i", "o", "u"],
-      vowelIndex: 0,
-      isDone: false,
-      level: 1,
-      rules: "Mention words that have a vowel-consonant sequence. The word must start with a vowel and end with a consonant.",
-      listOfPlayerWords: [],
-      computer: "",
-      timer: 10
-    };
-  },
-  created: function created() {},
-  mounted: function mounted() {},
-  methods: {
-    startTimer: function startTimer() {
-      if (this.level > 1) {// setInterval(this.myTimer, 2000);
-      } else {
-        setInterval(this.myTimer, 1000);
-      }
-    },
-    playQuiz: function playQuiz() {
-      this.$refs.rules.style.display = "none";
-      this.$refs.gameWrapper.style.display = "block";
-      this.resetTimer();
-      this.startTimer();
-    },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-
-      if (word) {
-        this.verifyConditionsAreMet(word);
-      }
-    },
-    sendWord: function sendWord() {
-      var _this = this;
-
-      var word = this.$refs.word.value.trim();
-
-      if (word) {
-        // if (this.listOfPlayerWords.length > 0) {
-        //   this.checkIfWordAlreadyExists(word);
-        // }
-        var data = {
-          playerWord: word
-        };
-        data = JSON.stringify(data);
-        fetch("/api/words/vowel/uncluster", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: data
-        }).then(function (response) {
-          return response.json();
-        }).then(function (result) {
-          console.log(result);
-
-          if (result.length > 0) {
-            _this.listOfPlayerWords.push(word);
-
-            _this.resetTimer();
-
-            if (_this.listOfPlayerWords.length == 50) {
-              _this.resetTimer();
-
-              _this.endLevel();
-            }
-          } else {
-            _this.gameOver();
-          }
-        });
-      }
-
-      this.$refs.word.value = "";
-    },
-    checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
-      var checkPlayer = 0;
-
-      for (var i = 0; i < this.listOfPlayerWords.length; i++) {
-        if (word === this.listOfPlayerWords[i]) {
-          checkPlayer = checkPlayer + 1;
-        }
-      }
-
-      if (checkPlayer > 0) {
-        this.gameOver();
-      } else {
-        this.sendWord();
-      }
-    },
-    resetTimer: function resetTimer() {
-      clearInterval(this.myTimer);
-      this.timer = 10;
-    },
-    endLevel: function endLevel() {
-      this.listOfPlayerWords = []; // this.level += 1;
-
-      this.rules = "Mention words that have more than one vowel cluster. That is multiple vowels coming one after another";
-      this.$refs.congrats.style.display = "block";
-      this.$refs.gameWrapper.style.display = "none";
-    },
-    nextLevel: function nextLevel() {},
-    checkWord: function checkWord(word) {
-      var check = 0;
-      var lengthOfWord = word.length - 1;
-      var patt1 = /[aeiou][bcdfghjklmnpqrstvwxyz]*/g;
-      var result = word.match(patt1);
-
-      for (var i = 0; i < result.length; i++) {
-        if ( // result[i].match(/[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]+/g)
-        result[i].length < 2) {
-          check += 1;
-        }
-      }
-
-      if (check == 0) {
-        this.checkIfWordAlreadyExists(word);
-      } else {
-        this.gameOver();
-      }
-    },
-    verifyConditionsAreMet: function verifyConditionsAreMet(word) {
-      this.checkWord(word);
-    },
-    gameOver: function gameOver() {
-      this.$refs.playAgain.style.display = "block";
-      this.$refs.gameContainer.style.display = "none";
-    },
-    myTimer: function myTimer() {
-      if (this.timer == 0) {
-        this.gameOver();
-      } else {
-        this.timer -= 1;
-      }
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\resources\\js\\components\\MeBeforeYouVowelComponent.vue: Unexpected token (203:22)\n\n\u001b[0m \u001b[90m 201 |\u001b[39m       \u001b[36mvar\u001b[39m result \u001b[33m=\u001b[39m word\u001b[33m.\u001b[39mmatch(patt1)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 202 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 203 |\u001b[39m \u001b[36mif\u001b[39m (word\u001b[33m.\u001b[39mcharAt(\u001b[35m0\u001b[39m) \u001b[33m===\u001b[39m)\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 204 |\u001b[39m       \u001b[36mfor\u001b[39m (\u001b[36mvar\u001b[39m i \u001b[33m=\u001b[39m \u001b[35m0\u001b[39m\u001b[33m;\u001b[39m i \u001b[33m<\u001b[39m result\u001b[33m.\u001b[39mlength\u001b[33m;\u001b[39m i\u001b[33m++\u001b[39m) {\u001b[0m\n\u001b[0m \u001b[90m 205 |\u001b[39m         \u001b[36mif\u001b[39m (\u001b[0m\n\u001b[0m \u001b[90m 206 |\u001b[39m           \u001b[90m// result[i].match(/[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]+/g)\u001b[39m\u001b[0m\n    at Parser._raise (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:816:17)\n    at Parser.raiseWithData (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:809:17)\n    at Parser.raise (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:770:17)\n    at Parser.unexpected (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:9893:16)\n    at Parser.parseExprAtom (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:11307:20)\n    at Parser.parseExprSubscripts (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10881:23)\n    at Parser.parseUpdate (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10861:21)\n    at Parser.parseMaybeUnary (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10839:23)\n    at Parser.parseExprOpBaseRightExpr (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10782:34)\n    at Parser.parseExprOpRightExpr (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10775:21)\n    at Parser.parseExprOp (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10741:27)\n    at Parser.parseExprOps (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10702:17)\n    at Parser.parseMaybeConditional (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10670:23)\n    at Parser.parseMaybeAssign (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10633:21)\n    at Parser.parseExpressionBase (C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10573:23)\n    at C:\\Users\\Akbar Ibrahim\\Documents\\laravel\\dictionary\\node_modules\\@babel\\parser\\lib\\index.js:10567:39");
 
 /***/ }),
 
@@ -4650,7 +4433,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 2) {
+            if (_this.listOfPlayerWords.length == 50) {
               _this.resetTimer();
 
               _this.endLevel();
