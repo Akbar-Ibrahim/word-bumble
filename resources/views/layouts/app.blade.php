@@ -17,6 +17,13 @@
 
     <link href="{{ asset('css/w3-css.css') }}" rel="stylesheet">
 
+<style>
+button {
+  font-size: 30px;
+  background-color: red;
+  color: white;
+}
+</style>
     
     </head>
 <body>

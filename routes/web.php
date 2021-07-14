@@ -36,6 +36,10 @@ Route::get('/begining-and-end/', 'GameController@beginingAndEnd');
 
 Route::get('/begining-and-end/equal', 'GameController@beginEndEqual');
 
+
+Route::get('/random-position', 'GameController@randomPosition');
+
+
 Route::get('me-before-you/vowel', 'GameController@meBeforeYouVowel');
 Route::get('me-before-you/consonant', 'GameController@meBeforeYouConsonant');
 

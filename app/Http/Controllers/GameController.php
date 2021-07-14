@@ -96,4 +96,10 @@ class GameController extends Controller
 
         return view('beginEndEqual');
     }
+
+    public function randomPosition(UtilService $utilService){
+
+        $alphabet = $utilService->smallLetters();
+        return view('randomPosition', compact('alphabet'));
+    }
 }

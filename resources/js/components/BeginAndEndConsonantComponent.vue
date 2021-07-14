@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div ref="congrats" style="display: none;">
+    <div ref="congrats" style="display: none">
       <congrats></congrats>
     </div>
     <div ref="rules">
@@ -10,7 +10,7 @@
         @play-quiz="playQuiz"
         :is-done="isDone"
       ></rules>
-      <div v-if="isDone == true" class="w3-center">
+      <div v-if="isDone == true" class="w3-center w3-margin">
         <button
           @click="proceedToNextChallenge"
           class="w3-button"
@@ -33,11 +33,7 @@
       </div>
       <div class="">
         <div class="">
-          <div
-            class=" w3-center"
-            ref="playAgain"
-            style="display: none"
-          >
+          <div class="w3-center" ref="playAgain" style="display: none">
             <game-over></game-over>
           </div>
 
@@ -49,23 +45,38 @@
             </div>
 
             <div class="card-body">
-              <input
-                ref="word"
-                type="text"
-                name="word"
-                class="form-control input-sm"
-                placeholder="Enter your word here..."
-                @keyup.enter="checkBeforeSending"
-              />
+              <!--  -->
+              <div class="d-flex">
+                <div class="flex-grow-1">
+                  <input
+                    ref="word"
+                    type="text"
+                    name="word"
+                    class="form-control input-sm"
+                    placeholder="Enter your word here..."
+                    @keyup.enter="checkBeforeSending"
+                  />
+                </div>
+                <div>
+                  <span class="input-group-btn" style="border: none">
+                    <button type="submit" class="btn btn-default go-button">
+                      <!-- <span class="glyphicon glyphicon-search"></span> -->
+                      Go
+                    </button>
+                  </span>
+                </div>
+              </div>
+              <!--  -->
             </div>
           </div>
         </div>
       </div>
 
       <div class="">
-        <single-player-tally
+        <word-tally
+          :listOfComputerWords="listOfComputerWords"
           :listOfPlayerWords="listOfPlayerWords"
-        ></single-player-tally>
+        ></word-tally>
       </div>
     </div>
   </div>
@@ -77,13 +88,34 @@ export default {
 
   data() {
     return {
-      vowels: ["a", "e", "i", "o", "u"],
-      vowelIndex: 0,
+      consonants: [
+        "b",
+        "c",
+        "d",
+        "f",
+        "g",
+        "h",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+      ],
       isDone: false,
       level: 1,
       letter: "",
-      rules:
-        "Mention words that begin and end with a consonant",
+      rules: "Mention words that begin and end with a consonant",
+      listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
@@ -113,6 +145,7 @@ export default {
 
     checkBeforeSending() {
       var word = this.$refs.word.value.trim();
+      word = word.toLowerCase();
 
       if (word) {
         this.verifyConditionsAreMet(word);
@@ -127,12 +160,13 @@ export default {
         // }
 
         var data = {
-          playerWord: word,
+          word: word,
+          letter: this.letter,
         };
 
         data = JSON.stringify(data);
 
-        fetch("/api/words/vowel/uncluster", {
+        fetch("/api/bb/consonants", {
           method: "post",
           headers: {
             "Content-Type": "application/json",
@@ -150,6 +184,10 @@ export default {
               if (this.listOfPlayerWords.length == 50) {
                 this.resetTimer();
                 this.endLevel();
+              } else {
+                this.$refs.computerWord.textContent = result.word;
+                this.computer = result.word;
+                this.listOfComputerWords.push(result);
               }
             } else {
               this.gameOver();
@@ -159,17 +197,37 @@ export default {
       this.$refs.word.value = "";
     },
 
+    getRandomLetter() {
+      var getLetter = Math.floor(Math.random() * this.consonants.length + 1);
+      this.letter = this.consonants[getLetter];
+    },
+
     checkIfWordAlreadyExists(word) {
       var checkPlayer = 0;
+      var checkComputer = 0;
+      this.getRandomLetter();
 
-      for (var i = 0; i < this.listOfPlayerWords.length; i++) {
-        if (word === this.listOfPlayerWords[i]) {
-          checkPlayer = checkPlayer + 1;
+      if (
+        this.listOfComputerWords.length > 0 &&
+        this.listOfPlayerWords.length > 0
+      ) {
+        for (var i = 0; i < this.listOfComputerWords.length; i++) {
+          if (word === this.listOfComputerWords[i].word) {
+            checkComputer = checkComputer + 1;
+          }
         }
-      }
 
-      if (checkPlayer > 0) {
-        this.gameOver();
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            checkPlayer = checkPlayer + 1;
+          }
+        }
+
+        if (checkPlayer > 0 || checkComputer > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord();
+        }
       } else {
         this.sendWord();
       }
@@ -198,10 +256,7 @@ export default {
         this.checkIfWordAlreadyExists(word);
       } else {
         this.gameOver();
-      
       }
-
-      
     },
 
     verifyConditionsAreMet(word) {
@@ -220,8 +275,6 @@ export default {
         this.timer -= 1;
       }
     },
-
-
   },
 };
 </script>

@@ -1919,6 +1919,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -2147,16 +2161,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
     return {
-      vowels: ["a", "e", "i", "o", "u"],
-      vowelIndex: 0,
+      consonants: ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"],
       isDone: false,
       level: 1,
       letter: "",
       rules: "Mention words that begin and end with a consonant",
+      listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
       timer: 10
@@ -2179,6 +2204,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkBeforeSending: function checkBeforeSending() {
       var word = this.$refs.word.value.trim();
+      word = word.toLowerCase();
 
       if (word) {
         this.verifyConditionsAreMet(word);
@@ -2194,10 +2220,11 @@ __webpack_require__.r(__webpack_exports__);
         //   this.checkIfWordAlreadyExists(word);
         // }
         var data = {
-          playerWord: word
+          word: word,
+          letter: this.letter
         };
         data = JSON.stringify(data);
-        fetch("/api/words/vowel/uncluster", {
+        fetch("/api/bb/consonants", {
           method: "post",
           headers: {
             "Content-Type": "application/json"
@@ -2217,6 +2244,11 @@ __webpack_require__.r(__webpack_exports__);
               _this.resetTimer();
 
               _this.endLevel();
+            } else {
+              _this.$refs.computerWord.textContent = result.word;
+              _this.computer = result.word;
+
+              _this.listOfComputerWords.push(result);
             }
           } else {
             _this.gameOver();
@@ -2226,17 +2258,33 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$refs.word.value = "";
     },
+    getRandomLetter: function getRandomLetter() {
+      var getLetter = Math.floor(Math.random() * this.consonants.length + 1);
+      this.letter = this.consonants[getLetter];
+    },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkPlayer = 0;
+      var checkComputer = 0;
+      this.getRandomLetter();
 
-      for (var i = 0; i < this.listOfPlayerWords.length; i++) {
-        if (word === this.listOfPlayerWords[i]) {
-          checkPlayer = checkPlayer + 1;
+      if (this.listOfComputerWords.length > 0 && this.listOfPlayerWords.length > 0) {
+        for (var i = 0; i < this.listOfComputerWords.length; i++) {
+          if (word === this.listOfComputerWords[i].word) {
+            checkComputer = checkComputer + 1;
+          }
         }
-      }
 
-      if (checkPlayer > 0) {
-        this.gameOver();
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            checkPlayer = checkPlayer + 1;
+          }
+        }
+
+        if (checkPlayer > 0 || checkComputer > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord();
+        }
       } else {
         this.sendWord();
       }
@@ -2364,6 +2412,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -2374,6 +2437,7 @@ __webpack_require__.r(__webpack_exports__);
       level: 1,
       letter: "",
       rules: "Mention words that begin and end with a vowel",
+      listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
       timer: 10
@@ -2396,6 +2460,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkBeforeSending: function checkBeforeSending() {
       var word = this.$refs.word.value.trim();
+      word = word.toLowerCase();
 
       if (word) {
         this.verifyConditionsAreMet(word);
@@ -2411,10 +2476,10 @@ __webpack_require__.r(__webpack_exports__);
         //   this.checkIfWordAlreadyExists(word);
         // }
         var data = {
-          playerWord: word
+          word: word
         };
         data = JSON.stringify(data);
-        fetch("/api/words/vowel/uncluster", {
+        fetch("/api/bb/vowels", {
           method: "post",
           headers: {
             "Content-Type": "application/json"
@@ -2434,6 +2499,11 @@ __webpack_require__.r(__webpack_exports__);
               _this.resetTimer();
 
               _this.endLevel();
+            } else {
+              _this.$refs.computerWord.textContent = result.word;
+              _this.computer = result.word;
+
+              _this.listOfComputerWords.push(result);
             }
           } else {
             _this.gameOver();
@@ -2445,15 +2515,26 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkPlayer = 0;
+      var checkComputer = 0;
 
-      for (var i = 0; i < this.listOfPlayerWords.length; i++) {
-        if (word === this.listOfPlayerWords[i]) {
-          checkPlayer = checkPlayer + 1;
+      if (this.listOfComputerWords.length > 0 && this.listOfPlayerWords.length > 0) {
+        for (var i = 0; i < this.listOfComputerWords.length; i++) {
+          if (word === this.listOfComputerWords[i].word) {
+            checkComputer = checkComputer + 1;
+          }
         }
-      }
 
-      if (checkPlayer > 0) {
-        this.gameOver();
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            checkPlayer = checkPlayer + 1;
+          }
+        }
+
+        if (checkPlayer > 0 || checkComputer > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord();
+        }
       } else {
         this.sendWord();
       }
@@ -2508,6 +2589,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2673,7 +2768,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.listOfComputerWords.length > 0 && this.listOfPlayerWords.length > 0) {
         for (var i = 0; i < this.listOfComputerWords.length; i++) {
-          if (word === this.listOfComputerWords[i]) {
+          if (word === this.listOfComputerWords[i].word) {
             check = check + 1;
           }
         }
@@ -2773,6 +2868,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3098,6 +3207,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -3307,6 +3430,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     // console.log("Component mounted.");
@@ -3338,6 +3463,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3570,8 +3705,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     getRandomNumber: function getRandomNumber() {
       var getRandomNumber = Math.floor(Math.random() * this.numbers.length + 1);
-      this.wordLength = this.numbers[getRandomNumber];
-      this.wordLength = 5;
+      this.wordLength = this.numbers[getRandomNumber]; // this.wordLength = 5;
+
       this.$refs.wLength.textContent = this.wordLength;
     },
     gameOver: function gameOver() {
@@ -3594,6 +3729,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3827,6 +3976,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4165,6 +4328,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["letters"],
   data: function data() {
@@ -4421,6 +4598,252 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RandomPositionComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RandomPositionComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["alphabet"],
+  data: function data() {
+    return {
+      letters: JSON.parse(this.alphabet),
+      position: 0,
+      isDone: false,
+      level: 1,
+      letter: "",
+      rules: "A letter and a number will be selected at random. Your job is to mention a word that has that letter in the position of the number",
+      listOfPlayerWords: [],
+      computer: "",
+      timer: 10
+    };
+  },
+  created: function created() {},
+  mounted: function mounted() {
+    this.getRandomLetter();
+  },
+  methods: {
+    startTimer: function startTimer() {
+      if (this.level > 1) {// setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+    playQuiz: function playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+      this.resetTimer();
+      this.startTimer();
+    },
+    checkBeforeSending: function checkBeforeSending() {
+      var word = this.$refs.word.value.trim();
+      word = word.toLowerCase();
+
+      if (word) {
+        this.verifyConditionsAreMet(word);
+      }
+    },
+    sendWord: function sendWord() {
+      var _this = this;
+
+      var word = this.$refs.word.value.trim();
+
+      if (word) {
+        var data = {
+          word: word,
+          letter: this.letter,
+          position: this.position
+        };
+        data = JSON.stringify(data);
+        fetch("/api/random/position", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: data
+        }).then(function (response) {
+          return response.json();
+        }).then(function (result) {
+          console.log(result);
+
+          if (result.length > 0) {
+            _this.listOfPlayerWords.push(word);
+
+            _this.resetTimer();
+
+            if (_this.listOfPlayerWords.length == 50) {
+              _this.resetTimer();
+
+              _this.endLevel();
+            }
+          } else {
+            _this.$refs.randomLetter.style.display = "none";
+
+            _this.gameOver();
+          }
+        });
+      }
+
+      this.$refs.word.value = "";
+    },
+    getRandomLetter: function getRandomLetter() {
+      var getLetter = Math.floor(Math.random() * this.letters.length + 1);
+      this.letter = this.letters[getLetter];
+      var getNumber = Math.floor(Math.random() * 5 + 1);
+      this.position = getNumber;
+    },
+    checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
+      var checkPlayer = 0;
+      var checkComputer = 0;
+      this.getRandomLetter();
+
+      if (this.listOfPlayerWords.length > 0) {
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            checkPlayer = checkPlayer + 1;
+          }
+        }
+
+        if (checkPlayer > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord();
+        }
+      } else {
+        this.sendWord();
+      }
+    },
+    resetTimer: function resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+    endLevel: function endLevel() {
+      // this.level += 1;
+      this.listOfPlayerWords = [];
+      this.$refs.congrats.style.display = "block";
+      this.$refs.gameWrapper.style.display = "none";
+    },
+    checkWord: function checkWord(word) {
+      var check = 0;
+      var lengthOfWord = word.length - 1;
+      var pos = this.position - 1;
+
+      if (word.charAt(pos) === this.letter) {
+        this.checkIfWordAlreadyExists(word);
+      } else {
+        this.gameOver();
+      }
+    },
+    verifyConditionsAreMet: function verifyConditionsAreMet(word) {
+      this.checkWord(word);
+    },
+    gameOver: function gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
+    },
+    myTimer: function myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RulesComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RulesComponent.vue?vue&type=script&lang=js& ***!
@@ -4524,6 +4947,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4850,6 +5287,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -5016,6 +5467,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5428,6 +5893,7 @@ Vue.component('begin-end', __webpack_require__(/*! ./components/BeginAndEndCompo
 Vue.component('begin-end-vowel', __webpack_require__(/*! ./components/BeginAndEndVowelComponent.vue */ "./resources/js/components/BeginAndEndVowelComponent.vue").default);
 Vue.component('begin-end-consonant', __webpack_require__(/*! ./components/BeginAndEndConsonantComponent.vue */ "./resources/js/components/BeginAndEndConsonantComponent.vue").default);
 Vue.component('begin-end-equal', __webpack_require__(/*! ./components/BeginEndEqualComponent.vue */ "./resources/js/components/BeginEndEqualComponent.vue").default);
+Vue.component('random-position', __webpack_require__(/*! ./components/RandomPositionComponent.vue */ "./resources/js/components/RandomPositionComponent.vue").default);
 Vue.component('single-player-tally', __webpack_require__(/*! ./components/SinglePlayerTallyComponent.vue */ "./resources/js/components/SinglePlayerTallyComponent.vue").default); // Modal
 
 Vue.component('modal', __webpack_require__(/*! ./components/ModalComponent.vue */ "./resources/js/components/ModalComponent.vue").default);
@@ -41416,6 +41882,45 @@ component.options.__file = "resources/js/components/NthPositionComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/RandomPositionComponent.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/RandomPositionComponent.vue ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _RandomPositionComponent_vue_vue_type_template_id_53fa4b94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RandomPositionComponent.vue?vue&type=template&id=53fa4b94& */ "./resources/js/components/RandomPositionComponent.vue?vue&type=template&id=53fa4b94&");
+/* harmony import */ var _RandomPositionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RandomPositionComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/RandomPositionComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _RandomPositionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _RandomPositionComponent_vue_vue_type_template_id_53fa4b94___WEBPACK_IMPORTED_MODULE_0__.render,
+  _RandomPositionComponent_vue_vue_type_template_id_53fa4b94___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/RandomPositionComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/RulesComponent.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/RulesComponent.vue ***!
@@ -41874,6 +42379,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/RandomPositionComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/RandomPositionComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RandomPositionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./RandomPositionComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RandomPositionComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RandomPositionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/RulesComponent.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/RulesComponent.vue?vue&type=script&lang=js& ***!
@@ -42208,6 +42729,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/RandomPositionComponent.vue?vue&type=template&id=53fa4b94&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/RandomPositionComponent.vue?vue&type=template&id=53fa4b94& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RandomPositionComponent_vue_vue_type_template_id_53fa4b94___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RandomPositionComponent_vue_vue_type_template_id_53fa4b94___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RandomPositionComponent_vue_vue_type_template_id_53fa4b94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./RandomPositionComponent.vue?vue&type=template&id=53fa4b94& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RandomPositionComponent.vue?vue&type=template&id=53fa4b94&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/RulesComponent.vue?vue&type=template&id=364b31f1&":
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/RulesComponent.vue?vue&type=template&id=364b31f1& ***!
@@ -42344,7 +42882,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center" }, [
+          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
               _c(
                 "button",
                 {
@@ -42417,26 +42955,38 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -42459,7 +43009,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -42500,7 +43072,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-center" }, [
+          ? _c("div", { staticClass: "w3-center w3-margin" }, [
               _c(
                 "button",
                 {
@@ -42552,7 +43124,7 @@ var render = function() {
               "div",
               {
                 ref: "playAgain",
-                staticClass: " w3-center",
+                staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -42573,26 +43145,38 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -42602,8 +43186,11 @@ var render = function() {
           "div",
           {},
           [
-            _c("single-player-tally", {
-              attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
+            _c("word-tally", {
+              attrs: {
+                listOfComputerWords: _vm.listOfComputerWords,
+                listOfPlayerWords: _vm.listOfPlayerWords
+              }
             })
           ],
           1
@@ -42612,7 +43199,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                    Go\n                  ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -42653,7 +43262,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center" }, [
+          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
               _c(
                 "button",
                 {
@@ -42726,26 +43335,38 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -42755,8 +43376,11 @@ var render = function() {
           "div",
           {},
           [
-            _c("single-player-tally", {
-              attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
+            _c("word-tally", {
+              attrs: {
+                listOfComputerWords: _vm.listOfComputerWords,
+                listOfPlayerWords: _vm.listOfPlayerWords
+              }
             })
           ],
           1
@@ -42765,7 +43389,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -42864,26 +43510,38 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -42906,7 +43564,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -42941,7 +43621,7 @@ var render = function() {
         [_vm._v("You made it.")]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "w3-container w3-center " }, [
+      _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
         _c("button", { staticClass: "w3-button", on: { click: _vm.reload } }, [
           _vm._v("Play Again")
         ])
@@ -42990,7 +43670,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center" }, [
+          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
               _c(
                 "button",
                 {
@@ -43053,26 +43733,38 @@ var render = function() {
               _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -43092,7 +43784,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43133,7 +43847,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center" }, [
+          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
               _c(
                 "button",
                 {
@@ -43196,26 +43910,38 @@ var render = function() {
               _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -43235,7 +43961,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43311,8 +44059,10 @@ var render = function() {
     _vm._v(" "),
     _c("div", { ref: "message" }),
     _vm._v(" "),
-    _c("button", { staticClass: "w3-button", on: { click: _vm.playAgain } }, [
-      _vm._v("Play Again")
+    _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
+      _c("button", { staticClass: "w3-button", on: { click: _vm.playAgain } }, [
+        _vm._v("Play Again")
+      ])
     ])
   ])
 }
@@ -43390,7 +44140,7 @@ var render = function() {
               "div",
               {
                 ref: "playAgain",
-                staticClass: " w3-center",
+                staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
               [_c("game-over")],
@@ -43411,26 +44161,38 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -43453,7 +44215,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43494,7 +44278,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center" }, [
+          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
               _c(
                 "button",
                 {
@@ -43557,26 +44341,38 @@ var render = function() {
               _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -43596,7 +44392,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43637,7 +44455,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center" }, [
+          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
               _c(
                 "button",
                 {
@@ -43700,26 +44518,38 @@ var render = function() {
               _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -43739,7 +44569,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43896,26 +44748,38 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -43938,7 +44802,228 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RandomPositionComponent.vue?vue&type=template&id=53fa4b94&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RandomPositionComponent.vue?vue&type=template&id=53fa4b94& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c(
+      "div",
+      { ref: "congrats", staticStyle: { display: "none" } },
+      [_c("congrats")],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { ref: "rules" },
+      [
+        _c("rules", {
+          attrs: { level: _vm.level, rules: _vm.rules, "is-done": _vm.isDone },
+          on: { "play-quiz": _vm.playQuiz }
+        }),
+        _vm._v(" "),
+        _vm.isDone == true
+          ? _c("div", { staticClass: "w3-center w3-margin" }, [
+              _c(
+                "button",
+                {
+                  ref: "nextChallenge",
+                  staticClass: "w3-button",
+                  on: { click: _vm.proceedToNextChallenge }
+                },
+                [_vm._v("\n        Proceed to next challenge\n      ")]
+              )
+            ])
+          : _vm._e()
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "gameWrapper",
+        staticClass: "w3-row",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _c(
+            "div",
+            {
+              ref: "randomLetter",
+              staticClass: "flex-grow-1 w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [
+              _vm._v(
+                "\n        Letter " +
+                  _vm._s(_vm.letter) +
+                  " in position " +
+                  _vm._s(_vm.position) +
+                  "\n      "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "timer",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [
+              _vm._v("\n        00:"),
+              _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [
+          _c("div", {}, [
+            _c(
+              "div",
+              {
+                ref: "playAgain",
+                staticClass: "w3-center",
+                staticStyle: { display: "none" }
+              },
+              [_c("game-over")],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { ref: "gameContainer" }, [
+              _c("div", {}, [
+                _c(
+                  "div",
+                  {
+                    ref: "computerWord",
+                    staticClass: "w3-center",
+                    staticStyle: { "font-size": "21px" }
+                  },
+                  [_vm._v("\n              Let's go!\n            ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {},
+          [
+            _c("single-player-tally", {
+              attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
+            })
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                    Go\n                  ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43972,10 +45057,10 @@ var render = function() {
             _vm._v("\n      " + _vm._s(_vm.rules) + "\n    ")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "w3-center" }, [
+          _c("div", { staticClass: "w3-center w3-margin" }, [
             _c(
               "button",
-              { staticClass: "w3-button", on: { click: _vm.playQuiz } },
+              { staticClass: "w3-button ", on: { click: _vm.playQuiz } },
               [_vm._v("Play")]
             )
           ])
@@ -43992,7 +45077,7 @@ var render = function() {
             _vm._v("\n      " + _vm._s(_vm.rules) + "\n    ")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "w3-center" }, [
+          _c("div", { staticClass: "w3-center w3-margin" }, [
             _vm.isDone == false
               ? _c(
                   "button",
@@ -44097,7 +45182,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center" }, [
+          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
               _c(
                 "button",
                 {
@@ -44160,26 +45245,38 @@ var render = function() {
               _c("div", {}),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -44199,7 +45296,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44240,7 +45359,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center" }, [
+          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
               _c(
                 "button",
                 {
@@ -44303,26 +45422,38 @@ var render = function() {
               _c("div", {}),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -44342,7 +45473,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44376,7 +45529,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center" }, [
+          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
               _c(
                 "button",
                 {
@@ -44449,26 +45602,38 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  ref: "word",
-                  staticClass: "form-control input-sm",
-                  attrs: {
-                    type: "text",
-                    name: "word",
-                    placeholder: "Enter your word here..."
-                  },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
                       }
-                      return _vm.checkBeforeSending.apply(null, arguments)
-                    }
-                  }
-                })
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -44491,7 +45656,29 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Go\n              ")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

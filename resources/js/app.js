@@ -44,6 +44,8 @@ Vue.component('begin-end-vowel', require('./components/BeginAndEndVowelComponent
 Vue.component('begin-end-consonant', require('./components/BeginAndEndConsonantComponent.vue').default);
 Vue.component('begin-end-equal', require('./components/BeginEndEqualComponent.vue').default);
 
+Vue.component('random-position', require('./components/RandomPositionComponent.vue').default);
+
 Vue.component('single-player-tally', require('./components/SinglePlayerTallyComponent.vue').default);
 
 // Modal

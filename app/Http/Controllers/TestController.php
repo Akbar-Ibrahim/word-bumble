@@ -3,18 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dictionary;
+use App\Services\ConsonantService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
     //
-
-    public function test(Request $request){
+    
+    public function test(Request $request, ConsonantService $consonantService){
         
+        return $consonantService->getLetter("d");
         // $check = "";
 
         $letter = $request->letter;
+        $length = $request->length;
 
         // switch($letter) {
         //     case "a":
@@ -42,7 +45,9 @@ class TestController extends Controller
         // $result = DB::table('dictionaries')->where('word', 'like', '%' . $check . '%')->whereRaw('LENGTH(word) > ' . 4)->get();
         // $result = DB::table('dictionaries')->whereRaw("word regex '[a-z]'")->get();
         // $result = Dictionary::where('word', 'like',  $letter . '%' . $letter)->take(100)->get();
-        return DB::table('dictionaries')->where('word', 'like', '%' . $letter . '%')->whereRaw('LENGTH(word) > ' . 18)->limit(300)->get();
+        // return DB::table('dictionaries')->where('word', 'like', '%' . $letter . '%')->whereRaw('LENGTH(word) > ' . 18)->limit(300)->get();
+        return DB::table('dictionaries')->where('word', 'like', $letter . '%')->whereRaw('LENGTH(word) = ' . $length)->limit(300)->get();
+
         // return $result;
     }
 }

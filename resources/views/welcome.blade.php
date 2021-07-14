@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
+<head>
 <title>Word Bumble | Home</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<link href="{{ asset('css/w3-css.css') }}" rel="stylesheet">
+
+<style>
+button {
+  font-size: 30px;
+  background-color: red;
+  color: white;
+}
+</style>
+
+</head>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -175,7 +188,14 @@
       </div>
     </div>
 
-
+    <div class="w3-col l4 m6 w3-margin-bottom">
+      <div class="w3-container w3-center">
+        <h3>Random Position</h3>
+        <div class="w3-container w3-center w3-margin">
+            <button route="/random-position" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border">Play</button>
+        </div>
+      </div>
+    </div>
 
     
 

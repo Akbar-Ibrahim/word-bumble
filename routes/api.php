@@ -59,8 +59,15 @@ Route::get('/words/vowel/cluster', 'ClusterController@vowelCluster');
 
 
 
-
+//  Begins and ends with
 Route::post('/bb', 'BeginingAndEndController@beginsAndEndsWith');
+// Vowels
+Route::post('/bb/vowels', 'BeginingAndEndController@beginsAndEndsWithVowels');
+// consonants
+Route::post('/bb/consonants', 'BeginingAndEndController@beginsAndEndsWithConsonants');
+
+
+Route::post('/random/position', 'RandomPositionController@randomPosition');
 
 
 Route::get('test', 'TestController@test');

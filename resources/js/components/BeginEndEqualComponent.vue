@@ -38,6 +38,9 @@
             </div>
 
             <div class="card-body">
+              <!--  -->
+              <div class="d-flex">
+                <div class="flex-grow-1">
               <input
                 ref="word"
                 type="text"
@@ -46,6 +49,17 @@
                 placeholder="Enter your word here..."
                 @keyup.enter="checkBeforeSending"
               />
+              </div>
+              <div>
+              <span class="input-group-btn" style="border: none">
+                <button type="submit" class="btn btn-default go-button">
+                  <!-- <span class="glyphicon glyphicon-search"></span> -->
+                  Go
+                </button>
+              </span>
+              </div>
+              </div>
+              <!--  -->
             </div>
           </div>
         </div>
@@ -177,7 +191,7 @@ export default {
       ) {
       
       for (var i = 0; i < this.listOfComputerWords.length; i++) {
-        if (word === this.listOfComputerWords[i]) {
+        if (word === this.listOfComputerWords[i].word) {
           check = check + 1;
         }
       }

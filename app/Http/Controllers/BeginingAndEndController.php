@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dictionary;
+use App\Services\ConsonantService;
 use App\Services\UtilService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -181,5 +182,52 @@ class BeginingAndEndController extends Controller
         } else {
             return "hello";
         }
+    }
+
+    public function beginsAndEndsWithVowels(Request $request){
+
+        $word = $request->word;
+
+        $check = Dictionary::where(["word" => $word])->first();
+        $vowels = [];
+        
+        if ($check) {
+            $a = Dictionary::where('word', 'like', 'a%a')->orWhere('word', 'like', 'a%e')->orWhere('word', 'like', 'a%i')->orWhere('word', 'like', 'a%o')->orWhere('word', 'like', 'a%u')->inRandomOrder()->first();
+            $e = Dictionary::where('word', 'like', 'e%a')->orWhere('word', 'like', 'e%e')->orWhere('word', 'like', 'e%i')->orWhere('word', 'like', 'e%o')->orWhere('word', 'like', 'e%u')->inRandomOrder()->first();
+            $i = Dictionary::where('word', 'like', 'i%a')->orWhere('word', 'like', 'i%e')->orWhere('word', 'like', 'i%i')->orWhere('word', 'like', 'i%o')->orWhere('word', 'like', 'i%u')->inRandomOrder()->first();
+            $o = Dictionary::where('word', 'like', 'o%a')->orWhere('word', 'like', 'o%e')->orWhere('word', 'like', 'o%i')->orWhere('word', 'like', 'o%o')->orWhere('word', 'like', 'o%u')->inRandomOrder()->first();
+            $u = Dictionary::where('word', 'like', 'u%a')->orWhere('word', 'like', 'u%e')->orWhere('word', 'like', 'u%i')->orWhere('word', 'like', 'u%o')->orWhere('word', 'like', 'u%u')->inRandomOrder()->first();
+
+            array_push($vowels, $a);
+            array_push($vowels, $e);
+            array_push($vowels, $i);
+            array_push($vowels, $o);
+            array_push($vowels, $u);
+
+            $choice = array_rand($vowels, 1);
+
+            $result = $vowels[$choice];
+            return $result;
+        } else {
+            return [];
+        }
+
+    }
+
+    public function beginsAndEndsWithConsonants(Request $request, ConsonantService $consonantService){
+
+        $word = $request->word;
+        $letter = $request->letter;
+
+        $check = Dictionary::where(["word" => $word])->first();
+        
+        
+        if ($check) {
+                return $consonantService->getLetter($letter);
+            
+        } else {
+            return [];
+        }
+
     }
 }

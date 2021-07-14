@@ -2,7 +2,9 @@
   <div class="w3-container">
     <h4>Game over!</h4>
     <div ref="message"></div>
+    <div class="w3-container w3-center w3-margin">
     <button @click="playAgain" class="w3-button">Play Again</button>
+    </div>
   </div>
 </template>
 

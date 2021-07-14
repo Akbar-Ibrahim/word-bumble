@@ -3,7 +3,7 @@
       <h1 class="w3-center">Congrats!</h1>
       <div class="w3-container w3-center w3-margin w3-padding">You made it.</div>
 
-      <div class="w3-container w3-center ">
+      <div class="w3-container w3-center w3-margin">
         <button class="w3-button" @click="reload">Play Again</button>
       </div>
 
