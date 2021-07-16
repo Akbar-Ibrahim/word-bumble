@@ -1933,6 +1933,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -1996,6 +1999,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -2172,11 +2177,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
     return {
       consonants: ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"],
+      score: 0,
       isDone: false,
       level: 1,
       letter: "",
@@ -2237,6 +2246,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -2427,12 +2438,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
     return {
       vowels: ["a", "e", "i", "o", "u"],
       vowelIndex: 0,
+      score: 0,
       isDone: false,
       level: 1,
       letter: "",
@@ -2492,6 +2507,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -2666,11 +2683,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
     return {
       isDone: false,
+      score: 0,
       rules: "The rules are simple. You'll name a word with a specified length and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
       level: 1,
       numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
@@ -2742,6 +2763,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -2955,6 +2978,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -2963,6 +2989,7 @@ __webpack_require__.r(__webpack_exports__);
       vowelIndex: 0,
       isDone: false,
       level: 1,
+      score: 0,
       rules: "Mention words that have only one consonant cluster. That is multiple consonants coming one after another",
       listOfPlayerWords: [],
       computer: "",
@@ -3017,6 +3044,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -3221,6 +3250,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -3230,6 +3262,7 @@ __webpack_require__.r(__webpack_exports__);
       isDone: false,
       level: 1,
       letter: "",
+      score: 0,
       rules: "Mention words that do not begin or end with a consonant. The word must contain at least two consonants. The consonants must not come one after another.",
       listOfPlayerWords: [],
       computer: "",
@@ -3284,6 +3317,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -3406,6 +3441,232 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FormWordsComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FormWordsComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["word"],
+  data: function data() {
+    return {
+      myWord: JSON.parse(this.word),
+      isDone: false,
+      level: 1,
+      score: 0,
+      rules: "A word will be displayed. Form all the possible words from the given word",
+      listOfPlayerWords: [],
+      computer: "",
+      timer: 10
+    };
+  },
+  created: function created() {},
+  mounted: function mounted() {},
+  methods: {
+    startTimer: function startTimer() {
+      if (this.level > 1) {// setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+    playQuiz: function playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+      this.resetTimer();
+      this.startTimer();
+    },
+    checkBeforeSending: function checkBeforeSending() {
+      var word = this.$refs.word.value.trim();
+      word = word.toLowerCase();
+
+      if (word) {
+        this.verifyConditionsAreMet(word);
+      }
+    },
+    sendWord: function sendWord() {
+      var _this = this;
+
+      var word = this.$refs.word.value.trim();
+
+      if (word) {
+        var data = {
+          word: word
+        };
+        data = JSON.stringify(data);
+        fetch("/api/random/position", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: data
+        }).then(function (response) {
+          return response.json();
+        }).then(function (result) {
+          console.log(result);
+
+          if (result.length > 0) {
+            _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
+
+            _this.resetTimer();
+
+            if (_this.listOfPlayerWords.length == 50) {
+              _this.resetTimer();
+
+              _this.endLevel();
+            }
+          } else {
+            _this.$refs.randomLetter.style.display = "none";
+
+            _this.gameOver();
+          }
+        });
+      }
+
+      this.$refs.word.value = "";
+    },
+    checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
+      var checkPlayer = 0;
+      var checkComputer = 0;
+      this.getRandomLetter();
+
+      if (this.listOfPlayerWords.length > 0) {
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            checkPlayer = checkPlayer + 1;
+          }
+        }
+
+        if (checkPlayer > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord();
+        }
+      } else {
+        this.sendWord();
+      }
+    },
+    resetTimer: function resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+    endLevel: function endLevel() {
+      // this.level += 1;
+      this.listOfPlayerWords = [];
+      this.$refs.congrats.style.display = "block";
+      this.$refs.gameWrapper.style.display = "none";
+    },
+    verifyConditionsAreMet: function verifyConditionsAreMet(word) {},
+    gameOver: function gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
+    },
+    myTimer: function myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
+    }
   }
 });
 
@@ -3536,11 +3797,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
     return {
       isDone: false,
+      score: 0,
       rules: "The rules are simple. You'll name a word and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
       level: 1,
       numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
@@ -3637,6 +3902,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -3816,6 +4083,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -3824,6 +4094,7 @@ __webpack_require__.r(__webpack_exports__);
       vowelIndex: 0,
       isDone: false,
       level: 1,
+      score: 0,
       rules: "Mention words that have a consonant-vowel sequence. The word must start with a consonant and end with a vowel.",
       listOfPlayerWords: [],
       computer: "",
@@ -3878,6 +4149,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -4063,6 +4336,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -4071,6 +4347,7 @@ __webpack_require__.r(__webpack_exports__);
       vowelIndex: 0,
       isDone: false,
       level: 1,
+      score: 0,
       rules: "Mention words that have a vowel-consonant sequence. The word must start with a vowel and end with a consonant.",
       listOfPlayerWords: [],
       computer: "",
@@ -4125,6 +4402,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -4342,6 +4621,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["letters"],
   data: function data() {
@@ -4351,6 +4633,7 @@ __webpack_require__.r(__webpack_exports__);
       position: 1,
       level: 1,
       letter: "",
+      score: 0,
       rules: "The rules are simple. You and computer will trade words  that have a letter in a certain position. Do not repeat a word you have mentioned already or a word computer has mentioned",
       listOfComputerWords: [],
       listOfPlayerWords: [],
@@ -4413,6 +4696,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -4694,6 +4979,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["alphabet"],
   data: function data() {
@@ -4703,6 +4991,7 @@ __webpack_require__.r(__webpack_exports__);
       isDone: false,
       level: 1,
       letter: "",
+      score: 0,
       rules: "A letter and a number will be selected at random. Your job is to mention a word that has that letter in the position of the number",
       listOfPlayerWords: [],
       computer: "",
@@ -4759,6 +5048,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -5034,6 +5325,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -5042,6 +5336,7 @@ __webpack_require__.r(__webpack_exports__);
       vowelIndex: 0,
       isDone: false,
       level: 1,
+      score: 0,
       rules: "Mention words that have only one vowel cluster. That is multiple vowels coming one after another",
       listOfPlayerWords: [],
       computer: "",
@@ -5096,6 +5391,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -5301,6 +5598,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -5310,6 +5610,7 @@ __webpack_require__.r(__webpack_exports__);
       isDone: false,
       level: 1,
       letter: "",
+      score: 0,
       rules: "Mention words that do not begin or end with a vowel. The word must contain at least two vowels. The vowels must not come one after another.",
       listOfPlayerWords: [],
       computer: "",
@@ -5364,6 +5665,8 @@ __webpack_require__.r(__webpack_exports__);
 
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
 
             _this.resetTimer();
 
@@ -5443,6 +5746,228 @@ __webpack_require__.r(__webpack_exports__);
     gameOver: function gameOver() {
       this.$refs.playAgain.style.display = "block";
       this.$refs.gameContainer.style.display = "none";
+    },
+    myTimer: function myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WordDefinitionComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WordDefinitionComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: [],
+  data: function data() {
+    return {
+      words: [],
+      word: "",
+      score: 0,
+      isDone: false,
+      level: 1,
+      rules: "Word redacted. Definition and synonyms given. Guess the word",
+      listOfPlayerWords: [],
+      computer: "",
+      timer: 10,
+      definition: "",
+      synonyms: []
+    };
+  },
+  created: function created() {
+    this.fetchWords();
+  },
+  mounted: function mounted() {},
+  methods: {
+    fetchWords: function fetchWords() {
+      var _this = this;
+
+      var url = "api/word-definition";
+      fetch(url).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        // console.log(result);
+        _this.words = result;
+        console.log(result);
+      });
+    },
+    getRandomWord: function getRandomWord() {
+      var getWord = Math.floor(Math.random() * this.words.length + 1);
+      var result = this.words[getWord - 1];
+      this.word = result.word;
+      this.$refs.answer.textContent = result.word;
+      this.$refs.myWord.textContent = "Begins with " + result.word.charAt(0);
+      this.words.splice(getWord, 1);
+      return this.word;
+    },
+    fetchWordData: function fetchWordData() {
+      var _this2 = this;
+
+      var word = this.getRandomWord();
+      var myword = [];
+      var url = "https://api.dictionaryapi.dev/api/v2/entries/en_US/" + word;
+      fetch(url).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        // console.log(result);
+        _this2.definition = result[0].meanings[0].definitions[0].definition;
+        _this2.synonyms = result[0].meanings[0].definitions[0].synonyms;
+      });
+    },
+    startTimer: function startTimer() {
+      if (this.level > 1) {// setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+    playQuiz: function playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+      this.fetchWordData();
+      this.resetTimer();
+      this.startTimer();
+    },
+    checkBeforeSending: function checkBeforeSending() {
+      var word = this.$refs.word.value.trim();
+
+      if (word) {
+        this.verifyConditionsAreMet(word);
+      }
+    },
+    sendWord: function sendWord() {
+      this.$refs.word.value = "";
+    },
+    resetTimer: function resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+    endLevel: function endLevel() {
+      this.listOfPlayerWords = [];
+      this.rules = "";
+      this.$refs.congrats.style.display = "block";
+      this.$refs.gameWrapper.style.display = "none";
+    },
+    nextLevel: function nextLevel() {},
+    verifyConditionsAreMet: function verifyConditionsAreMet(word) {
+      if (word.toLowerCase() === this.word) {
+        this.$refs.word.value = "";
+        this.score += 1;
+        this.fetchWordData();
+        this.resetTimer();
+      } else {
+        this.gameOver();
+        this.$refs.answer.style.display = "block";
+      }
+    },
+    gameOver: function gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
+      this.timer = 0;
     },
     myTimer: function myTimer() {
       if (this.timer == 0) {
@@ -5552,15 +6077,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["wordLength", "letters"],
+  props: ["letters"],
   data: function data() {
     return {
+      wordLength: 3,
       alphabet: JSON.parse(this.letters),
       isDone: false,
       level: 1,
       nextLetter: "",
-      rules: "The rules are simple. You and computer will trade " + this.wordLength + " letter words. Do not repeat a word you have mentioned already or a word computer has mentioned",
+      score: 0,
+      rules: "The rules are simple. You and computer will trade 3 letter words. Do not repeat a word you have mentioned already or a word computer has mentioned",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
@@ -5619,9 +6149,11 @@ __webpack_require__.r(__webpack_exports__);
           if (result.length > 0) {
             _this.listOfPlayerWords.push(word);
 
+            _this.score += 1;
+
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 2) {
+            if (_this.listOfPlayerWords.length == 50) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -5894,6 +6426,8 @@ Vue.component('begin-end-vowel', __webpack_require__(/*! ./components/BeginAndEn
 Vue.component('begin-end-consonant', __webpack_require__(/*! ./components/BeginAndEndConsonantComponent.vue */ "./resources/js/components/BeginAndEndConsonantComponent.vue").default);
 Vue.component('begin-end-equal', __webpack_require__(/*! ./components/BeginEndEqualComponent.vue */ "./resources/js/components/BeginEndEqualComponent.vue").default);
 Vue.component('random-position', __webpack_require__(/*! ./components/RandomPositionComponent.vue */ "./resources/js/components/RandomPositionComponent.vue").default);
+Vue.component('word-definition', __webpack_require__(/*! ./components/WordDefinitionComponent.vue */ "./resources/js/components/WordDefinitionComponent.vue").default);
+Vue.component('form-words', __webpack_require__(/*! ./components/FormWordsComponent.vue */ "./resources/js/components/FormWordsComponent.vue").default);
 Vue.component('single-player-tally', __webpack_require__(/*! ./components/SinglePlayerTallyComponent.vue */ "./resources/js/components/SinglePlayerTallyComponent.vue").default); // Modal
 
 Vue.component('modal', __webpack_require__(/*! ./components/ModalComponent.vue */ "./resources/js/components/ModalComponent.vue").default);
@@ -41648,6 +42182,45 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/FormWordsComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/FormWordsComponent.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _FormWordsComponent_vue_vue_type_template_id_939f603a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormWordsComponent.vue?vue&type=template&id=939f603a& */ "./resources/js/components/FormWordsComponent.vue?vue&type=template&id=939f603a&");
+/* harmony import */ var _FormWordsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormWordsComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/FormWordsComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _FormWordsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _FormWordsComponent_vue_vue_type_template_id_939f603a___WEBPACK_IMPORTED_MODULE_0__.render,
+  _FormWordsComponent_vue_vue_type_template_id_939f603a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/FormWordsComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/GameOverComponent.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/components/GameOverComponent.vue ***!
@@ -42077,6 +42650,45 @@ component.options.__file = "resources/js/components/VowelUnclusteredComponent.vu
 
 /***/ }),
 
+/***/ "./resources/js/components/WordDefinitionComponent.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/WordDefinitionComponent.vue ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _WordDefinitionComponent_vue_vue_type_template_id_17bf84e5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WordDefinitionComponent.vue?vue&type=template&id=17bf84e5& */ "./resources/js/components/WordDefinitionComponent.vue?vue&type=template&id=17bf84e5&");
+/* harmony import */ var _WordDefinitionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WordDefinitionComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/WordDefinitionComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _WordDefinitionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _WordDefinitionComponent_vue_vue_type_template_id_17bf84e5___WEBPACK_IMPORTED_MODULE_0__.render,
+  _WordDefinitionComponent_vue_vue_type_template_id_17bf84e5___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/WordDefinitionComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/WordLengthComponent.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/components/WordLengthComponent.vue ***!
@@ -42283,6 +42895,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/FormWordsComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/FormWordsComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormWordsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormWordsComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FormWordsComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormWordsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/GameOverComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************!*\
   !*** ./resources/js/components/GameOverComponent.vue?vue&type=script&lang=js& ***!
@@ -42459,6 +43087,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/WordDefinitionComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/WordDefinitionComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WordDefinitionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WordDefinitionComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WordDefinitionComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WordDefinitionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/WordLengthComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/WordLengthComponent.vue?vue&type=script&lang=js& ***!
@@ -42623,6 +43267,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/FormWordsComponent.vue?vue&type=template&id=939f603a&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/FormWordsComponent.vue?vue&type=template&id=939f603a& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormWordsComponent_vue_vue_type_template_id_939f603a___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormWordsComponent_vue_vue_type_template_id_939f603a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormWordsComponent_vue_vue_type_template_id_939f603a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormWordsComponent.vue?vue&type=template&id=939f603a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FormWordsComponent.vue?vue&type=template&id=939f603a&");
 
 
 /***/ }),
@@ -42814,6 +43475,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/WordDefinitionComponent.vue?vue&type=template&id=17bf84e5&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/WordDefinitionComponent.vue?vue&type=template&id=17bf84e5& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WordDefinitionComponent_vue_vue_type_template_id_17bf84e5___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WordDefinitionComponent_vue_vue_type_template_id_17bf84e5___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WordDefinitionComponent_vue_vue_type_template_id_17bf84e5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WordDefinitionComponent.vue?vue&type=template&id=17bf84e5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WordDefinitionComponent.vue?vue&type=template&id=17bf84e5&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/WordLengthComponent.vue?vue&type=template&id=54740fb2&":
 /*!****************************************************************************************!*\
   !*** ./resources/js/components/WordLengthComponent.vue?vue&type=template&id=54740fb2& ***!
@@ -42925,6 +43603,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -43115,6 +43803,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -43305,6 +44003,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -43480,6 +44188,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -43713,6 +44431,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -43890,6 +44618,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -44038,6 +44776,209 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FormWordsComponent.vue?vue&type=template&id=939f603a&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FormWordsComponent.vue?vue&type=template&id=939f603a& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c(
+      "div",
+      { ref: "congrats", staticStyle: { display: "none" } },
+      [_c("congrats")],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { ref: "rules" },
+      [
+        _c("rules", {
+          attrs: { level: _vm.level, rules: _vm.rules, "is-done": _vm.isDone },
+          on: { "play-quiz": _vm.playQuiz }
+        }),
+        _vm._v(" "),
+        _vm.isDone == true
+          ? _c("div", { staticClass: "w3-center w3-margin" }, [
+              _c(
+                "button",
+                {
+                  ref: "nextChallenge",
+                  staticClass: "w3-button",
+                  on: { click: _vm.proceedToNextChallenge }
+                },
+                [_vm._v("\n        Proceed to next challenge\n      ")]
+              )
+            ])
+          : _vm._e()
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "gameWrapper",
+        staticClass: "w3-row",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", {
+            ref: "randomLetter",
+            staticClass: "flex-grow-1 w3-padding",
+            staticStyle: { "font-size": "21px" }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "timer",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [
+              _vm._v("\n        00:"),
+              _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [
+          _c("div", {}, [
+            _c(
+              "div",
+              {
+                ref: "playAgain",
+                staticClass: "w3-center",
+                staticStyle: { display: "none" }
+              },
+              [_c("game-over")],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { ref: "gameContainer" }, [
+              _c("div", {}, [
+                _c(
+                  "div",
+                  {
+                    ref: "computerWord",
+                    staticClass: "w3-center",
+                    staticStyle: { "font-size": "21px" }
+                  },
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm.myWord[0].word) +
+                        "\n            "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {},
+          [
+            _c("single-player-tally", {
+              attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
+            })
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                    Go\n                  ")]
+          )
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/GameOverComponent.vue?vue&type=template&id=53cda55c&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/GameOverComponent.vue?vue&type=template&id=53cda55c& ***!
@@ -44131,6 +45072,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -44321,6 +45272,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -44498,6 +45459,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -44718,6 +45689,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -44920,6 +45901,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -45225,6 +46216,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -45402,6 +46403,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -45502,6 +46513,226 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WordDefinitionComponent.vue?vue&type=template&id=17bf84e5&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WordDefinitionComponent.vue?vue&type=template&id=17bf84e5& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c(
+      "div",
+      { ref: "congrats", staticStyle: { display: "none" } },
+      [_c("congrats")],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { ref: "rules" },
+      [
+        _c("rules", {
+          attrs: { level: _vm.level, rules: _vm.rules, "is-done": _vm.isDone },
+          on: { "play-quiz": _vm.playQuiz }
+        }),
+        _vm._v(" "),
+        _vm.isDone == true
+          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
+              _c(
+                "button",
+                {
+                  ref: "nextChallenge",
+                  staticClass: "w3-button",
+                  on: { click: _vm.proceedToNextChallenge }
+                },
+                [_vm._v("\n        Proceed to next challenge\n      ")]
+              )
+            ])
+          : _vm._e()
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "gameWrapper",
+        staticClass: "w3-row",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", {
+            ref: "randomLetter",
+            staticClass: "flex-grow-1 w3-padding",
+            staticStyle: { "font-size": "21px" }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "timer",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [
+              _vm._v("\n        00:"),
+              _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/20\n        ")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [
+          _c("div", {}, [
+            _c(
+              "div",
+              {
+                ref: "playAgain",
+                staticClass: "w3-center",
+                staticStyle: { display: "none" }
+              },
+              [_c("game-over")],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { ref: "gameContainer" }, [
+              _c("div", { staticClass: "w3-container" }, [
+                _c("div", {
+                  ref: "myWord",
+                  staticClass: "w3-center",
+                  staticStyle: { "font-size": "21px" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "flex-grow-1" }, [
+                    _c("input", {
+                      ref: "word",
+                      staticClass: "form-control input-sm",
+                      attrs: {
+                        type: "text",
+                        name: "word",
+                        placeholder: "Enter your word here..."
+                      },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.checkBeforeSending.apply(null, arguments)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [
+          _c(
+            "div",
+            {
+              ref: "answer",
+              staticClass: "w3-center",
+              staticStyle: { display: "none" }
+            },
+            [_vm._v(" Answer "), _c("span")]
+          ),
+          _vm._v(" "),
+          _c("div", [
+            _c("h4", { staticClass: "w3-center" }, [_vm._v("Definition")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w3-center" }, [
+              _vm._v(_vm._s(_vm.definition))
+            ])
+          ]),
+          _vm._v(" "),
+          _vm.synonyms
+            ? _c(
+                "div",
+                [
+                  _c("h4", { staticClass: "w3-center" }, [_vm._v("Synonyms")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.synonyms, function(synonym, i) {
+                    return _c("div", { key: i }, [
+                      _c("div", { staticClass: "w3-center" }, [
+                        _vm._v(_vm._s(synonym))
+                      ])
+                    ])
+                  })
+                ],
+                2
+              )
+            : _vm._e()
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default go-button",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                    Go\n                  ")]
+          )
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WordLengthComponent.vue?vue&type=template&id=54740fb2&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WordLengthComponent.vue?vue&type=template&id=54740fb2& ***!
@@ -45572,6 +46803,16 @@ var render = function() {
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
               _vm._v(_vm._s(_vm.timer) + "\n      ")
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
           )
         ]),
         _vm._v(" "),

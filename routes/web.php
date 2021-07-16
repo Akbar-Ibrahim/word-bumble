@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CommonWord;
 use App\Models\Dictionary;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,7 @@ Route::get('/', 'WelcomeController@welcome');
 
 Route::get('/words', 'DictionaryController@words');
 Route::get('/last/letter', 'GameController@lastLetter');
-Route::get('/words/{length}/', 'GameController@wordLength');
+Route::get('/word-length', 'GameController@wordLength');
 // Route::get('/letters/{letter}/', 'GameController@letter')->name('letters.letter');
 Route::get('/nth-position/', 'GameController@nthPosition')->name('nth.position');
 
@@ -32,9 +33,16 @@ Route::get('/consonant/unclustered/', 'GameController@consonantUnclustered');
 Route::get('/vowel/clusters/', 'GameController@vowelClusters');
 Route::get('/consonant/clusters/', 'GameController@consonantClusters');
 
+Route::get('/form-words', 'GameController@formWords');
+
+
 Route::get('/begining-and-end/', 'GameController@beginingAndEnd');
 
 Route::get('/begining-and-end/equal', 'GameController@beginEndEqual');
+
+
+// Word definition
+Route::get('/word-definition', 'GameController@wordDefinition');
 
 
 Route::get('/random-position', 'GameController@randomPosition');
@@ -50,19 +58,19 @@ Route::get('begin-and-end/consonant', 'GameController@beginAndEndConsonant');
 
 
 Route::get('/insert', function(){
-//     $myfile = fopen("word.txt", "r") or die("Unable to open file!");
+    $myfile = fopen("word.txt", "r") or die("Unable to open file!");
 
-// while(!feof($myfile)) {
-//     $word = fgets($myfile);
-//     $r = str_replace("\r", '', $word);
-//     $n = str_replace("\n", '', $r);
+while(!feof($myfile)) {
+    $word = fgets($myfile);
+    $r = str_replace("\r", '', $word);
+    $n = str_replace("\n", '', $r);
 
-//   Dictionary::create(["word" => $n]);
-// }
-// fclose($myfile);
+  CommonWord::create(["word" => $n]);
+}
+fclose($myfile);
 
-// $result = Dictionary::all();
-// return $result->count();
+$result = CommonWord::all();
+return $result->count();
 
 });
 

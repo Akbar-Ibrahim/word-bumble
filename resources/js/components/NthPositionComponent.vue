@@ -21,6 +21,9 @@
         <div style="font-size: 21px" class="w3-padding" ref="timer">
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
+        <div style="font-size: 21px" class="w3-padding" ref="score">
+          {{ score }}/50
+          </div>
       </div>
       <div class="">
         <div class="">
@@ -88,6 +91,7 @@ export default {
       position: 1,
       level: 1,
       letter: "",
+      score: 0,
       rules:
         "The rules are simple. You and computer will trade words  that have a letter in a certain position. Do not repeat a word you have mentioned already or a word computer has mentioned",
       listOfComputerWords: [],
@@ -163,6 +167,7 @@ export default {
             console.log(result);
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
+              this.score += 1;
               this.resetTimer();
               if (this.listOfPlayerWords.length == 2) {
                 this.resetTimer();

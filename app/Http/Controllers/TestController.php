@@ -12,8 +12,10 @@ class TestController extends Controller
     //
     
     public function test(Request $request, ConsonantService $consonantService){
+        $letter = $request->letter;
+        return Dictionary::where('word', 'like', '___')->inRandomOrder()->take(200)->get();
         
-        return $consonantService->getLetter("d");
+        
         // $check = "";
 
         $letter = $request->letter;

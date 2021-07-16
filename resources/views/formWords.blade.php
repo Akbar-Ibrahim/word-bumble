@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"> Word Length Mine Field</div>
+                <div class="card-header"> Begin and end | Consonants </div>
 
                 <div class="card-body">
-                
-                <word-length letters="{{ json_encode($letters) }}"></word-length>
-                
+
+                <form-words word="{{ $word }}"></form-words>
                 </div>
             </div>
         </div>

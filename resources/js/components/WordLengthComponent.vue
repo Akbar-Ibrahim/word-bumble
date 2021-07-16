@@ -27,6 +27,9 @@
         <div style="font-size: 21px" class="w3-padding" ref="timer">
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
+        <div style="font-size: 21px" class="w3-padding" ref="score">
+          {{ score }}/50
+          </div>
       </div>
       <div class="">
         <div class="">
@@ -85,18 +88,18 @@
 
 <script>
 export default {
-  props: ["wordLength", "letters"],
+  props: ["letters"],
 
   data() {
     return {
+      wordLength: 3,
       alphabet: JSON.parse(this.letters),
       isDone: false,
       level: 1,
       nextLetter: "",
+      score: 0,
       rules:
-        "The rules are simple. You and computer will trade " +
-        this.wordLength +
-        " letter words. Do not repeat a word you have mentioned already or a word computer has mentioned",
+        "The rules are simple. You and computer will trade 3 letter words. Do not repeat a word you have mentioned already or a word computer has mentioned",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
@@ -167,8 +170,9 @@ export default {
             console.log(result);
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
+              this.score += 1;
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 2) {
+              if (this.listOfPlayerWords.length == 50) {
                 this.resetTimer();
                 this.endLevel();
               } else {

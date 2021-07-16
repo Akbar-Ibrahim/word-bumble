@@ -46,6 +46,10 @@ Vue.component('begin-end-equal', require('./components/BeginEndEqualComponent.vu
 
 Vue.component('random-position', require('./components/RandomPositionComponent.vue').default);
 
+Vue.component('word-definition', require('./components/WordDefinitionComponent.vue').default);
+
+Vue.component('form-words', require('./components/FormWordsComponent.vue').default);
+
 Vue.component('single-player-tally', require('./components/SinglePlayerTallyComponent.vue').default);
 
 // Modal

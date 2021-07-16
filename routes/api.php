@@ -66,8 +66,11 @@ Route::post('/bb/vowels', 'BeginingAndEndController@beginsAndEndsWithVowels');
 // consonants
 Route::post('/bb/consonants', 'BeginingAndEndController@beginsAndEndsWithConsonants');
 
-
+// Random position
 Route::post('/random/position', 'RandomPositionController@randomPosition');
 
+
+//Word definition
+Route::get('/word-definition', 'WordDefinitionController@getWords');
 
 Route::get('test', 'TestController@test');

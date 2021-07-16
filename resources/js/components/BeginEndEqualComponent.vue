@@ -19,6 +19,9 @@
         <div style="font-size: 21px" class="w3-padding" ref="timer">
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
+        <div style="font-size: 21px" class="w3-padding" ref="score">
+          {{ score }}/50
+          </div>
       </div>
       <div class="">
         <div class="">
@@ -82,6 +85,7 @@ export default {
   data() {
     return {
       isDone: false,
+      score: 0,
       rules:
         "The rules are simple. You'll name a word with a specified length and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
       level: 1,
@@ -166,6 +170,7 @@ export default {
             console.log(result);
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
+              this.score += 1;
               this.resetTimer();
               if (this.listOfPlayerWords.length == 50) {
                 this.resetTimer();

@@ -18,7 +18,7 @@
     <link href="{{ asset('css/w3-css.css') }}" rel="stylesheet">
 
 <style>
-button {
+.w3-button {
   font-size: 30px;
   background-color: red;
   color: white;
@@ -31,7 +31,7 @@ button {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="#home" class="w3-bar-item w3-button"><b>Word Bumble</b> </a>
+    <a style="text-decoration: none;" href="/" class="w3-bar-item "><b>Word Bumble</b> </a>
     <!-- Float links to the right. Hide them on small screens -->
     <!-- <div class="w3-right w3-hide-small">
       <a href="#projects" class="w3-bar-item w3-button">Projects</a>

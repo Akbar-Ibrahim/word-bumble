@@ -9,7 +9,7 @@
 <link href="{{ asset('css/w3-css.css') }}" rel="stylesheet">
 
 <style>
-button {
+.w3-button {
   font-size: 30px;
   background-color: red;
   color: white;
@@ -22,7 +22,7 @@ button {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="#home" class="w3-bar-item w3-button"><b>Word Bumble</b> </a>
+    <a style="text-decoration: none;" href="/" class="w3-bar-item "><b>Word Bumble</b> </a>
     <!-- Float links to the right. Hide them on small screens -->
     <!-- <div class="w3-right w3-hide-small">
       <a href="#projects" class="w3-bar-item w3-button">Projects</a>
@@ -50,7 +50,7 @@ button {
 
 
   <div class="w3-row-padding" style="margin-bottom: 100px;">
-    <div class="w3-col l6 m6 w3-margin-bottom">
+    <div class="w3-col l4 m6 w3-margin-bottom">
       <div class="w3-container w3-center">
         <h3>The begining is the end, the end is the begining</h3>
         <div class="w3-container w3-center w3-margin">
@@ -58,11 +58,20 @@ button {
         </div>
       </div>
     </div>
-    <div class="w3-col l6 m6 w3-margin-bottom">
+    <div class="w3-col l4 m6 w3-margin-bottom">
       <div class="w3-container w3-center">
         <h3>The begining is the end, the end is the begining: Reloaded</h3>
         <div class="w3-container w3-center w3-margin">
             <button route="/begining-and-end/equal" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border">Play</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-col l4 m6 w3-margin-bottom">
+      <div class="w3-container w3-center">
+        <h3>Words by definitions</h3>
+        <div class="w3-container w3-center w3-margin">
+            <button route="/word-definition" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border">Play</button>
         </div>
       </div>
     </div>
@@ -74,7 +83,7 @@ button {
       <div class="w3-container w3-center">
         <h3>Word Length Mine Field</h3>
         <div class="w3-container w3-center w3-margin">
-            <!-- <button route="/words/4" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border">Play</button> -->
+            <button route="/word-length" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border">Play</button>
         </div>
       </div>
     </div>

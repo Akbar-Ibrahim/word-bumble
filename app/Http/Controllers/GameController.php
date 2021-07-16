@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dictionary;
 use App\Services\UtilService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {
@@ -27,14 +28,12 @@ class GameController extends Controller
         return view('letter', compact('letter'));
     }
 
-    public function wordLength($length, UtilService $utilService){
+    public function wordLength(UtilService $utilService){
         
-        if (!is_numeric($length) || ($length < 4 || $length > 10)) {
-            return 404;
-        }
+        
 
         $letters = $utilService->smallLetters();
-        return view('wordLength', compact('length', 'letters'));
+        return view('wordLength', compact('letters'));
     }
 
     public function nthPosition(UtilService $utilService){
@@ -101,5 +100,15 @@ class GameController extends Controller
 
         $alphabet = $utilService->smallLetters();
         return view('randomPosition', compact('alphabet'));
+    }
+
+    public function wordDefinition() {
+        return view('wordDefinition');
+    }
+
+    public function formWords() {
+        
+        $word = DB::table('dictionaries')->whereRaw('LENGTH(word) > ' . 10)->inRandomOrder()->limit(1)->get();
+        return view('formWords', compact('word'));
     }
 }

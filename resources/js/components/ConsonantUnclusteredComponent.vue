@@ -30,6 +30,9 @@
         <div style="font-size: 21px" class="w3-padding" ref="timer">
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
+        <div style="font-size: 21px" class="w3-padding" ref="score">
+          {{ score }}/50
+          </div>
       </div>
       <div class="">
         <div class="">
@@ -96,6 +99,7 @@ export default {
       isDone: false,
       level: 1,
       letter: "",
+      score: 0,
       rules:
         "Mention words that do not begin or end with a consonant. The word must contain at least two consonants. The consonants must not come one after another.",
       listOfPlayerWords: [],
@@ -160,6 +164,7 @@ export default {
             console.log(result);
             if (result.length > 0) {
               this.listOfPlayerWords.push(word);
+              this.score += 1;
               this.resetTimer();
               if (this.listOfPlayerWords.length == 100) {
                 this.resetTimer();
