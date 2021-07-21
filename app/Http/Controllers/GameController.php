@@ -111,4 +111,31 @@ class GameController extends Controller
         $word = DB::table('dictionaries')->whereRaw('LENGTH(word) > ' . 10)->inRandomOrder()->limit(1)->get();
         return view('formWords', compact('word'));
     }
+
+    public function ends(UtilService $utilService){
+
+        $letters = $utilService->letters();
+        return view('ends', compact('letters'));
+    }
+
+    public function endsWith ($letter, UtilService $utilService) {
+        $letter = strtolower($letter);
+
+        if (!in_array($letter, $utilService->letters())){
+            return 404;
+        }
+
+        
+
+        return view('endsWith', compact('letter'));
+    }
+
+    public function everyLetter() {
+
+        return view('everyLetter');
+    }
+
+    public function beginEndFill(){
+        return view('beginEndFill');
+    }
 }

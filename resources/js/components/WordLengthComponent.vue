@@ -8,13 +8,11 @@
         :is-done="isDone"
       ></rules>
       <div v-if="isDone == true" class="w3-container w3-center w3-margin">
-        <button
-          @click="proceedToNextChallenge"
-          class="w3-button"
-          ref="nextChallenge"
+        <proceed
+          @proceed="proceedToNextChallenge"
         >
-          Proceed to next challenge
-        </button>
+          
+        </proceed>
       </div>
     </div>
     <div ref="gameWrapper" class="w3-row-padding" style="display: none">
@@ -50,26 +48,7 @@
 
             <div class="card-body">
               <!--  -->
-              <div class="d-flex">
-                <div class="flex-grow-1">
-              <input
-                ref="word"
-                type="text"
-                name="word"
-                class="form-control input-sm"
-                placeholder="Enter your word here..."
-                @keyup.enter="checkBeforeSending"
-              />
-              </div>
-              <div>
-              <span class="input-group-btn" style="border: none">
-                <button type="submit" class="btn btn-default go-button">
-                  <!-- <span class="glyphicon glyphicon-search"></span> -->
-                  Go
-                </button>
-              </span>
-              </div>
-              </div>
+              <input-box @input-value="checkBeforeSending"></input-box>
               <!--  -->
             </div>
           </div>
@@ -128,16 +107,15 @@ export default {
       this.startTimer();
     },
 
-    checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
+    checkBeforeSending(word) {
 
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
 
-    sendWord() {
-      var word = this.$refs.word.value.trim();
+    sendWord(word) {
+      
       if (word) {
         if (
           this.listOfComputerWords.length > 0 &&
@@ -185,7 +163,7 @@ export default {
             }
           });
       }
-      this.$refs.word.value = "";
+      
     },
 
     checkIfWordAlreadyExists(word) {
@@ -288,7 +266,6 @@ export default {
           " for a spin?";
       }
       this.$refs.rules.style.display = "block";
-      // this.$refs.nextChallenge.style.display = "block";
       this.$refs.gameWrapper.style.display = "none";
       // this.$refs.show.style.display = "none";
       // }
@@ -299,14 +276,14 @@ export default {
       switch (this.level) {
         case 1:
           if (word.length == this.wordLength) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
           break;
         case 2:
           if (word.charAt(0) === this.nextLetter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -315,7 +292,7 @@ export default {
           var lengthOfWord = word.length - 1;
 
           if (this.nextLetter === word.charAt(lengthOfWord)) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -333,7 +310,7 @@ export default {
               }
             }
             if (check > 0) {
-              this.sendWord();
+              this.sendWord(word);
             } else {
               this.gameOver();
             }
@@ -360,7 +337,8 @@ export default {
 
     proceedToNextChallenge() {
       var next = parseInt(this.wordLength) + 1;
-      location.href = "/words/" + next;
+      this.playQuiz();
+      // location.href = "/words/" + next;
     },
   },
 };

@@ -31,9 +31,7 @@
 
           <div ref="gameContainer" class="">
             <div class="">
-              <div style="font-size: 21px" class="w3-center" ref="computerWord">
-                Let's go!
-              </div>
+              
             </div>
 
             <div class="card-body">
@@ -46,10 +44,9 @@
       </div>
 
       <div class="">
-        <word-tally
-          :listOfComputerWords="listOfComputerWords"
+        <single-player-tally
           :listOfPlayerWords="listOfPlayerWords"
-        ></word-tally>
+        ></single-player-tally>
       </div>
     </div>
   </div>
@@ -57,20 +54,19 @@
 
 <script>
 export default {
-  props: [],
+  props: ["myLetter"],
 
   data() {
     return {
       isDone: false,
       score: 0,
+      letter: this.myLetter,
       rules:
-        "The rules are simple. You'll name a word and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
+        "Trade words with computer that end with " + this.myLetter,
       level: 1,
       numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-      listOfComputerWords: [],
       listOfPlayerWords: [],
       wordLength: 0,
-      computer: "",
       timerCount: 10,
       timer: 10,
     };
@@ -103,38 +99,18 @@ export default {
 
     checkBeforeSending(word) {
       
-      var lengthOfComputerWord = this.computer.length - 1;
-      if (this.computer.length > 0) {
-        if (this.computer.charAt(lengthOfComputerWord) === word.charAt(0)) {
-          switch (this.level) {
-            case 1:
-              this.checkIfWordAlreadyExists(word);
-              break;
-            case 2:
-              if (word.length == this.wordLength) {
-                this.checkIfWordAlreadyExists(word);
-              } else {
-                this.gameOver();
-              }
-              break;
-            default:
+      var lengthOfWord = word.length - 1;
+      if (this.listOfPlayerWords.length > 0) {
+        if (word.charAt(lengthOfWord) === this.letter) {
+                this.checkIfWordAlreadyExists(word);      
+              
           }
+      } else {
+        if (word.charAt(lengthOfWord) === this.letter) {
+            this.sendWord(word);
+
         } else {
           this.gameOver();
-        }
-      } else {
-        switch (this.level) {
-          case 1:
-            this.sendWord(word);
-            break;
-          case 2:
-            if (word.length == this.wordLength) {
-              this.sendWord(word);
-            } else {
-              this.gameOver();
-            }
-            break;
-          default:
         }
       }
     },
@@ -144,12 +120,13 @@ export default {
 
       var data = {
         word: word,
+        letter: this.letter,
       };
 
       data = JSON.stringify(data);
 
       if (word) {
-        fetch("/api/words/bande", {
+        fetch("/api/ends-with", {
           method: "post",
           headers: {
             "Content-Type": "application/json",
@@ -165,13 +142,9 @@ export default {
               this.listOfPlayerWords.push(word);
               this.score += 1;
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 50) {
+              if (this.listOfPlayerWords.length == 30) {
                 this.resetTimer();
-                this.endLevel();
-              } else {
-                this.$refs.computerWord.textContent = result.word;
-                this.computer = result.word;
-                this.listOfComputerWords.push(result);
+                
               }
             } else {
               this.gameOver();
@@ -184,14 +157,8 @@ export default {
     checkIfWordAlreadyExists(word) {
       var check = 0;
       if (
-        this.listOfComputerWords.length > 0 &&
         this.listOfPlayerWords.length > 0
       ) {
-        for (var i = 0; i < this.listOfComputerWords.length; i++) {
-          if (word === this.listOfComputerWords[i]) {
-            check = check + 1;
-          }
-        }
 
         for (var i = 0; i < this.listOfPlayerWords.length; i++) {
           if (word === this.listOfPlayerWords[i]) {
@@ -220,20 +187,7 @@ export default {
       this.timer = 10;
     },
 
-    endLevel() {
-      this.listOfPlayerWords = [];
-      this.listOfComputerWords = [];
-      this.level += 1;
-      this.rules =
-        "Now, you are going to form words with the last letter of computer's words but with a specified length.";
-
-      this.$refs.rules.style.display = "block";
-      this.$refs.gameWrapper.style.display = "none";
-      this.$refs.computerWord.textContent = "Let's go!";
-      this.computer = "";
-
-      this.getRandomNumber();
-    },
+    
 
     getRandomNumber() {
       var getRandomNumber = Math.floor(Math.random() * this.numbers.length + 1);

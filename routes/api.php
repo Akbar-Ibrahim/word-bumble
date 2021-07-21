@@ -37,6 +37,7 @@ Route::get("words/begins-and-ends", "BeginsWithController@beginsAndEndWithSameLe
 
 // Begining and end
 Route::post("words/bande", "BeginingAndEndController@beginingAndEnd");
+Route::post("ends-with", "BeginingAndEndController@endsWith");
 Route::post("words/bande/specific", "BeginingAndEndController@beginingAndEndWithSpecificLength");
 
 // Alternating
@@ -72,5 +73,7 @@ Route::post('/random/position', 'RandomPositionController@randomPosition');
 
 //Word definition
 Route::get('/word-definition', 'WordDefinitionController@getWords');
+Route::get('/get-word', 'WordDefinitionController@getWord');
+Route::post('/every-letter', 'WordDefinitionController@everyLetter');
 
 Route::get('test', 'TestController@test');

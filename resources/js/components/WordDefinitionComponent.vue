@@ -47,26 +47,7 @@
 
             <div class="card-body">
               <!--  -->
-              <div class="d-flex">
-                <div class="flex-grow-1">
-                  <input
-                    ref="word"
-                    type="text"
-                    name="word"
-                    class="form-control input-sm"
-                    placeholder="Enter your word here..."
-                    @keyup.enter="checkBeforeSending"
-                  />
-                </div>
-                <div>
-                  <span class="input-group-btn" style="border: none">
-                    <button type="submit" class="btn btn-default go-button">
-                      <!-- <span class="glyphicon glyphicon-search"></span> -->
-                      Go
-                    </button>
-                  </span>
-                </div>
-              </div>
+              <input-box @input-value="checkBeforeSending"></input-box>
               <!--  -->
             </div>
           </div>
@@ -101,7 +82,7 @@ export default {
       score: 0,
       isDone: false,
       level: 1,
-      rules: "Word redacted. Definition and synonyms given. Guess the word",
+      rules: "The first letter of a word, it's definition and a few synonyms will be given. You have to enter the correct word.",
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
@@ -178,8 +159,8 @@ export default {
       this.startTimer();
     },
 
-    checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
+    checkBeforeSending(word) {
+      
 
       if (word) {
         this.verifyConditionsAreMet(word);
@@ -220,6 +201,8 @@ export default {
     gameOver() {
       this.$refs.playAgain.style.display = "block";
       this.$refs.gameContainer.style.display = "none";
+
+      this.$refs.answer.style.display = "block";
       this.timer = 0;
     },
 

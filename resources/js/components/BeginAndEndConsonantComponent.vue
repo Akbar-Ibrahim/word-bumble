@@ -49,26 +49,7 @@
 
             <div class="card-body">
               <!--  -->
-              <div class="d-flex">
-                <div class="flex-grow-1">
-                  <input
-                    ref="word"
-                    type="text"
-                    name="word"
-                    class="form-control input-sm"
-                    placeholder="Enter your word here..."
-                    @keyup.enter="checkBeforeSending"
-                  />
-                </div>
-                <div>
-                  <span class="input-group-btn" style="border: none">
-                    <button type="submit" class="btn btn-default go-button">
-                      <!-- <span class="glyphicon glyphicon-search"></span> -->
-                      Go
-                    </button>
-                  </span>
-                </div>
-              </div>
+              <input-box @input-value="checkBeforeSending"></input-box>
               <!--  -->
             </div>
           </div>
@@ -147,17 +128,15 @@ export default {
       this.startTimer();
     },
 
-    checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-      word = word.toLowerCase();
-
+    checkBeforeSending(word) {
+      
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
 
-    sendWord() {
-      var word = this.$refs.word.value.trim();
+    sendWord(word) {
+      
       if (word) {
         // if (this.listOfPlayerWords.length > 0) {
         //   this.checkIfWordAlreadyExists(word);
@@ -199,7 +178,7 @@ export default {
             }
           });
       }
-      this.$refs.word.value = "";
+      
     },
 
     getRandomLetter() {
@@ -231,10 +210,10 @@ export default {
         if (checkPlayer > 0 || checkComputer > 0) {
           this.gameOver();
         } else {
-          this.sendWord();
+          this.sendWord(word);
         }
       } else {
-        this.sendWord();
+        this.sendWord(word);
       }
     },
 

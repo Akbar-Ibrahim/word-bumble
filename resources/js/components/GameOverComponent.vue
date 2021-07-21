@@ -29,9 +29,11 @@ export default {
         "Maybe you want to try a word game in your native language?",
         "It's just words, fam. I don't know why it's so difficult for you.",
         "Let's never speak of this.",
-        "You were such a cute kid with so much potential.",
+        "You were such a cute kid with so much potential. What happened?",
         "English is not for everybody"
       ];
+
+      var aboveThirtyMessages = ["You did good, son. (Or daughter)", "I'm proud of you. Keep at it.", "That's some good work."];
 
       var messageLength = messages.length;
       var getMessage = Math.floor(Math.random() * messageLength + 1);

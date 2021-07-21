@@ -31,6 +31,32 @@ class BeginingAndEndController extends Controller
         }
     }
 
+    public function endsWith(Request $request)
+    {
+
+        if ($request->has('word') && !empty($request->input('word'))) {
+            $word = $request->word;
+            // $last_letter = $word[-1];
+            $letter = $request->letter;
+
+            $check = Dictionary::where(["word" => $word])->first();
+
+            if ($check) {
+                if ($request->has('length') && !empty($request->input('length'))) {
+                    $length = $request->length;
+                return DB::table('dictionaries')->where('id', '!=', $check->id)->where('word', 'like', '%' . $letter)->whereRaw('LENGTH(word) = ' . $length)->inRandomOrder()->limit(1)->get();
+                } else {
+                return Dictionary::where("id", "!=", $check->id)->where("word", "like", "%" . $letter)->inRandomOrder()->first();
+                }
+            } else {
+                return [];
+            }
+        } else {
+            return "hello";
+        }
+    }
+
+
     public function beginingAndEndWithSpecificLength(Request $request)
     {
 

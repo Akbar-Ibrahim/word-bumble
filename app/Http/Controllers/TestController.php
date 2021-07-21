@@ -13,8 +13,54 @@ class TestController extends Controller
     
     public function test(Request $request, ConsonantService $consonantService){
         $letter = $request->letter;
-        return Dictionary::where('word', 'like', '___')->inRandomOrder()->take(200)->get();
-        
+        $start = $request->start;
+        $end = $request->end;
+
+        // return Dictionary::where('word', 'like', '%' . $letter . '%' . $letter .'%')->where('word', 'not like', $letter . '%')->where('word', 'not like', '%' . $letter . $letter . '%')->where('word', 'not like', '%' . $letter)->inRandomOrder()->take(200)->get();
+        // $result = Dictionary::where('word', 'like', $start . '%' . $end)->take(100)->get();
+        // $result = DB::table('dictionaries')->where('word', 'like', '%' . $letter)->whereRaw('LENGTH(word) > ' . 4)->get();
+        // $result = DB::table('dictionaries')->where('word', 'like', $letter . '%')->whereRaw('LENGTH(word) = ' . 4)->get();
+        $result = Dictionary::where('word', 'like', '_j%')->get();
+        $four = [];
+        $five = [];
+        $six = [];
+        $seven = [];
+        $eight = [];
+        $nine = [];
+        $ten = [];
+        return $result;
+
+        foreach ($result as $r) {
+            if (strlen($r->word) == 4) {
+                array_push($four, $r);
+
+            } else if (strlen($r->word) == 5) {
+                array_push($five, $r);
+
+            } else if (strlen($r->word) == 6) {
+                array_push($six, $r);
+
+            } else if (strlen($r->word) == 7) {
+                array_push($seven, $r);
+
+            } else if (strlen($r->word) == 8) {
+                array_push($eight, $r);
+
+            } else if (strlen($r->word) == 9) {
+                array_push($nine, $r);;
+
+            } else if (strlen($r->word) == 10) {
+                array_push($ten, $r);;
+            }
+        }
+        return  "<h1> For " .$letter . "</h1>" .
+        "four is " . count($four) . "<br>" .
+        "five is " . count($five) . "<br>" .
+        "six is " . count($six) . "<br>" .
+        "seven is " . count($seven) . "<br>" .
+        "eight is " . count($eight) . "<br>" .
+        "nine is " . count($nine) . "<br>" .
+        "ten is " . count($ten) . "<br>";
         
         // $check = "";
 

@@ -30,6 +30,12 @@ Vue.component('congrats', require('./components/CongratsComponent.vue').default)
 Vue.component('me-before-you-vowel', require('./components/MeBeforeYouVowelComponent.vue').default);
 Vue.component('me-before-you-consonant', require('./components/MeBeforeYouConsonantComponent.vue').default);
 
+Vue.component('input-box', require('./components/InputBoxComponent.vue').default);
+
+Vue.component('begin-end-fill', require('./components/BeginEndFillComponent.vue').default);
+Vue.component('every-letter', require('./components/EveryLetterComponent.vue').default);
+Vue.component('ends-with', require('./components/EndsWithComponent.vue').default);
+Vue.component('ends-with-j', require('./components/EndsWithJComponent.vue').default);
 Vue.component('rules', require('./components/RulesComponent.vue').default);
 Vue.component('word-tally', require('./components/WordTallyComponent.vue').default);
 Vue.component('game-over', require('./components/GameOverComponent.vue').default);
@@ -38,6 +44,8 @@ Vue.component('vowel-unclustered', require('./components/VowelUnclusteredCompone
 Vue.component('vowel-clusters', require('./components/VowelClustersComponent.vue').default);
 Vue.component('consonant-unclustered', require('./components/ConsonantUnclusteredComponent.vue').default);
 Vue.component('consonant-clusters', require('./components/ConsonantClustersComponent.vue').default);
+Vue.component('proceed', require('./components/ProceedComponent.vue').default);
+
 
 Vue.component('begin-end', require('./components/BeginAndEndComponent.vue').default);
 Vue.component('begin-end-vowel', require('./components/BeginAndEndVowelComponent.vue').default);
@@ -49,6 +57,8 @@ Vue.component('random-position', require('./components/RandomPositionComponent.v
 Vue.component('word-definition', require('./components/WordDefinitionComponent.vue').default);
 
 Vue.component('form-words', require('./components/FormWordsComponent.vue').default);
+
+Vue.component('end-game', require('./components/EndGameComponent.vue').default);
 
 Vue.component('single-player-tally', require('./components/SinglePlayerTallyComponent.vue').default);
 

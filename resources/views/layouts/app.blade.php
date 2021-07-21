@@ -7,6 +7,8 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <script src="{{ asset('js/app.js') }}" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -16,6 +18,7 @@
 
 
     <link href="{{ asset('css/w3-css.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/w3-css-color.css') }}" rel="stylesheet">
 
 <style>
 .w3-button {
@@ -48,6 +51,15 @@
 </div>
 
 
+@yield('scripts')
+
+<script>
+$(document).ready(function(){
+  $(".go-button").addClass("w3-win8-lime");
+  $(".go-button").css("color", "white");
+});
+
+</script>
 
 
 </body>

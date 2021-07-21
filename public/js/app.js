@@ -1917,31 +1917,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
     return {
       isDone: false,
       level: 1,
+      score: 0,
       nextLetter: "",
       rules: "List words that begin and end with the same letter",
       listOfComputerWords: [],
@@ -1965,17 +1947,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         if (this.listOfComputerWords.length > 0 && this.listOfPlayerWords.length > 0) {
@@ -2019,8 +1997,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkComputer = 0;
@@ -2051,7 +2027,7 @@ __webpack_require__.r(__webpack_exports__);
       var lengthOfWord = word.length - 1;
 
       if (word.charAt(0) === word.charAt(lengthOfWord)) {
-        this.sendWord();
+        this.sendWord(word);
       } else {
         this.gameOver();
       }
@@ -2161,25 +2137,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -2211,18 +2168,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-      word = word.toLowerCase();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         // if (this.listOfPlayerWords.length > 0) {
@@ -2266,8 +2218,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     getRandomLetter: function getRandomLetter() {
       var getLetter = Math.floor(Math.random() * this.consonants.length + 1);
@@ -2294,10 +2244,10 @@ __webpack_require__.r(__webpack_exports__);
         if (checkPlayer > 0 || checkComputer > 0) {
           this.gameOver();
         } else {
-          this.sendWord();
+          this.sendWord(word);
         }
       } else {
-        this.sendWord();
+        this.sendWord(word);
       }
     },
     resetTimer: function resetTimer() {
@@ -2422,25 +2372,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -2473,18 +2404,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-      word = word.toLowerCase();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         // if (this.listOfPlayerWords.length > 0) {
@@ -2527,8 +2453,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkPlayer = 0;
@@ -2550,10 +2474,10 @@ __webpack_require__.r(__webpack_exports__);
         if (checkPlayer > 0 || checkComputer > 0) {
           this.gameOver();
         } else {
-          this.sendWord();
+          this.sendWord(word);
         }
       } else {
-        this.sendWord();
+        this.sendWord(word);
       }
     },
     resetTimer: function resetTimer() {
@@ -2667,25 +2591,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -2721,8 +2626,7 @@ __webpack_require__.r(__webpack_exports__);
     playAgain: function playAgain() {
       location.href = "/begining/end";
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
+    checkBeforeSending: function checkBeforeSending(word) {
       var lengthOfComputerWord = this.computer.length - 1;
 
       if (this.computer.length > 0) {
@@ -2733,16 +2637,15 @@ __webpack_require__.r(__webpack_exports__);
         }
       } else {
         if (word.length == this.wordLength) {
-          this.sendWord();
+          this.sendWord(word);
         } else {
           this.gameOver();
         }
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
 
-      var word = this.$refs.word.value.trim();
       var data = {
         word: word,
         length: this.wordLength
@@ -2783,8 +2686,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var check = 0;
@@ -2805,7 +2706,7 @@ __webpack_require__.r(__webpack_exports__);
         if (check > 0) {
           this.gameOver();
         } else {
-          this.sendWord();
+          this.sendWord(word);
         }
       }
     },
@@ -2834,6 +2735,227 @@ __webpack_require__.r(__webpack_exports__);
     },
     nextLevel: function nextLevel() {
       this.rules = "Go on to " + this.wordLength + " words now.";
+    },
+    gameOver: function gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndFillComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndFillComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: [],
+  data: function data() {
+    return {
+      isDone: false,
+      score: 0,
+      rules: "You'll be shown two letters, your goal is to form a word that begins with the first letter and ends with the second letter",
+      level: 1,
+      listOfPlayerWords: [],
+      letters: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+      firstLetter: "",
+      lastLetter: "",
+      computer: "",
+      timer: 10
+    };
+  },
+  created: function created() {},
+  mounted: function mounted() {},
+  methods: {
+    getLetters: function getLetters() {
+      var getFirstLetterIndex = Math.floor(Math.random() * this.letters.length + 1);
+      this.firstLetter = this.letters[getFirstLetterIndex];
+      var getLastLetterIndex = Math.floor(Math.random() * this.letters.length + 1);
+      this.lastLetter = this.letters[getLastLetterIndex];
+
+      if (this.lastLetter === 'j' || this.lastLetter === 'q' || this.lastLetter === 'u' || this.lastLetter === 'v') {
+        this.getLetters();
+      }
+
+      this.computer = this.firstLetter.toUpperCase();
+      this.computer = this.computer + this.lastLetter.toUpperCase();
+      this.$refs.computerWord.textContent = this.computer;
+    },
+    startTimer: function startTimer() {
+      if (this.level > 1) {// setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+    playQuiz: function playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+      this.getLetters();
+      this.resetTimer();
+      this.startTimer();
+    },
+    playAgain: function playAgain() {
+      location.href = "/begining/end";
+    },
+    checkBeforeSending: function checkBeforeSending(word) {
+      var lengthOfWord = word.length - 1;
+
+      if (this.listOfPlayerWords > 0) {
+        if (word.charAt(0) === this.firstLetter && word.charAt(lengthOfWord) === this.lastLetter) {
+          this.checkIfWordAlreadyExists(word);
+        } else {
+          this.gameOver();
+        }
+      } else {
+        if (word.charAt(0) === this.firstLetter && word.charAt(lengthOfWord) === this.lastLetter) {
+          this.sendWord(word);
+        } else {
+          this.gameOver();
+        }
+      }
+    },
+    sendWord: function sendWord(word) {
+      var _this = this;
+
+      var data = {
+        word: word
+      };
+      data = JSON.stringify(data);
+
+      if (word) {
+        fetch("/api/every-letter", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: data
+        }).then(function (response) {
+          return response.json();
+        }).then(function (result) {
+          console.log(result);
+
+          if (result.length > 0) {
+            _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
+
+            _this.getLetters();
+
+            _this.resetTimer();
+
+            if (_this.listOfPlayerWords.length == 50) {
+              _this.resetTimer();
+
+              _this.endLevel();
+            } else {// this.getComputerWords(result);
+            }
+          } else {
+            _this.gameOver();
+          }
+        });
+      }
+    },
+    endLevel: function endLevel() {
+      this.listOfPlayerWords = []; // this.level += 1;
+      // this.rules = "Mention words that have more than one vowel cluster. That is multiple vowels coming one after another";
+
+      this.$refs.congrats.style.display = "block";
+      this.$refs.gameWrapper.style.display = "none";
+    },
+    checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
+      var check = 0;
+
+      if (this.listOfPlayerWords.length > 0) {
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            check = check + 1;
+          }
+        }
+
+        if (check > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord(word);
+        }
+      }
+    },
+    myTimer: function myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
+    },
+    resetTimer: function resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
     },
     gameOver: function gameOver() {
       this.$refs.playAgain.style.display = "block";
@@ -2962,25 +3084,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -3011,17 +3114,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         // if (this.listOfPlayerWords.length > 0) {
@@ -3059,8 +3158,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkPlayer = 0;
@@ -3074,7 +3171,7 @@ __webpack_require__.r(__webpack_exports__);
       if (checkPlayer > 0) {
         this.gameOver();
       } else {
-        this.sendWord();
+        this.sendWord(word);
       }
     },
     resetTimer: function resetTimer() {
@@ -3234,25 +3331,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -3284,17 +3362,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         // if (this.listOfPlayerWords.length > 0) {
@@ -3332,8 +3406,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkPlayer = 0;
@@ -3347,7 +3419,7 @@ __webpack_require__.r(__webpack_exports__);
       if (checkPlayer > 0) {
         this.gameOver();
       } else {
-        this.sendWord();
+        this.sendWord(word);
       }
     },
     resetTimer: function resetTimer() {
@@ -3405,6 +3477,751 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.timer -= 1;
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndGameComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndGameComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  methods: {
+    endGame: function endGame() {
+      location.href = "/";
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["myLetter"],
+  data: function data() {
+    return {
+      isDone: false,
+      score: 0,
+      letter: this.myLetter,
+      rules: "Trade words with computer that end with " + this.myLetter,
+      level: 1,
+      numbers: [4, 5, 6, 7, 8],
+      listOfComputerWords: [],
+      listOfPlayerWords: [],
+      wordLength: 0,
+      computer: "",
+      timerCount: 10,
+      timer: 10
+    };
+  },
+  created: function created() {},
+  mounted: function mounted() {},
+  methods: {
+    startTimer: function startTimer() {
+      if (this.level > 1) {// setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+    playQuiz: function playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+      this.resetTimer();
+      this.startTimer();
+    },
+    playAgain: function playAgain() {
+      location.href = "/begining/end";
+    },
+    checkBeforeSending: function checkBeforeSending(word) {
+      var position = this.wordLength - 1;
+      var lengthOfWord = word.length - 1;
+
+      if (this.computer.length > 0) {
+        if (word.charAt(lengthOfWord) === this.letter) {
+          switch (this.level) {
+            case 1:
+              this.checkIfWordAlreadyExists(word);
+              break;
+
+            case 2:
+              if (word.length == this.wordLength) {
+                this.checkIfWordAlreadyExists(word);
+                this.getRandomNumber();
+              } else {
+                this.gameOver();
+              }
+
+              break;
+
+            default:
+          }
+        } else {
+          this.gameOver();
+        }
+      } else {
+        if (word.charAt(lengthOfWord) === this.letter) {
+          switch (this.level) {
+            case 1:
+              this.sendWord(word);
+              break;
+
+            case 2:
+              if (word.length == this.wordLength) {
+                this.sendWord(word);
+                this.getRandomNumber();
+              } else {
+                this.gameOver();
+              }
+
+              break;
+
+            default:
+          }
+        } else {
+          this.gameOver();
+        }
+      }
+    },
+    sendWord: function sendWord(word) {
+      var _this = this;
+
+      // var word = this.$refs.word.value.trim();
+      // var data = {
+      //   word: word,
+      //   letter: this.letter,
+      // };
+      var data = this.nextLevelPayload(word);
+      data = JSON.stringify(data);
+
+      if (word) {
+        fetch("/api/ends-with", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: data
+        }).then(function (response) {
+          return response.json();
+        }).then(function (result) {
+          console.log(result);
+
+          if (result.length > 0) {
+            _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
+
+            _this.resetTimer();
+
+            if (_this.listOfPlayerWords.length == 50) {
+              _this.resetTimer();
+
+              _this.endLevel();
+            } else {
+              _this.getComputerWords(result);
+            }
+          } else {
+            _this.gameOver();
+          }
+        });
+      } // this.$refs.word.value = "";
+
+    },
+    getComputerWords: function getComputerWords(result) {
+      switch (this.level) {
+        case 1:
+          this.$refs.computerWord.textContent = result.word;
+          this.computer = result.word;
+          this.listOfComputerWords.push(result);
+          break;
+
+        case 2:
+          this.$refs.computerWord.textContent = result[0].word;
+          this.computer = result[0].word;
+          this.listOfComputerWords.push(result[0]);
+          break;
+
+        default:
+      }
+    },
+    checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
+      var check = 0;
+
+      if (this.listOfComputerWords.length > 0 && this.listOfPlayerWords.length > 0) {
+        for (var i = 0; i < this.listOfComputerWords.length; i++) {
+          if (word === this.listOfComputerWords[i]) {
+            check = check + 1;
+          }
+        }
+
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            check = check + 1;
+          }
+        }
+
+        if (check > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord(word);
+        }
+      }
+    },
+    myTimer: function myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
+    },
+    resetTimer: function resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+    endLevel: function endLevel() {
+      this.listOfPlayerWords = [];
+      this.listOfComputerWords = [];
+      this.level += 1;
+      this.rules = "Now, you are going to mention words that end with " + this.letter + " with a specified length";
+      this.$refs.rules.style.display = "block";
+      this.$refs.gameWrapper.style.display = "none";
+      this.$refs.computerWord.textContent = "Let's go!";
+      this.computer = "";
+      this.getRandomNumber();
+    },
+    getRandomNumber: function getRandomNumber() {
+      var getRandomNumber = Math.floor(Math.random() * this.numbers.length);
+      this.wordLength = this.numbers[getRandomNumber]; // this.wordLength = 3;
+
+      this.$refs.wLength.textContent = this.wordLength;
+    },
+    nextLevelPayload: function nextLevelPayload(word) {
+      var data = [];
+
+      switch (this.level) {
+        case 1:
+          data = {
+            word: word,
+            letter: this.letter
+          };
+          break;
+
+        case 2:
+          data = {
+            word: word,
+            letter: this.letter,
+            length: this.wordLength
+          };
+          break;
+
+        default:
+      }
+
+      return data;
+    },
+    gameOver: function gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithJComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithJComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["myLetter"],
+  data: function data() {
+    return {
+      isDone: false,
+      score: 0,
+      letter: this.myLetter,
+      rules: "Trade words with computer that end with " + this.myLetter,
+      level: 1,
+      numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      listOfPlayerWords: [],
+      wordLength: 0,
+      timerCount: 10,
+      timer: 10
+    };
+  },
+  created: function created() {},
+  mounted: function mounted() {},
+  methods: {
+    startTimer: function startTimer() {
+      if (this.level > 1) {// setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+    playQuiz: function playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+      this.resetTimer();
+      this.startTimer();
+    },
+    playAgain: function playAgain() {
+      location.href = "/begining/end";
+    },
+    checkBeforeSending: function checkBeforeSending(word) {
+      var lengthOfWord = word.length - 1;
+
+      if (this.listOfPlayerWords.length > 0) {
+        if (word.charAt(lengthOfWord) === this.letter) {
+          this.checkIfWordAlreadyExists(word);
+        }
+      } else {
+        if (word.charAt(lengthOfWord) === this.letter) {
+          this.sendWord(word);
+        } else {
+          this.gameOver();
+        }
+      }
+    },
+    sendWord: function sendWord(word) {
+      var _this = this;
+
+      // var word = this.$refs.word.value.trim();
+      var data = {
+        word: word,
+        letter: this.letter
+      };
+      data = JSON.stringify(data);
+
+      if (word) {
+        fetch("/api/ends-with", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: data
+        }).then(function (response) {
+          return response.json();
+        }).then(function (result) {
+          console.log(result);
+
+          if (result.length > 0) {
+            _this.listOfPlayerWords.push(word);
+
+            _this.score += 1;
+
+            _this.resetTimer();
+
+            if (_this.listOfPlayerWords.length == 30) {
+              _this.resetTimer();
+            }
+          } else {
+            _this.gameOver();
+          }
+        });
+      } // this.$refs.word.value = "";
+
+    },
+    checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
+      var check = 0;
+
+      if (this.listOfPlayerWords.length > 0) {
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            check = check + 1;
+          }
+        }
+
+        if (check > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord(word);
+        }
+      }
+    },
+    myTimer: function myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
+    },
+    resetTimer: function resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+    getRandomNumber: function getRandomNumber() {
+      var getRandomNumber = Math.floor(Math.random() * this.numbers.length + 1);
+      this.wordLength = this.numbers[getRandomNumber]; // this.wordLength = 5;
+
+      this.$refs.wLength.textContent = this.wordLength;
+    },
+    gameOver: function gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EveryLetterComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EveryLetterComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: [],
+  data: function data() {
+    return {
+      isDone: false,
+      score: 0,
+      rules: "You will be shown a word, your mission is to form a word with each letter in the word before the time runs out",
+      level: 1,
+      listOfPlayerWords: [],
+      wordLength: 0,
+      letter: "",
+      letterIndex: 0,
+      computer: "",
+      timer: 10
+    };
+  },
+  created: function created() {},
+  mounted: function mounted() {
+    this.fetchWord();
+  },
+  methods: {
+    fetchWord: function fetchWord() {
+      var _this = this;
+
+      var url = "api/get-word";
+      fetch(url).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        // console.log(result);
+        _this.computer = result.word;
+        _this.$refs.computerWord.textContent = _this.computer;
+        _this.wordLength = result.word.length;
+        _this.letter = result.word.charAt(0); // console.log(result);
+      });
+    },
+    startTimer: function startTimer() {
+      if (this.level > 1) {// setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
+    },
+    playQuiz: function playQuiz() {
+      this.$refs.rules.style.display = "none";
+      this.$refs.gameWrapper.style.display = "block";
+      this.resetTimer();
+      this.startTimer();
+    },
+    playAgain: function playAgain() {
+      location.href = "/begining/end";
+    },
+    checkBeforeSending: function checkBeforeSending(word) {
+      if (this.letterIndex > 0) {
+        if (word.charAt(0) === this.letter) {
+          this.checkIfWordAlreadyExists(word);
+        } else {
+          this.gameOver();
+        }
+      } else {
+        if (word.charAt(this.letterIndex) === this.letter) {
+          if (word === this.computer) {
+            this.gameOver();
+          } else {
+            this.sendWord(word);
+          }
+        } else {
+          this.gameOver();
+        }
+      }
+
+      this.letterIndex += 1;
+      this.letter = this.computer.charAt(this.letterIndex);
+    },
+    sendWord: function sendWord(word) {
+      var _this2 = this;
+
+      var data = {
+        word: word
+      };
+      data = JSON.stringify(data);
+
+      if (word) {
+        fetch("/api/every-letter", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: data
+        }).then(function (response) {
+          return response.json();
+        }).then(function (result) {
+          console.log(result);
+
+          if (result.length > 0) {
+            _this2.listOfPlayerWords.push(word);
+
+            _this2.score += 1;
+
+            _this2.resetTimer();
+
+            if (_this2.listOfPlayerWords.length == _this2.wordLength) {
+              // this.listOfPlayerWords = [];
+              _this2.letter = "";
+              _this2.letterIndex = 0;
+
+              _this2.resetTimer();
+
+              _this2.fetchWord();
+            } else {// this.getComputerWords(result);
+            }
+          } else {
+            _this2.gameOver();
+          }
+        });
+      } // this.$refs.word.value = "";
+
+    },
+    checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
+      var check = 0;
+
+      if (this.listOfPlayerWords.length > 0) {
+        for (var i = 0; i < this.listOfPlayerWords.length; i++) {
+          if (word === this.listOfPlayerWords[i]) {
+            check = check + 1;
+          }
+        }
+
+        if (check > 0) {
+          this.gameOver();
+        } else {
+          this.sendWord(word);
+        }
+      }
+    },
+    myTimer: function myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
+    },
+    resetTimer: function resetTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+    gameOver: function gameOver() {
+      this.$refs.playAgain.style.display = "block";
+      this.$refs.gameContainer.style.display = "none";
     }
   }
 });
@@ -3703,7 +4520,8 @@ __webpack_require__.r(__webpack_exports__);
       location.href = location.href;
     },
     messages: function messages() {
-      var messages = ["You embarrass me.", "I see English is not your first language.", "It's okay. If I couldn't speak English, I would fail miserably too. But don't give up. Try again.", "Ode", "Maybe you want to try a word game in your native language?", "It's just words, fam. I don't know why it's so difficult for you.", "Let's never speak of this.", "You were such a cute kid with so much potential.", "English is not for everybody"];
+      var messages = ["You embarrass me.", "I see English is not your first language.", "It's okay. If I couldn't speak English, I would fail miserably too. But don't give up. Try again.", "Ode", "Maybe you want to try a word game in your native language?", "It's just words, fam. I don't know why it's so difficult for you.", "Let's never speak of this.", "You were such a cute kid with so much potential. What happened?", "English is not for everybody"];
+      var aboveThirtyMessages = ["You did good, son. (Or daughter)", "I'm proud of you. Keep at it.", "That's some good work."];
       var messageLength = messages.length;
       var getMessage = Math.floor(Math.random() * messageLength + 1);
       this.$refs.message.textContent = messages[getMessage];
@@ -3713,10 +4531,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LastLetterComponent.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LastLetterComponent.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InputBoxComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InputBoxComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3743,6 +4561,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mounted: function mounted() {// console.log("Component mounted.");
+  },
+  methods: {
+    checkBeforeSending: function checkBeforeSending() {
+      var inputValue = this.$refs.word.value.trim();
+      var word = inputValue.toLowerCase();
+      this.$emit('input-value', word);
+      this.$refs.word.value = "";
+    },
+    restart: function restart() {
+      location.href = location.href;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LastLetterComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LastLetterComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 //
 //
 //
@@ -3835,8 +4700,7 @@ __webpack_require__.r(__webpack_exports__);
     playAgain: function playAgain() {
       location.href = "/begining/end";
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
+    checkBeforeSending: function checkBeforeSending(word) {
       var lengthOfComputerWord = this.computer.length - 1;
 
       if (this.computer.length > 0) {
@@ -3863,12 +4727,12 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         switch (this.level) {
           case 1:
-            this.sendWord();
+            this.sendWord(word);
             break;
 
           case 2:
             if (word.length == this.wordLength) {
-              this.sendWord();
+              this.sendWord(word);
             } else {
               this.gameOver();
             }
@@ -3879,10 +4743,10 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
 
-      var word = this.$refs.word.value.trim();
+      // var word = this.$refs.word.value.trim();
       var data = {
         word: word
       };
@@ -3921,9 +4785,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.gameOver();
           }
         });
-      }
+      } // this.$refs.word.value = "";
 
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var check = 0;
@@ -3944,7 +4807,7 @@ __webpack_require__.r(__webpack_exports__);
         if (check > 0) {
           this.gameOver();
         } else {
-          this.sendWord();
+          this.sendWord(word);
         }
       }
     },
@@ -4067,25 +4930,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -4116,17 +4960,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         // if (this.listOfPlayerWords.length > 0) {
@@ -4164,8 +5004,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkPlayer = 0;
@@ -4179,7 +5017,7 @@ __webpack_require__.r(__webpack_exports__);
       if (checkPlayer > 0) {
         this.gameOver();
       } else {
-        this.sendWord();
+        this.sendWord(word);
       }
     },
     resetTimer: function resetTimer() {
@@ -4320,25 +5158,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -4369,17 +5188,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         // if (this.listOfPlayerWords.length > 0) {
@@ -4417,8 +5232,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkPlayer = 0;
@@ -4432,7 +5245,7 @@ __webpack_require__.r(__webpack_exports__);
       if (checkPlayer > 0) {
         this.gameOver();
       } else {
-        this.sendWord();
+        this.sendWord(word);
       }
     },
     resetTimer: function resetTimer() {
@@ -4605,25 +5418,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["letters"],
   data: function data() {
@@ -4634,7 +5428,7 @@ __webpack_require__.r(__webpack_exports__);
       level: 1,
       letter: "",
       score: 0,
-      rules: "The rules are simple. You and computer will trade words  that have a letter in a certain position. Do not repeat a word you have mentioned already or a word computer has mentioned",
+      rules: "A letter will be selected at random. Trade words with computer that begin with the letter. Do not mention a word you or computer have already mentioned.",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
@@ -4658,19 +5452,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-      word.toLowerCase();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
-      word.toLowerCase();
 
       if (word) {
         if (this.listOfComputerWords.length > 0 && this.listOfPlayerWords.length > 0) {
@@ -4701,7 +5489,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 2) {
+            if (_this.listOfPlayerWords.length == 20) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -4716,8 +5504,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkComputer = 0;
@@ -4740,6 +5526,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     nextLevel: function nextLevel() {
+      this.listOfPlayerWords = [];
+      this.listOfComputerWords = [];
       var alphabetLength = this.alphabet.length;
       var getNextLetterIndex = Math.floor(Math.random() * alphabetLength + 1);
       this.letter = this.alphabet[getNextLetterIndex].toLowerCase();
@@ -4750,6 +5538,7 @@ __webpack_require__.r(__webpack_exports__);
     endLevel: function endLevel() {
       // if (this.listOfPlayerWords.length == 10) {
       this.$refs.computerWord.textContent = "Let's go!";
+      this.score = 0;
       this.listOfPlayerWords = [];
       this.listOfComputerWords = [];
       this.level += 1;
@@ -4789,7 +5578,7 @@ __webpack_require__.r(__webpack_exports__);
       switch (this.level) {
         case 1:
           if (word.charAt(0) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -4798,7 +5587,7 @@ __webpack_require__.r(__webpack_exports__);
 
         case 2:
           if (word.charAt(1) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -4807,7 +5596,7 @@ __webpack_require__.r(__webpack_exports__);
 
         case 3:
           if (word.charAt(2) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -4816,7 +5605,7 @@ __webpack_require__.r(__webpack_exports__);
 
         case 4:
           if (word.charAt(3) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -4825,7 +5614,7 @@ __webpack_require__.r(__webpack_exports__);
 
         case 5:
           if (word.charAt(4) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -4834,7 +5623,7 @@ __webpack_require__.r(__webpack_exports__);
 
         case 6:
           if (word.charAt(5) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -4843,7 +5632,7 @@ __webpack_require__.r(__webpack_exports__);
 
         case 7:
           if (word.charAt(6) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -4853,7 +5642,7 @@ __webpack_require__.r(__webpack_exports__);
         case 8:
           if (word.charAt(7) === this.letter) {
             this.position = 8;
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -4883,10 +5672,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RandomPositionComponent.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RandomPositionComponent.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProceedComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProceedComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4905,14 +5694,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mounted: function mounted() {
+    // console.log("Component mounted.");
+    this.messages();
+  },
+  methods: {
+    proceedToNextChallenge: function proceedToNextChallenge() {
+      this.$emit('proceed');
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RandomPositionComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RandomPositionComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 //
 //
 //
@@ -5015,18 +5821,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-      word = word.toLowerCase();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         var data = {
@@ -5065,8 +5866,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     getRandomLetter: function getRandomLetter() {
       var getLetter = Math.floor(Math.random() * this.letters.length + 1);
@@ -5089,10 +5888,10 @@ __webpack_require__.r(__webpack_exports__);
         if (checkPlayer > 0) {
           this.gameOver();
         } else {
-          this.sendWord();
+          this.sendWord(word);
         }
       } else {
-        this.sendWord();
+        this.sendWord(word);
       }
     },
     resetTimer: function resetTimer() {
@@ -5309,25 +6108,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -5358,17 +6138,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         // if (this.listOfPlayerWords.length > 0) {
@@ -5406,8 +6182,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkPlayer = 0;
@@ -5421,7 +6195,7 @@ __webpack_require__.r(__webpack_exports__);
       if (checkPlayer > 0) {
         this.gameOver();
       } else {
-        this.sendWord();
+        this.sendWord(word);
       }
     },
     resetTimer: function resetTimer() {
@@ -5582,25 +6356,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -5632,17 +6387,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         // if (this.listOfPlayerWords.length > 0) {
@@ -5670,7 +6421,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 20) {
+            if (_this.listOfPlayerWords.length == 50) {
               _this.resetTimer();
 
               _this.endLevel();
@@ -5680,8 +6431,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkPlayer = 0;
@@ -5695,7 +6444,7 @@ __webpack_require__.r(__webpack_exports__);
       if (checkPlayer > 0) {
         this.gameOver();
       } else {
-        this.sendWord();
+        this.sendWord(word);
       }
     },
     resetTimer: function resetTimer() {
@@ -5843,25 +6592,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
@@ -5871,7 +6601,7 @@ __webpack_require__.r(__webpack_exports__);
       score: 0,
       isDone: false,
       level: 1,
-      rules: "Word redacted. Definition and synonyms given. Guess the word",
+      rules: "The first letter of a word, it's definition and a few synonyms will be given. You have to enter the correct word.",
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
@@ -5932,9 +6662,7 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
@@ -5967,6 +6695,7 @@ __webpack_require__.r(__webpack_exports__);
     gameOver: function gameOver() {
       this.$refs.playAgain.style.display = "block";
       this.$refs.gameContainer.style.display = "none";
+      this.$refs.answer.style.display = "block";
       this.timer = 0;
     },
     myTimer: function myTimer() {
@@ -5992,27 +6721,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -6112,17 +6820,13 @@ __webpack_require__.r(__webpack_exports__);
       this.resetTimer();
       this.startTimer();
     },
-    checkBeforeSending: function checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-
+    checkBeforeSending: function checkBeforeSending(word) {
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
-    sendWord: function sendWord() {
+    sendWord: function sendWord(word) {
       var _this = this;
-
-      var word = this.$refs.word.value.trim();
 
       if (word) {
         if (this.listOfComputerWords.length > 0 && this.listOfPlayerWords.length > 0) {
@@ -6168,8 +6872,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-
-      this.$refs.word.value = "";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var checkComputer = 0;
@@ -6253,8 +6955,7 @@ __webpack_require__.r(__webpack_exports__);
         this.rules = "You're done with " + this.wordLength + " letters. Want to take " + nextChallenge + " for a spin?";
       }
 
-      this.$refs.rules.style.display = "block"; // this.$refs.nextChallenge.style.display = "block";
-
+      this.$refs.rules.style.display = "block";
       this.$refs.gameWrapper.style.display = "none"; // this.$refs.show.style.display = "none";
       // }
 
@@ -6264,7 +6965,7 @@ __webpack_require__.r(__webpack_exports__);
       switch (this.level) {
         case 1:
           if (word.length == this.wordLength) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -6273,7 +6974,7 @@ __webpack_require__.r(__webpack_exports__);
 
         case 2:
           if (word.charAt(0) === this.nextLetter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -6284,7 +6985,7 @@ __webpack_require__.r(__webpack_exports__);
           var lengthOfWord = word.length - 1;
 
           if (this.nextLetter === word.charAt(lengthOfWord)) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -6303,7 +7004,7 @@ __webpack_require__.r(__webpack_exports__);
             }
 
             if (check > 0) {
-              this.sendWord();
+              this.sendWord(word);
             } else {
               this.gameOver();
             }
@@ -6329,7 +7030,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     proceedToNextChallenge: function proceedToNextChallenge() {
       var next = parseInt(this.wordLength) + 1;
-      location.href = "/words/" + next;
+      this.playQuiz(); // location.href = "/words/" + next;
     }
   }
 });
@@ -6413,6 +7114,11 @@ Vue.component('congrats', __webpack_require__(/*! ./components/CongratsComponent
 
 Vue.component('me-before-you-vowel', __webpack_require__(/*! ./components/MeBeforeYouVowelComponent.vue */ "./resources/js/components/MeBeforeYouVowelComponent.vue").default);
 Vue.component('me-before-you-consonant', __webpack_require__(/*! ./components/MeBeforeYouConsonantComponent.vue */ "./resources/js/components/MeBeforeYouConsonantComponent.vue").default);
+Vue.component('input-box', __webpack_require__(/*! ./components/InputBoxComponent.vue */ "./resources/js/components/InputBoxComponent.vue").default);
+Vue.component('begin-end-fill', __webpack_require__(/*! ./components/BeginEndFillComponent.vue */ "./resources/js/components/BeginEndFillComponent.vue").default);
+Vue.component('every-letter', __webpack_require__(/*! ./components/EveryLetterComponent.vue */ "./resources/js/components/EveryLetterComponent.vue").default);
+Vue.component('ends-with', __webpack_require__(/*! ./components/EndsWithComponent.vue */ "./resources/js/components/EndsWithComponent.vue").default);
+Vue.component('ends-with-j', __webpack_require__(/*! ./components/EndsWithJComponent.vue */ "./resources/js/components/EndsWithJComponent.vue").default);
 Vue.component('rules', __webpack_require__(/*! ./components/RulesComponent.vue */ "./resources/js/components/RulesComponent.vue").default);
 Vue.component('word-tally', __webpack_require__(/*! ./components/WordTallyComponent.vue */ "./resources/js/components/WordTallyComponent.vue").default);
 Vue.component('game-over', __webpack_require__(/*! ./components/GameOverComponent.vue */ "./resources/js/components/GameOverComponent.vue").default);
@@ -6421,6 +7127,7 @@ Vue.component('vowel-unclustered', __webpack_require__(/*! ./components/VowelUnc
 Vue.component('vowel-clusters', __webpack_require__(/*! ./components/VowelClustersComponent.vue */ "./resources/js/components/VowelClustersComponent.vue").default);
 Vue.component('consonant-unclustered', __webpack_require__(/*! ./components/ConsonantUnclusteredComponent.vue */ "./resources/js/components/ConsonantUnclusteredComponent.vue").default);
 Vue.component('consonant-clusters', __webpack_require__(/*! ./components/ConsonantClustersComponent.vue */ "./resources/js/components/ConsonantClustersComponent.vue").default);
+Vue.component('proceed', __webpack_require__(/*! ./components/ProceedComponent.vue */ "./resources/js/components/ProceedComponent.vue").default);
 Vue.component('begin-end', __webpack_require__(/*! ./components/BeginAndEndComponent.vue */ "./resources/js/components/BeginAndEndComponent.vue").default);
 Vue.component('begin-end-vowel', __webpack_require__(/*! ./components/BeginAndEndVowelComponent.vue */ "./resources/js/components/BeginAndEndVowelComponent.vue").default);
 Vue.component('begin-end-consonant', __webpack_require__(/*! ./components/BeginAndEndConsonantComponent.vue */ "./resources/js/components/BeginAndEndConsonantComponent.vue").default);
@@ -6428,6 +7135,7 @@ Vue.component('begin-end-equal', __webpack_require__(/*! ./components/BeginEndEq
 Vue.component('random-position', __webpack_require__(/*! ./components/RandomPositionComponent.vue */ "./resources/js/components/RandomPositionComponent.vue").default);
 Vue.component('word-definition', __webpack_require__(/*! ./components/WordDefinitionComponent.vue */ "./resources/js/components/WordDefinitionComponent.vue").default);
 Vue.component('form-words', __webpack_require__(/*! ./components/FormWordsComponent.vue */ "./resources/js/components/FormWordsComponent.vue").default);
+Vue.component('end-game', __webpack_require__(/*! ./components/EndGameComponent.vue */ "./resources/js/components/EndGameComponent.vue").default);
 Vue.component('single-player-tally', __webpack_require__(/*! ./components/SinglePlayerTallyComponent.vue */ "./resources/js/components/SinglePlayerTallyComponent.vue").default); // Modal
 
 Vue.component('modal', __webpack_require__(/*! ./components/ModalComponent.vue */ "./resources/js/components/ModalComponent.vue").default);
@@ -42026,6 +42734,45 @@ component.options.__file = "resources/js/components/BeginEndEqualComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/BeginEndFillComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/BeginEndFillComponent.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _BeginEndFillComponent_vue_vue_type_template_id_07dc830d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BeginEndFillComponent.vue?vue&type=template&id=07dc830d& */ "./resources/js/components/BeginEndFillComponent.vue?vue&type=template&id=07dc830d&");
+/* harmony import */ var _BeginEndFillComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BeginEndFillComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/BeginEndFillComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _BeginEndFillComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _BeginEndFillComponent_vue_vue_type_template_id_07dc830d___WEBPACK_IMPORTED_MODULE_0__.render,
+  _BeginEndFillComponent_vue_vue_type_template_id_07dc830d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/BeginEndFillComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/CongratsComponent.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/components/CongratsComponent.vue ***!
@@ -42143,6 +42890,162 @@ component.options.__file = "resources/js/components/ConsonantUnclusteredComponen
 
 /***/ }),
 
+/***/ "./resources/js/components/EndGameComponent.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/EndGameComponent.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EndGameComponent_vue_vue_type_template_id_d077230a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EndGameComponent.vue?vue&type=template&id=d077230a& */ "./resources/js/components/EndGameComponent.vue?vue&type=template&id=d077230a&");
+/* harmony import */ var _EndGameComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EndGameComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/EndGameComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _EndGameComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _EndGameComponent_vue_vue_type_template_id_d077230a___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EndGameComponent_vue_vue_type_template_id_d077230a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EndGameComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/EndsWithComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/EndsWithComponent.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EndsWithComponent_vue_vue_type_template_id_04e89064___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EndsWithComponent.vue?vue&type=template&id=04e89064& */ "./resources/js/components/EndsWithComponent.vue?vue&type=template&id=04e89064&");
+/* harmony import */ var _EndsWithComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EndsWithComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/EndsWithComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _EndsWithComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _EndsWithComponent_vue_vue_type_template_id_04e89064___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EndsWithComponent_vue_vue_type_template_id_04e89064___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EndsWithComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/EndsWithJComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/EndsWithJComponent.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EndsWithJComponent_vue_vue_type_template_id_6447175c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EndsWithJComponent.vue?vue&type=template&id=6447175c& */ "./resources/js/components/EndsWithJComponent.vue?vue&type=template&id=6447175c&");
+/* harmony import */ var _EndsWithJComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EndsWithJComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/EndsWithJComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _EndsWithJComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _EndsWithJComponent_vue_vue_type_template_id_6447175c___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EndsWithJComponent_vue_vue_type_template_id_6447175c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EndsWithJComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/EveryLetterComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/EveryLetterComponent.vue ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EveryLetterComponent_vue_vue_type_template_id_3f6151c7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EveryLetterComponent.vue?vue&type=template&id=3f6151c7& */ "./resources/js/components/EveryLetterComponent.vue?vue&type=template&id=3f6151c7&");
+/* harmony import */ var _EveryLetterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EveryLetterComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/EveryLetterComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _EveryLetterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _EveryLetterComponent_vue_vue_type_template_id_3f6151c7___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EveryLetterComponent_vue_vue_type_template_id_3f6151c7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EveryLetterComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
@@ -42256,6 +43159,45 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/GameOverComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/InputBoxComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/InputBoxComponent.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _InputBoxComponent_vue_vue_type_template_id_f1f4c0fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InputBoxComponent.vue?vue&type=template&id=f1f4c0fe& */ "./resources/js/components/InputBoxComponent.vue?vue&type=template&id=f1f4c0fe&");
+/* harmony import */ var _InputBoxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InputBoxComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/InputBoxComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _InputBoxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _InputBoxComponent_vue_vue_type_template_id_f1f4c0fe___WEBPACK_IMPORTED_MODULE_0__.render,
+  _InputBoxComponent_vue_vue_type_template_id_f1f4c0fe___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/InputBoxComponent.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -42451,6 +43393,45 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/NthPositionComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ProceedComponent.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/ProceedComponent.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ProceedComponent_vue_vue_type_template_id_466cf24c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProceedComponent.vue?vue&type=template&id=466cf24c& */ "./resources/js/components/ProceedComponent.vue?vue&type=template&id=466cf24c&");
+/* harmony import */ var _ProceedComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProceedComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ProceedComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ProceedComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ProceedComponent_vue_vue_type_template_id_466cf24c___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ProceedComponent_vue_vue_type_template_id_466cf24c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ProceedComponent.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -42831,6 +43812,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/BeginEndFillComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/BeginEndFillComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginEndFillComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BeginEndFillComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndFillComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginEndFillComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/CongratsComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************!*\
   !*** ./resources/js/components/CongratsComponent.vue?vue&type=script&lang=js& ***!
@@ -42879,6 +43876,70 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/EndGameComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/EndGameComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EndGameComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EndGameComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndGameComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EndGameComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/EndsWithComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/EndsWithComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EndsWithComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EndsWithComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EndsWithComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/EndsWithJComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/EndsWithJComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EndsWithJComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EndsWithJComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithJComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EndsWithJComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/EveryLetterComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/EveryLetterComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EveryLetterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EveryLetterComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EveryLetterComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EveryLetterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -42924,6 +43985,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GameOverComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GameOverComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/GameOverComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GameOverComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/InputBoxComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/InputBoxComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InputBoxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InputBoxComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InputBoxComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InputBoxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -43004,6 +44081,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NthPositionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NthPositionComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/NthPositionComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NthPositionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ProceedComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/ProceedComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProceedComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProceedComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProceedComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProceedComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -43203,6 +44296,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/BeginEndFillComponent.vue?vue&type=template&id=07dc830d&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/BeginEndFillComponent.vue?vue&type=template&id=07dc830d& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginEndFillComponent_vue_vue_type_template_id_07dc830d___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginEndFillComponent_vue_vue_type_template_id_07dc830d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BeginEndFillComponent_vue_vue_type_template_id_07dc830d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BeginEndFillComponent.vue?vue&type=template&id=07dc830d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndFillComponent.vue?vue&type=template&id=07dc830d&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/CongratsComponent.vue?vue&type=template&id=61e64e62&":
 /*!**************************************************************************************!*\
   !*** ./resources/js/components/CongratsComponent.vue?vue&type=template&id=61e64e62& ***!
@@ -43254,6 +44364,74 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/EndGameComponent.vue?vue&type=template&id=d077230a&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/EndGameComponent.vue?vue&type=template&id=d077230a& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EndGameComponent_vue_vue_type_template_id_d077230a___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EndGameComponent_vue_vue_type_template_id_d077230a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EndGameComponent_vue_vue_type_template_id_d077230a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EndGameComponent.vue?vue&type=template&id=d077230a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndGameComponent.vue?vue&type=template&id=d077230a&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EndsWithComponent.vue?vue&type=template&id=04e89064&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/EndsWithComponent.vue?vue&type=template&id=04e89064& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EndsWithComponent_vue_vue_type_template_id_04e89064___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EndsWithComponent_vue_vue_type_template_id_04e89064___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EndsWithComponent_vue_vue_type_template_id_04e89064___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EndsWithComponent.vue?vue&type=template&id=04e89064& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithComponent.vue?vue&type=template&id=04e89064&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EndsWithJComponent.vue?vue&type=template&id=6447175c&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/EndsWithJComponent.vue?vue&type=template&id=6447175c& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EndsWithJComponent_vue_vue_type_template_id_6447175c___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EndsWithJComponent_vue_vue_type_template_id_6447175c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EndsWithJComponent_vue_vue_type_template_id_6447175c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EndsWithJComponent.vue?vue&type=template&id=6447175c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithJComponent.vue?vue&type=template&id=6447175c&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EveryLetterComponent.vue?vue&type=template&id=3f6151c7&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/EveryLetterComponent.vue?vue&type=template&id=3f6151c7& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EveryLetterComponent_vue_vue_type_template_id_3f6151c7___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EveryLetterComponent_vue_vue_type_template_id_3f6151c7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EveryLetterComponent_vue_vue_type_template_id_3f6151c7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EveryLetterComponent.vue?vue&type=template&id=3f6151c7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EveryLetterComponent.vue?vue&type=template&id=3f6151c7&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
@@ -43301,6 +44479,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GameOverComponent_vue_vue_type_template_id_53cda55c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GameOverComponent_vue_vue_type_template_id_53cda55c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GameOverComponent.vue?vue&type=template&id=53cda55c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/GameOverComponent.vue?vue&type=template&id=53cda55c&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/InputBoxComponent.vue?vue&type=template&id=f1f4c0fe&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/InputBoxComponent.vue?vue&type=template&id=f1f4c0fe& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InputBoxComponent_vue_vue_type_template_id_f1f4c0fe___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InputBoxComponent_vue_vue_type_template_id_f1f4c0fe___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InputBoxComponent_vue_vue_type_template_id_f1f4c0fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InputBoxComponent.vue?vue&type=template&id=f1f4c0fe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InputBoxComponent.vue?vue&type=template&id=f1f4c0fe&");
 
 
 /***/ }),
@@ -43386,6 +44581,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NthPositionComponent_vue_vue_type_template_id_130d3e7d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NthPositionComponent_vue_vue_type_template_id_130d3e7d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NthPositionComponent.vue?vue&type=template&id=130d3e7d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/NthPositionComponent.vue?vue&type=template&id=130d3e7d&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ProceedComponent.vue?vue&type=template&id=466cf24c&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/ProceedComponent.vue?vue&type=template&id=466cf24c& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProceedComponent_vue_vue_type_template_id_466cf24c___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProceedComponent_vue_vue_type_template_id_466cf24c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProceedComponent_vue_vue_type_template_id_466cf24c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProceedComponent.vue?vue&type=template&id=466cf24c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProceedComponent.vue?vue&type=template&id=466cf24c&");
 
 
 /***/ }),
@@ -43642,40 +44854,16 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -43697,29 +44885,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                Go\n              ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -43842,40 +45008,16 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -43897,29 +45039,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                    Go\n                  ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44042,40 +45162,16 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -44097,29 +45193,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                Go\n              ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44227,40 +45301,16 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -44282,29 +45332,146 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndFillComponent.vue?vue&type=template&id=07dc830d&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BeginEndFillComponent.vue?vue&type=template&id=07dc830d& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c(
+      "div",
+      { ref: "congrats", staticStyle: { display: "none" } },
+      [_c("congrats")],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { ref: "rules" },
+      [
+        _c("rules", {
+          attrs: { level: _vm.level, rules: _vm.rules, "is-done": _vm.isDone },
+          on: { "play-quiz": _vm.playQuiz }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "gameWrapper",
+        staticClass: "w3-row",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", { ref: "wLength" }),
+          _vm._v(" "),
+          _c("div", {
+            ref: "randomLetter",
+            staticClass: "flex-grow-1 w3-padding",
+            staticStyle: { "font-size": "21px" }
+          }),
+          _vm._v(" "),
           _c(
-            "button",
+            "div",
             {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
+              ref: "timer",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
             },
-            [_vm._v("\n                Go\n              ")]
+            [
+              _vm._v("\n        00:"),
+              _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/100\n      ")]
           )
-        ]
-      )
-    ])
-  }
-]
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [
+          _c("div", {}, [
+            _c(
+              "div",
+              {
+                ref: "playAgain",
+                staticClass: "w3-center",
+                staticStyle: { display: "none" }
+              },
+              [_c("game-over")],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { ref: "gameContainer" }, [
+              _c("div", {}, [
+                _c(
+                  "div",
+                  {
+                    ref: "computerWord",
+                    staticClass: "w3-center",
+                    staticStyle: { "font-size": "21px" }
+                  },
+                  [_vm._v("\n              Let's go!\n            ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {},
+          [
+            _c("single-player-tally", {
+              attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
+            })
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44460,40 +45627,16 @@ var render = function() {
             _c("div", { ref: "gameContainer" }, [
               _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -44512,29 +45655,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                Go\n              ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44627,7 +45748,7 @@ var render = function() {
               staticClass: "w3-padding",
               staticStyle: { "font-size": "21px" }
             },
-            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/100\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -44647,40 +45768,16 @@ var render = function() {
             _c("div", { ref: "gameContainer" }, [
               _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -44699,29 +45796,428 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndGameComponent.vue?vue&type=template&id=d077230a&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndGameComponent.vue?vue&type=template&id=d077230a& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "w3-right w3-win8-lime w3-hover-orange",
+      on: { click: _vm.endGame }
+    },
+    [_vm._v("\n    Go Home\n")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithComponent.vue?vue&type=template&id=04e89064&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithComponent.vue?vue&type=template&id=04e89064& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c(
+      "div",
+      { ref: "rules" },
+      [
+        _c("rules", {
+          attrs: { level: _vm.level, rules: _vm.rules, "is-done": _vm.isDone },
+          on: { "play-quiz": _vm.playQuiz }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "gameWrapper",
+        staticClass: "w3-row",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", { ref: "wLength" }),
+          _vm._v(" "),
+          _c("div", {
+            ref: "randomLetter",
+            staticClass: "flex-grow-1 w3-padding",
+            staticStyle: { "font-size": "21px" }
+          }),
+          _vm._v(" "),
           _c(
-            "button",
+            "div",
             {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
+              ref: "timer",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
             },
-            [_vm._v("\n                Go\n              ")]
+            [
+              _vm._v("\n        00:"),
+              _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/100\n      ")]
           )
-        ]
-      )
-    ])
-  }
-]
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [
+          _c("div", {}, [
+            _c(
+              "div",
+              {
+                ref: "playAgain",
+                staticClass: "w3-center",
+                staticStyle: { display: "none" }
+              },
+              [_c("game-over")],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { ref: "gameContainer" }, [
+              _c("div", {}, [
+                _c(
+                  "div",
+                  {
+                    ref: "computerWord",
+                    staticClass: "w3-center",
+                    staticStyle: { "font-size": "21px" }
+                  },
+                  [_vm._v("\n              Let's go!\n            ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {},
+          [
+            _c("word-tally", {
+              attrs: {
+                listOfComputerWords: _vm.listOfComputerWords,
+                listOfPlayerWords: _vm.listOfPlayerWords
+              }
+            })
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithJComponent.vue?vue&type=template&id=6447175c&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EndsWithJComponent.vue?vue&type=template&id=6447175c& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c(
+      "div",
+      { ref: "rules" },
+      [
+        _c("rules", {
+          attrs: { level: _vm.level, rules: _vm.rules, "is-done": _vm.isDone },
+          on: { "play-quiz": _vm.playQuiz }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "gameWrapper",
+        staticClass: "w3-row",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", { ref: "wLength" }),
+          _vm._v(" "),
+          _c("div", {
+            ref: "randomLetter",
+            staticClass: "flex-grow-1 w3-padding",
+            staticStyle: { "font-size": "21px" }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "timer",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [
+              _vm._v("\n        00:"),
+              _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [
+          _c("div", {}, [
+            _c(
+              "div",
+              {
+                ref: "playAgain",
+                staticClass: "w3-center",
+                staticStyle: { display: "none" }
+              },
+              [_c("game-over")],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { ref: "gameContainer" }, [
+              _c("div", {}),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {},
+          [
+            _c("single-player-tally", {
+              attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
+            })
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EveryLetterComponent.vue?vue&type=template&id=3f6151c7&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EveryLetterComponent.vue?vue&type=template&id=3f6151c7& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c(
+      "div",
+      { ref: "rules" },
+      [
+        _c("rules", {
+          attrs: { level: _vm.level, rules: _vm.rules, "is-done": _vm.isDone },
+          on: { "play-quiz": _vm.playQuiz }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "gameWrapper",
+        staticClass: "w3-row",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", { ref: "wLength" }),
+          _vm._v(" "),
+          _c("div", {
+            ref: "randomLetter",
+            staticClass: "flex-grow-1 w3-padding",
+            staticStyle: { "font-size": "21px" }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "timer",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [
+              _vm._v("\n        00:"),
+              _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
+              _vm._v(_vm._s(_vm.timer) + "\n      ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              ref: "score",
+              staticClass: "w3-padding",
+              staticStyle: { "font-size": "21px" }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/100\n      ")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [
+          _c("div", {}, [
+            _c(
+              "div",
+              {
+                ref: "playAgain",
+                staticClass: "w3-center",
+                staticStyle: { display: "none" }
+              },
+              [_c("game-over")],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { ref: "gameContainer" }, [
+              _c("div", {}, [
+                _c(
+                  "div",
+                  {
+                    ref: "computerWord",
+                    staticClass: "w3-center",
+                    staticStyle: { "font-size": "21px" }
+                  },
+                  [_vm._v("\n              Let's go!\n            ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {},
+          [
+            _c("single-player-tally", {
+              attrs: { listOfPlayerWords: _vm.listOfPlayerWords }
+            })
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45014,6 +46510,87 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InputBoxComponent.vue?vue&type=template&id=f1f4c0fe&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InputBoxComponent.vue?vue&type=template&id=f1f4c0fe& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c("div", { staticClass: "d-flex" }, [
+      _c("div", { staticClass: "flex-grow-1" }, [
+        _c("input", {
+          ref: "word",
+          staticClass: "form-control input-sm",
+          attrs: {
+            type: "text",
+            name: "word",
+            placeholder: "Enter your word here...",
+            autocomplete: "off"
+          },
+          on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.checkBeforeSending.apply(null, arguments)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c(
+          "span",
+          { staticClass: "input-group-btn", staticStyle: { border: "none" } },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-default go-button",
+                attrs: { type: "submit" },
+                on: { click: _vm.checkBeforeSending }
+              },
+              [_vm._v("\n          Go\n        ")]
+            )
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "20px" } },
+      [
+        _c("div", { staticClass: "flex-fill" }, [_c("end-game")], 1),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex-fill" }, [
+          _c("button", { on: { click: _vm.restart } }, [_vm._v("Restart Game")])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LastLetterComponent.vue?vue&type=template&id=36eabf66&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LastLetterComponent.vue?vue&type=template&id=36eabf66& ***!
@@ -45111,40 +46688,16 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -45166,29 +46719,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                Go\n              ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45301,40 +46832,16 @@ var render = function() {
             _c("div", { ref: "gameContainer" }, [
               _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -45353,29 +46860,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                Go\n              ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45488,40 +46973,16 @@ var render = function() {
             _c("div", { ref: "gameContainer" }, [
               _c("div", { staticClass: "w3-container" }),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -45540,29 +47001,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                Go\n              ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45661,15 +47100,7 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "d-flex" }, [
-          _vm.level == 1
-            ? _c("div", { staticClass: "w3-padding" }, [
-                _c(
-                  "button",
-                  { staticClass: "w3-button", on: { click: _vm.nextLevel } },
-                  [_vm._v("Get Another Letter")]
-                )
-              ])
-            : _vm._e(),
+          _vm.level == 1 ? _c("div", { staticClass: "w3-padding" }) : _vm._e(),
           _vm._v(" "),
           _c("div", {
             ref: "randomLetter",
@@ -45698,7 +47129,7 @@ var render = function() {
               staticClass: "w3-padding",
               staticStyle: { "font-size": "21px" }
             },
-            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
+            [_vm._v("\n        " + _vm._s(_vm.score) + "/20\n        ")]
           )
         ]),
         _vm._v(" "),
@@ -45728,40 +47159,16 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -45783,29 +47190,39 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                Go\n              ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProceedComponent.vue?vue&type=template&id=466cf24c&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProceedComponent.vue?vue&type=template&id=466cf24c& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "w3-button w3-win8-lime w3-text-white",
+      on: { click: _vm.proceedToNextChallenge }
+    },
+    [_vm._v("\n        Proceed to next challenge\n      ")]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45940,40 +47357,16 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -45992,29 +47385,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                    Go\n                  ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46051,7 +47422,10 @@ var render = function() {
           _c("div", { staticClass: "w3-center w3-margin" }, [
             _c(
               "button",
-              { staticClass: "w3-button ", on: { click: _vm.playQuiz } },
+              {
+                staticClass: "w3-button w3-win8-lime w3-text-white",
+                on: { click: _vm.playQuiz }
+              },
               [_vm._v("Play")]
             )
           ])
@@ -46072,7 +47446,10 @@ var render = function() {
             _vm.isDone == false
               ? _c(
                   "button",
-                  { staticClass: "w3-button", on: { click: _vm.playQuiz } },
+                  {
+                    staticClass: "w3-button w3-win8-lime w3-text-white",
+                    on: { click: _vm.playQuiz }
+                  },
                   [_vm._v("Play")]
                 )
               : _vm._e()
@@ -46181,7 +47558,7 @@ var render = function() {
                   staticClass: "w3-button",
                   on: { click: _vm.proceedToNextChallenge }
                 },
-                [_vm._v("\n        Proceed to next challenge\n      ")]
+                [_vm._v("\n          Proceed to next challenge\n        ")]
               )
             ])
           : _vm._e()
@@ -46212,9 +47589,9 @@ var render = function() {
               staticStyle: { "font-size": "21px" }
             },
             [
-              _vm._v("\n        00:"),
+              _vm._v("\n          00:"),
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
-              _vm._v(_vm._s(_vm.timer) + "\n      ")
+              _vm._v(_vm._s(_vm.timer) + "\n        ")
             ]
           ),
           _vm._v(" "),
@@ -46225,7 +47602,7 @@ var render = function() {
               staticClass: "w3-padding",
               staticStyle: { "font-size": "21px" }
             },
-            [_vm._v("\n        " + _vm._s(_vm.score) + "/50\n        ")]
+            [_vm._v("\n          " + _vm._s(_vm.score) + "/50\n          ")]
           )
         ]),
         _vm._v(" "),
@@ -46245,40 +47622,16 @@ var render = function() {
             _c("div", { ref: "gameContainer" }, [
               _c("div", {}),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -46297,29 +47650,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                Go\n              ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46432,40 +47763,16 @@ var render = function() {
             _c("div", { ref: "gameContainer" }, [
               _c("div", {}),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -46484,29 +47791,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                Go\n              ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46625,40 +47910,16 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -46704,29 +47965,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                    Go\n                  ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46760,17 +47999,12 @@ var render = function() {
         }),
         _vm._v(" "),
         _vm.isDone == true
-          ? _c("div", { staticClass: "w3-container w3-center w3-margin" }, [
-              _c(
-                "button",
-                {
-                  ref: "nextChallenge",
-                  staticClass: "w3-button",
-                  on: { click: _vm.proceedToNextChallenge }
-                },
-                [_vm._v("\n        Proceed to next challenge\n      ")]
-              )
-            ])
+          ? _c(
+              "div",
+              { staticClass: "w3-container w3-center w3-margin" },
+              [_c("proceed", { on: { proceed: _vm.proceedToNextChallenge } })],
+              1
+            )
           : _vm._e()
       ],
       1
@@ -46842,40 +48076,16 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "d-flex" }, [
-                  _c("div", { staticClass: "flex-grow-1" }, [
-                    _c("input", {
-                      ref: "word",
-                      staticClass: "form-control input-sm",
-                      attrs: {
-                        type: "text",
-                        name: "word",
-                        placeholder: "Enter your word here..."
-                      },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.checkBeforeSending.apply(null, arguments)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("input-box", {
+                    on: { "input-value": _vm.checkBeforeSending }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -46897,29 +48107,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        { staticClass: "input-group-btn", staticStyle: { border: "none" } },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default go-button",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("\n                Go\n              ")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

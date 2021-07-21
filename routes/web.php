@@ -21,6 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'WelcomeController@welcome');
 
 
+// Route::get('/crossword', 'GameController@crossWord');
+Route::get('/begin-end/fill', 'GameController@beginEndFill');
+Route::get('/every-letter', 'GameController@everyLetter');
+Route::get('/ends', 'GameController@ends');
+Route::get('/ends-with/{letter}', 'GameController@endsWith');
+
 Route::get('/words', 'DictionaryController@words');
 Route::get('/last/letter', 'GameController@lastLetter');
 Route::get('/word-length', 'GameController@wordLength');

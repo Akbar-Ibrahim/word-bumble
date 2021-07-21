@@ -11,7 +11,7 @@
     <div ref="gameWrapper" class="w3-row" style="display: none">
       <div class="d-flex">
         <div v-if="level == 1" class="w3-padding">
-          <button class="w3-button" @click="nextLevel">Get Another Letter</button>
+          <!-- <button class="" @click="nextLevel">Get Another Letter</button> -->
         </div>
         <div
           style="font-size: 21px"
@@ -22,7 +22,7 @@
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
         <div style="font-size: 21px" class="w3-padding" ref="score">
-          {{ score }}/50
+          {{ score }}/20
           </div>
       </div>
       <div class="">
@@ -44,26 +44,7 @@
 
             <div class="card-body">
               <!--  -->
-              <div class="d-flex">
-                <div class="flex-grow-1">
-              <input
-                ref="word"
-                type="text"
-                name="word"
-                class="form-control input-sm"
-                placeholder="Enter your word here..."
-                @keyup.enter="checkBeforeSending"
-              />
-              </div>
-              <div>
-              <span class="input-group-btn" style="border: none">
-                <button type="submit" class="btn btn-default go-button">
-                  <!-- <span class="glyphicon glyphicon-search"></span> -->
-                  Go
-                </button>
-              </span>
-              </div>
-              </div>
+              <input-box @input-value="checkBeforeSending"></input-box>
               <!--  -->
             </div>
           </div>
@@ -93,7 +74,7 @@ export default {
       letter: "",
       score: 0,
       rules:
-        "The rules are simple. You and computer will trade words  that have a letter in a certain position. Do not repeat a word you have mentioned already or a word computer has mentioned",
+        "A letter will be selected at random. Trade words with computer that begin with the letter. Do not mention a word you or computer have already mentioned.",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
@@ -125,18 +106,15 @@ export default {
     },
 
 
-    checkBeforeSending() {
-      var word = this.$refs.word.value.trim();
-      word.toLowerCase();
-
+    checkBeforeSending(word) {
+      
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
 
-    sendWord() {
-      var word = this.$refs.word.value.trim();
-      word.toLowerCase();
+    sendWord(word) {
+      
       if (word) {
         if (
           this.listOfComputerWords.length > 0 &&
@@ -169,7 +147,7 @@ export default {
               this.listOfPlayerWords.push(word);
               this.score += 1;
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 2) {
+              if (this.listOfPlayerWords.length == 20) {
                 this.resetTimer();
                 this.endLevel();
               } else {
@@ -182,7 +160,7 @@ export default {
             }
           });
       }
-      this.$refs.word.value = "";
+      
     },
 
     checkIfWordAlreadyExists(word) {
@@ -206,6 +184,9 @@ export default {
     },
 
     nextLevel() {
+      this.listOfPlayerWords = [];
+      this.listOfComputerWords = [];
+
       var alphabetLength = this.alphabet.length;
       var getNextLetterIndex = Math.floor(Math.random() * alphabetLength + 1);
       this.letter = this.alphabet[getNextLetterIndex].toLowerCase();
@@ -218,6 +199,7 @@ export default {
     endLevel() {
       // if (this.listOfPlayerWords.length == 10) {
       this.$refs.computerWord.textContent = "Let's go!";
+      this.score = 0;
 
       this.listOfPlayerWords = [];
       this.listOfComputerWords = [];
@@ -289,7 +271,7 @@ export default {
       switch (this.level) {
         case 1:
           if (word.charAt(0) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
             
@@ -297,7 +279,7 @@ export default {
           break;
         case 2:
           if (word.charAt(1) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
             
@@ -305,7 +287,7 @@ export default {
           break;
         case 3:
           if (word.charAt(2) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
             
@@ -313,7 +295,7 @@ export default {
           break;
         case 4:
           if (word.charAt(3) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
             
@@ -322,14 +304,14 @@ export default {
           break;
         case 5:
           if (word.charAt(4) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
           break;
         case 6:
           if (word.charAt(5) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -337,7 +319,7 @@ export default {
 
         case 7:
           if (word.charAt(6) === this.letter) {
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
@@ -346,7 +328,7 @@ export default {
         case 8:
           if (word.charAt(7) === this.letter) {
             this.position = 8;
-            this.sendWord();
+            this.sendWord(word);
           } else {
             this.gameOver();
           }
