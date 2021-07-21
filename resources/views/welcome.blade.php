@@ -118,7 +118,8 @@
       <div class="w3-container w3-center">
         <h3>Words by definitions</h3>
         <div class="w3-container w3-center w3-margin">
-        <button route="/word-definition" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+        <!-- <button route="/word-definition" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button> -->
+         <button class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Comming Soon</button> 
         </div>
       </div>
     </div>
