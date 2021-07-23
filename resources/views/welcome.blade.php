@@ -7,13 +7,17 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('js/app.js') }}" defer></script>
+
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 
 <link href="{{ asset('css/w3-css.css') }}" rel="stylesheet">
 <link href="{{ asset('css/w3-css-color.css') }}" rel="stylesheet">
 
 <style>
 .w3-button {
-  font-size: 30px;
+  font-size: 20px;
   background-color: red;
   color: white;
 }
@@ -59,12 +63,13 @@
   </div>
 
 
+<div id="app">
   <div class="w3-row-padding" style="margin-bottom: 100px;">
     <div class="w3-col l6 m6 w3-margin-bottom">
       <div class="w3-container w3-center">
         <h3>The begining is the end, the end is the begining</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/last/letter" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/last/letter"></play-button>
         </div>
       </div>
     </div>
@@ -72,7 +77,7 @@
       <div class="w3-container w3-center">
         <h3>The begining is the end, the end is the begining: Reloaded</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/begining-and-end/equal" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/begining-and-end/equal"></play-button>
         </div>
       </div>
     </div>
@@ -86,7 +91,7 @@
       <div class="w3-container w3-center">
         <h3>Ends With</h3>
         <div class="w3-container w3-center w3-margin">
-        <button route="/ends" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+        <play-button route="/ends"></play-button>
         </div>
       </div>
     </div>
@@ -94,7 +99,7 @@
       <div class="w3-container w3-center">
         <h3>Every Letter</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/every-letter" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/every-letter"></play-button>
         </div>
       </div>
     </div>
@@ -102,7 +107,7 @@
       <div class="w3-container w3-center">
         <h3>Word Fill</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/begin-end/fill" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/begin-end/fill"></play-button>
         </div>
       </div>
     </div>
@@ -118,8 +123,8 @@
       <div class="w3-container w3-center">
         <h3>Words by definitions</h3>
         <div class="w3-container w3-center w3-margin">
-        <!-- <button route="/word-definition" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button> -->
          <button class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Comming Soon</button> 
+         <!-- <play-button route="/word-definition"></play-button> -->
         </div>
       </div>
     </div>
@@ -127,7 +132,7 @@
       <div class="w3-container w3-center">
         <h3>Vowels Unclustered</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/vowel/unclustered" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/vowel/unclustered"></play-button>
         </div>
       </div>
     </div>
@@ -135,7 +140,7 @@
       <div class="w3-container w3-center">
         <h3>Consonants Unclustered</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/consonant/unclustered" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/consonant/unclustered"></play-button>
         </div>
       </div>
     </div>
@@ -148,7 +153,7 @@
       <div class="w3-container w3-center">
         <h3>Vowel Clusters</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/vowel/clusters" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/vowel/clusters"></play-button>
         </div>
       </div>
     </div>
@@ -157,7 +162,7 @@
       <div class="w3-container w3-center">
         <h3>Consonant Clusters</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/consonant/clusters" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/consonant/clusters"></play-button>
         </div>
       </div>
     </div>
@@ -167,7 +172,7 @@
       <div class="w3-container w3-center">
         <h3>Me Before You: Vowels</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/me-before-you/vowel" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/me-before-you/vowel"></play-button>
         </div>
       </div>
     </div>
@@ -182,7 +187,7 @@
       <div class="w3-container w3-center">
         <h3>Me Before You: Consonants</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/me-before-you/consonant" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/me-before-you/consonant"></play-button>
         </div>
       </div>
     </div>
@@ -192,7 +197,7 @@
       <div class="w3-container w3-center">
         <h3>Begining And End: Same Letter</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/begining-and-end" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/begining-and-end"></play-button>
         </div>
       </div>
     </div>
@@ -202,7 +207,7 @@
       <div class="w3-container w3-center">
         <h3>Begining And End: Consonants</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/begin-and-end/consonant" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/begin-and-end/consonant"></play-button>
         </div>
       </div>
     </div>
@@ -218,7 +223,7 @@
       <div class="w3-container w3-center">
         <h3>Begining And End: Vowels</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/begin-and-end/vowel" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/begin-and-end/vowel"></play-button>
         </div>
       </div>
     </div>
@@ -228,7 +233,7 @@
       <div class="w3-container w3-center">
         <h3>Nth Position</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/nth-position" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/nth-position"></play-button>
         </div>
       </div>
     </div>
@@ -237,7 +242,7 @@
       <div class="w3-container w3-center">
         <h3>Random Position</h3>
         <div class="w3-container w3-center w3-margin">
-            <button route="/random-position" onclick="location.href=this.getAttribute('route')" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Play</button>
+            <play-button route="/random-position"></play-button>
         </div>
       </div>
     </div>
@@ -247,7 +252,7 @@
 </div>
 
 
-
+</div>
 
 
 

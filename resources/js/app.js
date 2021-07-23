@@ -32,6 +32,7 @@ Vue.component('me-before-you-consonant', require('./components/MeBeforeYouConson
 
 Vue.component('input-box', require('./components/InputBoxComponent.vue').default);
 
+Vue.component('play-button', require('./components/PlayButtonComponent.vue').default);
 Vue.component('begin-end-fill', require('./components/BeginEndFillComponent.vue').default);
 Vue.component('every-letter', require('./components/EveryLetterComponent.vue').default);
 Vue.component('ends-with', require('./components/EndsWithComponent.vue').default);

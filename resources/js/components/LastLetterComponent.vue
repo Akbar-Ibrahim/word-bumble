@@ -5,7 +5,7 @@
         :level="level"
         :rules="rules"
         @play-quiz="playQuiz"
-        :is-done="isDone"
+        :is-done=" isDone"
       ></rules>
     </div>
     <div ref="gameWrapper" class="w3-row" style="display: none">
@@ -26,7 +26,7 @@
       <div class="">
         <div class="">
           <div class="w3-center" ref="playAgain" style="display: none">
-            <game-over></game-over>
+            <game-over :score="score"></game-over>
           </div>
 
           <div ref="gameContainer" class="">

@@ -36,7 +36,7 @@
             ref="playAgain"
             style="display: none"
           >
-            <game-over></game-over>
+            <game-over :score="score"></game-over>
           </div>
 
           <div ref="gameContainer" class="">

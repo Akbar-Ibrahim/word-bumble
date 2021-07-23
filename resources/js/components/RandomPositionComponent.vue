@@ -39,7 +39,7 @@
       <div class="">
         <div class="">
           <div class="w3-center" ref="playAgain" style="display: none">
-            <game-over></game-over>
+            <game-over :score="score"></game-over>
           </div>
 
           <div ref="gameContainer" class="">

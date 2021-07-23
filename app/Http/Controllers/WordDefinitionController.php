@@ -42,5 +42,11 @@ class WordDefinitionController extends Controller
         }
     }
 
+    public function getTheWords($first, $last){
+
+                return Dictionary::where("word", "like", $first . "%" . $last)->inRandomOrder()->take(20)->get();
+
+    }
+
 
 }

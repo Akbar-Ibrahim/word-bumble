@@ -29,7 +29,7 @@
       <div class="">
         <div class="">
           <div class="w3-center" ref="playAgain" style="display: none">
-            <game-over></game-over>
+            <game-over :score="score"></game-over>
           </div>
 
           <div ref="gameContainer" class="">
@@ -89,8 +89,6 @@ export default {
       var getFirstLetterIndex = Math.floor(Math.random() * this.letters.length + 1);
       this.firstLetter = this.letters[getFirstLetterIndex];
 
-      
-      
       var getLastLetterIndex = Math.floor(Math.random() * this.letters.length + 1);
       this.lastLetter = this.letters[getLastLetterIndex];
       if (this.lastLetter === 'j' || this.lastLetter === 'q' || this.lastLetter === 'u' || this.lastLetter === 'v') {
@@ -99,9 +97,25 @@ export default {
       this.computer = this.firstLetter.toUpperCase();
       this.computer = this.computer + this.lastLetter.toUpperCase();
       this.$refs.computerWord.textContent = this.computer;
-      
+              
+    },
 
-        
+    fetchWords() {
+      let url = "/api/get-words/" + this.firstLetter + "/" + this.lastLetter;
+      fetch(url)
+        .then((response) => {
+          return response.json();
+        })
+        .then((result) => {
+          // console.log(result);
+          this.listOfPlayerWords = [];
+          for (var i = 0; i < result.length; i++) {
+            this.listOfPlayerWords.push(result[i].word);
+          }
+          
+
+          // console.log(result);
+        });
     },
 
     startTimer() {
@@ -128,20 +142,14 @@ export default {
 
     checkBeforeSending(word) {
       var lengthOfWord = word.length - 1;
-      if (this.listOfPlayerWords > 0) {
-          if (word.charAt(0) === this.firstLetter && word.charAt(lengthOfWord) === this.lastLetter) {
-            this.checkIfWordAlreadyExists(word);
-          } else {
-            this.gameOver();
-          }
-        
-      } else {
+      
         if (word.charAt(0) === this.firstLetter && word.charAt(lengthOfWord) === this.lastLetter) {
               this.sendWord(word);
           } else {
+            this.fetchWords();
             this.gameOver();
           } 
-      }
+
       
     },
 
@@ -175,8 +183,10 @@ export default {
                 this.endLevel();
               } else {
                 // this.getComputerWords(result);
+                
               }
             } else {
+              this.fetchWords();
               this.gameOver();
             }
           });

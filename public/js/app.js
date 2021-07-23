@@ -2848,6 +2848,22 @@ __webpack_require__.r(__webpack_exports__);
       this.computer = this.computer + this.lastLetter.toUpperCase();
       this.$refs.computerWord.textContent = this.computer;
     },
+    fetchWords: function fetchWords() {
+      var _this = this;
+
+      var url = "/api/get-words/" + this.firstLetter + "/" + this.lastLetter;
+      fetch(url).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        // console.log(result);
+        _this.listOfPlayerWords = [];
+
+        for (var i = 0; i < result.length; i++) {
+          _this.listOfPlayerWords.push(result[i].word);
+        } // console.log(result);
+
+      });
+    },
     startTimer: function startTimer() {
       if (this.level > 1) {// setInterval(this.myTimer, 2000);
       } else {
@@ -2867,22 +2883,15 @@ __webpack_require__.r(__webpack_exports__);
     checkBeforeSending: function checkBeforeSending(word) {
       var lengthOfWord = word.length - 1;
 
-      if (this.listOfPlayerWords > 0) {
-        if (word.charAt(0) === this.firstLetter && word.charAt(lengthOfWord) === this.lastLetter) {
-          this.checkIfWordAlreadyExists(word);
-        } else {
-          this.gameOver();
-        }
+      if (word.charAt(0) === this.firstLetter && word.charAt(lengthOfWord) === this.lastLetter) {
+        this.sendWord(word);
       } else {
-        if (word.charAt(0) === this.firstLetter && word.charAt(lengthOfWord) === this.lastLetter) {
-          this.sendWord(word);
-        } else {
-          this.gameOver();
-        }
+        this.fetchWords();
+        this.gameOver();
       }
     },
     sendWord: function sendWord(word) {
-      var _this = this;
+      var _this2 = this;
 
       var data = {
         word: word
@@ -2902,22 +2911,24 @@ __webpack_require__.r(__webpack_exports__);
           console.log(result);
 
           if (result.length > 0) {
-            _this.listOfPlayerWords.push(word);
+            _this2.listOfPlayerWords.push(word);
 
-            _this.score += 1;
+            _this2.score += 1;
 
-            _this.getLetters();
+            _this2.getLetters();
 
-            _this.resetTimer();
+            _this2.resetTimer();
 
-            if (_this.listOfPlayerWords.length == 50) {
-              _this.resetTimer();
+            if (_this2.listOfPlayerWords.length == 50) {
+              _this2.resetTimer();
 
-              _this.endLevel();
+              _this2.endLevel();
             } else {// this.getComputerWords(result);
             }
           } else {
-            _this.gameOver();
+            _this2.fetchWords();
+
+            _this2.gameOver();
           }
         });
       }
@@ -4511,20 +4522,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    // console.log("Component mounted.");
-    this.messages();
+  props: ["score"],
+  updated: function updated() {},
+  mounted: function mounted() {// console.log("Component mounted.");
   },
   methods: {
     playAgain: function playAgain() {
       location.href = location.href;
     },
     messages: function messages() {
-      var messages = ["You embarrass me.", "I see English is not your first language.", "It's okay. If I couldn't speak English, I would fail miserably too. But don't give up. Try again.", "Ode", "Maybe you want to try a word game in your native language?", "It's just words, fam. I don't know why it's so difficult for you.", "Let's never speak of this.", "You were such a cute kid with so much potential. What happened?", "English is not for everybody"];
-      var aboveThirtyMessages = ["You did good, son. (Or daughter)", "I'm proud of you. Keep at it.", "That's some good work."];
-      var messageLength = messages.length;
-      var getMessage = Math.floor(Math.random() * messageLength + 1);
-      this.$refs.message.textContent = messages[getMessage];
+      var belowTenMessages = ["You embarrass me.", "I see English is not your first language.", "It's okay. If I couldn't speak English, I would fail miserably too. But don't give up. Try again.", "Ode", "Maybe you want to try a word game in your native language?", "It's just words, fam. I don't know why it's so difficult for you.", "Let's never speak of this.", "You were such a cute kid with so much potential. What happened?", "English is not for everybody"];
+      var aboveTwentyMessages = ["Meh", "That was not not terrible"];
+      var aboveThirtyMessages = ["Nice work!", "I'm proud of you. Keep at it.", "That's some good work.", "Well done. Go again."];
+      var aboveFortyMessages = ["I'm proud of you, son. (Or daughter. :))", "Very, very good!", "IQ level: Genius. Well done.", "I'm sure you can solve differential equations in your sleep", "Houston, we have a genius here."];
+
+      if (this.score < 10) {
+        var messageLength = belowTenMessages.length;
+        var getMessage = Math.floor(Math.random() * messageLength);
+        this.$refs.message.textContent = belowTenMessages[getMessage];
+      } else if (this.score > 10 && this.score <= 30) {
+        var messageLength = aboveTwentyMessages.length;
+        var getMessage = Math.floor(Math.random() * messageLength);
+        this.$refs.message.textContent = aboveTwentyMessages[getMessage];
+      } else if (this.score > 30 && this.score <= 40) {
+        var messageLength = aboveThirtyMessages.length;
+        var getMessage = Math.floor(Math.random() * messageLength);
+        this.$refs.message.textContent = aboveThirtyMessages[getMessage];
+      } else if (this.score > 40 && this.score <= 50) {
+        var messageLength = aboveThirtyMessages.length;
+        var getMessage = Math.floor(Math.random() * messageLength);
+        this.$refs.message.textContent = aboveFortyMessages[getMessage];
+      }
     }
   }
 });
@@ -5666,6 +5694,37 @@ __webpack_require__.r(__webpack_exports__);
     resetTimer: function resetTimer() {
       clearInterval(this.myTimer);
       this.timer = 10;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PlayButtonComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PlayButtonComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["route"],
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  methods: {
+    play: function play() {
+      location.href = this.route;
     }
   }
 });
@@ -7115,6 +7174,7 @@ Vue.component('congrats', __webpack_require__(/*! ./components/CongratsComponent
 Vue.component('me-before-you-vowel', __webpack_require__(/*! ./components/MeBeforeYouVowelComponent.vue */ "./resources/js/components/MeBeforeYouVowelComponent.vue").default);
 Vue.component('me-before-you-consonant', __webpack_require__(/*! ./components/MeBeforeYouConsonantComponent.vue */ "./resources/js/components/MeBeforeYouConsonantComponent.vue").default);
 Vue.component('input-box', __webpack_require__(/*! ./components/InputBoxComponent.vue */ "./resources/js/components/InputBoxComponent.vue").default);
+Vue.component('play-button', __webpack_require__(/*! ./components/PlayButtonComponent.vue */ "./resources/js/components/PlayButtonComponent.vue").default);
 Vue.component('begin-end-fill', __webpack_require__(/*! ./components/BeginEndFillComponent.vue */ "./resources/js/components/BeginEndFillComponent.vue").default);
 Vue.component('every-letter', __webpack_require__(/*! ./components/EveryLetterComponent.vue */ "./resources/js/components/EveryLetterComponent.vue").default);
 Vue.component('ends-with', __webpack_require__(/*! ./components/EndsWithComponent.vue */ "./resources/js/components/EndsWithComponent.vue").default);
@@ -43397,6 +43457,45 @@ component.options.__file = "resources/js/components/NthPositionComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/PlayButtonComponent.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/PlayButtonComponent.vue ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PlayButtonComponent_vue_vue_type_template_id_0669667c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlayButtonComponent.vue?vue&type=template&id=0669667c& */ "./resources/js/components/PlayButtonComponent.vue?vue&type=template&id=0669667c&");
+/* harmony import */ var _PlayButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlayButtonComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/PlayButtonComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _PlayButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _PlayButtonComponent_vue_vue_type_template_id_0669667c___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PlayButtonComponent_vue_vue_type_template_id_0669667c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/PlayButtonComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ProceedComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ProceedComponent.vue ***!
@@ -44084,6 +44183,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/PlayButtonComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/PlayButtonComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlayButtonComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PlayButtonComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/ProceedComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ProceedComponent.vue?vue&type=script&lang=js& ***!
@@ -44585,6 +44700,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/PlayButtonComponent.vue?vue&type=template&id=0669667c&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/PlayButtonComponent.vue?vue&type=template&id=0669667c& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayButtonComponent_vue_vue_type_template_id_0669667c___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayButtonComponent_vue_vue_type_template_id_0669667c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayButtonComponent_vue_vue_type_template_id_0669667c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlayButtonComponent.vue?vue&type=template&id=0669667c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PlayButtonComponent.vue?vue&type=template&id=0669667c&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ProceedComponent.vue?vue&type=template&id=466cf24c&":
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/ProceedComponent.vue?vue&type=template&id=466cf24c& ***!
@@ -44837,7 +44969,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -44991,7 +45123,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -45145,7 +45277,7 @@ var render = function() {
                 staticClass: "w3-container w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -45284,7 +45416,7 @@ var render = function() {
                 staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -45426,7 +45558,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -45620,7 +45752,7 @@ var render = function() {
                 staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -45761,7 +45893,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -45915,7 +46047,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -46050,7 +46182,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -46172,7 +46304,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -46671,7 +46803,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -46825,7 +46957,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -46966,7 +47098,7 @@ var render = function() {
                 staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -47142,7 +47274,7 @@ var render = function() {
                 staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -47189,6 +47321,40 @@ var render = function() {
       ]
     )
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PlayButtonComponent.vue?vue&type=template&id=0669667c&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PlayButtonComponent.vue?vue&type=template&id=0669667c& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass:
+        "w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange",
+      staticStyle: { width: "100%" },
+      on: { click: _vm.play }
+    },
+    [_vm._v("\n    Play\n")]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -47340,7 +47506,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -47615,7 +47781,7 @@ var render = function() {
                 staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -47756,7 +47922,7 @@ var render = function() {
                 staticClass: " w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -47897,7 +48063,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
@@ -48059,7 +48225,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over")],
+              [_c("game-over", { attrs: { score: _vm.score } })],
               1
             ),
             _vm._v(" "),
