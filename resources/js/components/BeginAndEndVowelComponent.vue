@@ -83,7 +83,7 @@ export default {
       level: 1,
       letter: "",
       rules:
-        "Mention words that begin and end with a vowel",
+        "Enter words that begin and end with a vowel",
         listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",

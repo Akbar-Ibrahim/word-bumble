@@ -81,7 +81,7 @@ export default {
       level: 1,
       score: 0,
       rules:
-        "Mention words that have a vowel-consonant sequence. The word must start with a vowel and end with a consonant.",
+        "Enter words that have a vowel-consonant sequence. The word must start with a vowel and end with a consonant.",
       listOfPlayerWords: [],
       computer: "",
       timer: 10,

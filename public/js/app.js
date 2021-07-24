@@ -2146,7 +2146,7 @@ __webpack_require__.r(__webpack_exports__);
       isDone: false,
       level: 1,
       letter: "",
-      rules: "Mention words that begin and end with a consonant",
+      rules: "Enter words that begin and end with a consonant",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
@@ -2382,7 +2382,7 @@ __webpack_require__.r(__webpack_exports__);
       isDone: false,
       level: 1,
       letter: "",
-      rules: "Mention words that begin and end with a vowel",
+      rules: "Enter words that begin and end with a vowel",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
@@ -2597,7 +2597,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isDone: false,
       score: 0,
-      rules: "The rules are simple. You'll name a word with a specified length and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
+      rules: "The rules are simple. You'll enter a word with a specified length and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
       level: 1,
       numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
       listOfComputerWords: [],
@@ -2821,7 +2821,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isDone: false,
       score: 0,
-      rules: "You'll be shown two letters, your goal is to form a word that begins with the first letter and ends with the second letter",
+      rules: "You'll be shown two letters, your goal is to enter a word that begins with the first letter and ends with the second letter",
       level: 1,
       listOfPlayerWords: [],
       letters: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
@@ -3104,7 +3104,7 @@ __webpack_require__.r(__webpack_exports__);
       isDone: false,
       level: 1,
       score: 0,
-      rules: "Mention words that have only one consonant cluster. That is multiple consonants coming one after another",
+      rules: "Enter words that have only one consonant cluster. That is multiple consonants coming one after another",
       listOfPlayerWords: [],
       computer: "",
       timer: 10
@@ -3352,7 +3352,7 @@ __webpack_require__.r(__webpack_exports__);
       level: 1,
       letter: "",
       score: 0,
-      rules: "Mention words that do not begin or end with a consonant. The word must contain at least two consonants. The consonants must not come one after another.",
+      rules: "Enter words that do not begin or end with a consonant. The word must contain at least two consonants. The consonants must not come one after another.",
       listOfPlayerWords: [],
       computer: "",
       timer: 10
@@ -4699,7 +4699,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isDone: false,
       score: 0,
-      rules: "The rules are simple. You'll name a word and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
+      rules: "The rules are simple. You'll enter a word and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
       level: 1,
       numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
       listOfComputerWords: [],
@@ -4967,7 +4967,7 @@ __webpack_require__.r(__webpack_exports__);
       isDone: false,
       level: 1,
       score: 0,
-      rules: "Mention words that have a consonant-vowel sequence. The word must start with a consonant and end with a vowel.",
+      rules: "Enter words that have a consonant-vowel sequence. The word must start with a consonant and end with a vowel.",
       listOfPlayerWords: [],
       computer: "",
       timer: 10
@@ -5195,7 +5195,7 @@ __webpack_require__.r(__webpack_exports__);
       isDone: false,
       level: 1,
       score: 0,
-      rules: "Mention words that have a vowel-consonant sequence. The word must start with a vowel and end with a consonant.",
+      rules: "Enter words that have a vowel-consonant sequence. The word must start with a vowel and end with a consonant.",
       listOfPlayerWords: [],
       computer: "",
       timer: 10
@@ -5456,7 +5456,7 @@ __webpack_require__.r(__webpack_exports__);
       level: 1,
       letter: "",
       score: 0,
-      rules: "A letter will be selected at random. Trade words with computer that begin with the letter. Do not mention a word you or computer have already mentioned.",
+      rules: "A letter will be selected at random. Trade words with computer that begin with the letter. Do not enter a word you or computer have already mentioned.",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",
@@ -5857,7 +5857,7 @@ __webpack_require__.r(__webpack_exports__);
       level: 1,
       letter: "",
       score: 0,
-      rules: "A letter and a number will be selected at random. Your job is to mention a word that has that letter in the position of the number",
+      rules: "A letter and a number will be selected at random. Your job is to enter a word that has that letter in the position of the number",
       listOfPlayerWords: [],
       computer: "",
       timer: 10
@@ -6176,7 +6176,7 @@ __webpack_require__.r(__webpack_exports__);
       isDone: false,
       level: 1,
       score: 0,
-      rules: "Mention words that have only one vowel cluster. That is multiple vowels coming one after another",
+      rules: "Enter words that have only one vowel cluster. That is multiple vowels coming one after another",
       listOfPlayerWords: [],
       computer: "",
       timer: 10
@@ -6425,7 +6425,7 @@ __webpack_require__.r(__webpack_exports__);
       level: 1,
       letter: "",
       score: 0,
-      rules: "Mention words that do not begin or end with a vowel. The word must contain at least two vowels. The vowels must not come one after another.",
+      rules: "Enter words that do not begin or end with a vowel. The word must contain at least two vowels. The vowels must not come one after another.",
       listOfPlayerWords: [],
       computer: "",
       timer: 10

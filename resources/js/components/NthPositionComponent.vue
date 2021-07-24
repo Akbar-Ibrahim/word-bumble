@@ -74,7 +74,7 @@ export default {
       letter: "",
       score: 0,
       rules:
-        "A letter will be selected at random. Trade words with computer that begin with the letter. Do not mention a word you or computer have already mentioned.",
+        "A letter will be selected at random. Trade words with computer that begin with the letter. Do not enter a word you or computer have already mentioned.",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",

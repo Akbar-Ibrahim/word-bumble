@@ -80,7 +80,7 @@ export default {
       letter: "",
       score: 0,
       rules:
-        "A letter and a number will be selected at random. Your job is to mention a word that has that letter in the position of the number",
+        "A letter and a number will be selected at random. Your job is to enter a word that has that letter in the position of the number",
       listOfPlayerWords: [],
       computer: "",
       timer: 10,

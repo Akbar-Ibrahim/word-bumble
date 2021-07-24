@@ -66,7 +66,7 @@ export default {
       isDone: false,
       score: 0,
       rules:
-        "You'll be shown two letters, your goal is to form a word that begins with the first letter and ends with the second letter",
+        "You'll be shown two letters, your goal is to enter a word that begins with the first letter and ends with the second letter",
       level: 1,
       listOfPlayerWords: [],
       letters: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],

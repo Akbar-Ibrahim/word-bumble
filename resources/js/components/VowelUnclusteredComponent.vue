@@ -82,7 +82,7 @@ export default {
       letter: "",
       score: 0,
       rules:
-        "Mention words that do not begin or end with a vowel. The word must contain at least two vowels. The vowels must not come one after another.",
+        "Enter words that do not begin or end with a vowel. The word must contain at least two vowels. The vowels must not come one after another.",
       listOfPlayerWords: [],
       computer: "",
       timer: 10,

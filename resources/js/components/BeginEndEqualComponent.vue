@@ -68,7 +68,7 @@ export default {
       isDone: false,
       score: 0,
       rules:
-        "The rules are simple. You'll name a word with a specified length and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
+        "The rules are simple. You'll enter a word with a specified length and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
       level: 1,
       numbers: [4,5,6,7,8,9,10,11,12,13,14,15,16],
       listOfComputerWords: [],

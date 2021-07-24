@@ -99,7 +99,7 @@ export default {
       isDone: false,
       level: 1,
       letter: "",
-      rules: "Mention words that begin and end with a consonant",
+      rules: "Enter words that begin and end with a consonant",
       listOfComputerWords: [],
       listOfPlayerWords: [],
       computer: "",

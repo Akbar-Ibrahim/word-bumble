@@ -81,7 +81,7 @@ export default {
       level: 1,
       score: 0,
       rules:
-        "Mention words that have only one vowel cluster. That is multiple vowels coming one after another",
+        "Enter words that have only one vowel cluster. That is multiple vowels coming one after another",
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
