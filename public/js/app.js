@@ -4575,7 +4575,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["score", "bus"],
+  props: ["score"],
   data: function data() {
     return {
       message: "",
@@ -4587,9 +4587,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   updated: function updated() {},
   mounted: function mounted() {// console.log("Component mounted.");
-    // this.bus.$on("trackscore", (myScore) => {
-    //   this.getMessage(myScore);
-    // });
   },
   methods: {
     playAgain: function playAgain() {
@@ -4773,8 +4770,7 @@ __webpack_require__.r(__webpack_exports__);
       wordLength: 0,
       computer: "",
       timer: 10,
-      myTimer: null,
-      bus: this
+      myTimer: null
     };
   },
   created: function created() {},
@@ -4943,7 +4939,6 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.wLength.textContent = this.wordLength;
     },
     gameOver: function gameOver() {
-      this.$emit("trackscore", this.score);
       this.$refs.playAgain.style.display = "block";
       this.$refs.gameContainer.style.display = "none";
     }
@@ -46979,8 +46974,7 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_c("game-over", { attrs: { bus: _vm.bus, score: _vm.score } })],
-              1
+              [_vm._v('">')]
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [

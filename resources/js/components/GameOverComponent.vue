@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  props: ["score", "bus"],
+  props: ["score"],
 
   data() {
     return {
@@ -50,9 +50,7 @@ export default {
 
   mounted() {
     // console.log("Component mounted.");
-    // this.bus.$on("trackscore", (myScore) => {
-    //   this.getMessage(myScore);
-    // });
+    
   },
 
   methods: {

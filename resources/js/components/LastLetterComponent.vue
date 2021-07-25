@@ -26,7 +26,7 @@
       <div class="">
         <div class="">
           <div class="w3-center" ref="playAgain" style="display: none">
-            <game-over :bus="bus" :score="score"></game-over>
+            <game-overscore"></game-over>
           </div>
 
           <div ref="gameContainer" class="">
@@ -73,7 +73,7 @@ export default {
       computer: "",
       timer: 10,
       myTimer: null,
-      bus: this
+      
     };
   },
 
@@ -252,7 +252,7 @@ stopTimer() {
     },
 
     gameOver() {
-      this.$emit("trackscore", this.score);
+      
       this.$refs.playAgain.style.display = "block";
       this.$refs.gameContainer.style.display = "none";
     },
