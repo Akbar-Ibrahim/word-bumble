@@ -43,12 +43,15 @@ export default {
 
   methods:{
       checkBeforeSending(){
+
           var inputValue = this.$refs.word.value.trim();
           var word = inputValue.toLowerCase();
+          if (word) {
 
           this.$emit('input-value', word);
 
           this.$refs.word.value = "";
+          }
 
       },
 

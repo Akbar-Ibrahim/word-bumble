@@ -67,8 +67,8 @@ export default {
       numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
       listOfPlayerWords: [],
       wordLength: 0,
-      timerCount: 10,
       timer: 10,
+      myTimer: null
     };
   },
 
@@ -78,18 +78,20 @@ export default {
 
   methods: {
     startTimer() {
-      if (this.level > 1) {
-        // setInterval(this.myTimer, 2000);
-      } else {
-        setInterval(this.myTimer, 1000);
-      }
+      this.myTimer = setInterval( () => {
+            if (this.timer == 0) {
+              this.gameOver();
+            } else {
+              this.timer -= 1;
+            }
+        }, 1000);
     },
 
     playQuiz() {
       this.$refs.rules.style.display = "none";
       this.$refs.gameWrapper.style.display = "block";
 
-      this.resetTimer();
+      // this.resetTimer();
       this.startTimer();
     },
 
@@ -143,7 +145,7 @@ export default {
               this.score += 1;
               this.resetTimer();
               if (this.listOfPlayerWords.length == 30) {
-                this.resetTimer();
+                this.stopTimer();
                 
               }
             } else {
@@ -174,17 +176,20 @@ export default {
       }
     },
 
-    myTimer() {
-      if (this.timer == 0) {
-        this.gameOver();
-      } else {
-        this.timer -= 1;
-      }
+    
+
+
+stopTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+      
     },
+
 
     resetTimer() {
       clearInterval(this.myTimer);
       this.timer = 10;
+      this.startTimer();
     },
 
     

@@ -20,7 +20,7 @@ class TestController extends Controller
         // $result = Dictionary::where('word', 'like', $start . '%' . $end)->take(100)->get();
         // $result = DB::table('dictionaries')->where('word', 'like', '%' . $letter)->whereRaw('LENGTH(word) > ' . 4)->get();
         // $result = DB::table('dictionaries')->where('word', 'like', $letter . '%')->whereRaw('LENGTH(word) = ' . 4)->get();
-        $result = Dictionary::where('word', 'like', '____q%')->get();
+        $result = Dictionary::where('word', 'like', 'x%x')->get();
         $four = [];
         $five = [];
         $six = [];

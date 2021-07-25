@@ -5,7 +5,7 @@
         :level="level"
         :rules="rules"
         @play-quiz="playQuiz"
-        :is-done="isDone"
+        :is-done=" isDone"
       ></rules>
     </div>
     <div ref="gameWrapper" class="w3-row" style="display: none">
@@ -20,8 +20,8 @@
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
         <div style="font-size: 21px" class="w3-padding" ref="score">
-          {{ score }}/100
-        </div>
+          {{ score }}/50
+          </div>
       </div>
       <div class="">
         <div class="">
@@ -57,45 +57,45 @@
 
 <script>
 export default {
-  props: ["myLetter"],
+  props: [],
 
   data() {
     return {
       isDone: false,
       score: 0,
-      letter: this.myLetter,
-      rules: "Trade words with computer that end with " + this.myLetter,
+      rules:
+        "The rules are simple. You'll enter a word and computer will form a word with the last letter of your word and so will you with computer's word, and on and on...",
       level: 1,
-      numbers: [4, 5, 6, 7, 8],
+      numbers: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
       listOfComputerWords: [],
       listOfPlayerWords: [],
       wordLength: 0,
       computer: "",
+      timerCount: 10,
       timer: 10,
-      myTimer: null
     };
   },
 
   created() {},
 
-  mounted() {},
+  mounted() {
+    
+  },
 
   methods: {
     startTimer() {
-      this.myTimer = setInterval( () => {
-            if (this.timer == 0) {
-              this.gameOver();
-            } else {
-              this.timer -= 1;
-            }
-        }, 1000);
+      if (this.level > 1) {
+        // setInterval(this.myTimer, 2000);
+      } else {
+        setInterval(this.myTimer, 1000);
+      }
     },
 
     playQuiz() {
       this.$refs.rules.style.display = "none";
       this.$refs.gameWrapper.style.display = "block";
 
-      // this.resetTimer();
+      this.resetTimer();
       this.startTimer();
     },
 
@@ -104,11 +104,10 @@ export default {
     },
 
     checkBeforeSending(word) {
-      var position = this.wordLength - 1;
-
-      var lengthOfWord = word.length - 1;
+      
+      var lengthOfComputerWord = this.computer.length - 1;
       if (this.computer.length > 0) {
-        if (word.charAt(lengthOfWord) === this.letter) {
+        if (this.computer.charAt(lengthOfComputerWord) === word.charAt(0)) {
           switch (this.level) {
             case 1:
               this.checkIfWordAlreadyExists(word);
@@ -116,7 +115,6 @@ export default {
             case 2:
               if (word.length == this.wordLength) {
                 this.checkIfWordAlreadyExists(word);
-                this.getRandomNumber();
               } else {
                 this.gameOver();
               }
@@ -127,23 +125,18 @@ export default {
           this.gameOver();
         }
       } else {
-        if (word.charAt(lengthOfWord) === this.letter) {
-          switch (this.level) {
-            case 1:
+        switch (this.level) {
+          case 1:
+            this.sendWord(word);
+            break;
+          case 2:
+            if (word.length == this.wordLength) {
               this.sendWord(word);
-              break;
-            case 2:
-              if (word.length == this.wordLength) {
-                this.sendWord(word);
-                this.getRandomNumber();
-              } else {
-                this.gameOver();
-              }
-              break;
-            default:
-          }
-        } else {
-          this.gameOver();
+            } else {
+              this.gameOver();
+            }
+            break;
+          default:
         }
       }
     },
@@ -151,17 +144,14 @@ export default {
     sendWord(word) {
       // var word = this.$refs.word.value.trim();
 
-      // var data = {
-      //   word: word,
-      //   letter: this.letter,
-      // };
-
-      var data = this.nextLevelPayload(word);
+      var data = {
+        word: word,
+      };
 
       data = JSON.stringify(data);
 
       if (word) {
-        fetch("/api/ends-with", {
+        fetch("/api/words/bande", {
           method: "post",
           headers: {
             "Content-Type": "application/json",
@@ -178,10 +168,13 @@ export default {
               this.score += 1;
               this.resetTimer();
               if (this.listOfPlayerWords.length == 50) {
-                this.stopTimer();
+                this.score = 0;
+                this.resetTimer();
                 this.endLevel();
               } else {
-                this.getComputerWords(result);
+                this.$refs.computerWord.textContent = result.word;
+                this.computer = result.word;
+                this.listOfComputerWords.push(result);
               }
             } else {
               this.gameOver();
@@ -189,23 +182,6 @@ export default {
           });
       }
       // this.$refs.word.value = "";
-    },
-
-    getComputerWords(result) {
-      switch (this.level) {
-        case 1:
-          this.$refs.computerWord.textContent = result.word;
-          this.computer = result.word;
-          this.listOfComputerWords.push(result);
-          break;
-
-        case 2:
-          this.$refs.computerWord.textContent = result[0].word;
-          this.computer = result[0].word;
-          this.listOfComputerWords.push(result[0]);
-          break;
-        default:
-      }
     },
 
     checkIfWordAlreadyExists(word) {
@@ -234,19 +210,17 @@ export default {
       }
     },
 
-
-stopTimer() {
-      clearInterval(this.myTimer);
-      this.timer = 10;
-      
+    myTimer() {
+      if (this.timer == 0) {
+        this.gameOver();
+      } else {
+        this.timer -= 1;
+      }
     },
-
-
 
     resetTimer() {
       clearInterval(this.myTimer);
       this.timer = 10;
-      this.startTimer();
     },
 
     endLevel() {
@@ -254,9 +228,7 @@ stopTimer() {
       this.listOfComputerWords = [];
       this.level += 1;
       this.rules =
-        "Now, you are going to mention words that end with " +
-        this.letter +
-        " with a specified length";
+        "Now, you are going to form words with the last letter of computer's words but with a specified length.";
 
       this.$refs.rules.style.display = "block";
       this.$refs.gameWrapper.style.display = "none";
@@ -267,34 +239,10 @@ stopTimer() {
     },
 
     getRandomNumber() {
-      var getRandomNumber = Math.floor(Math.random() * this.numbers.length);
+      var getRandomNumber = Math.floor(Math.random() * this.numbers.length + 1);
       this.wordLength = this.numbers[getRandomNumber];
-      // this.wordLength = 3;
+      // this.wordLength = 5;
       this.$refs.wLength.textContent = this.wordLength;
-    },
-
-    nextLevelPayload(word) {
-      var data = [];
-
-      switch (this.level) {
-        case 1:
-          data = {
-            word: word,
-            letter: this.letter
-          };
-          break;
-
-        case 2:
-          data = {
-            word: word,
-            letter: this.letter,
-            length: this.wordLength,
-          };
-          break;
-        default:
-      }
-
-      return data;
     },
 
     gameOver() {

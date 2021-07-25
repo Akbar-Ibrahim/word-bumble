@@ -33,7 +33,7 @@
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
         <div style="font-size: 21px" class="w3-padding" ref="score">
-          {{ score }}/50
+          {{ score }}/{{ total }}
           </div>
       </div>
       <div class="">
@@ -73,6 +73,7 @@ export default {
 
   data() {
     return {
+      total: 50,
       letters: JSON.parse(this.alphabet),
       position: 0,
       isDone: false,
@@ -84,6 +85,7 @@ export default {
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
+      myTimer: null
     };
   },
 
@@ -95,18 +97,20 @@ export default {
 
   methods: {
     startTimer() {
-      if (this.level > 1) {
-        // setInterval(this.myTimer, 2000);
-      } else {
-        setInterval(this.myTimer, 1000);
-      }
+      this.myTimer = setInterval( () => {
+            if (this.timer == 0) {
+              this.gameOver();
+            } else {
+              this.timer -= 1;
+            }
+        }, 1000);
     },
 
     playQuiz() {
       this.$refs.rules.style.display = "none";
       this.$refs.gameWrapper.style.display = "block";
 
-      this.resetTimer();
+      // this.resetTimer();
       this.startTimer();
     },
 
@@ -147,8 +151,8 @@ export default {
               this.listOfPlayerWords.push(word);
               this.score += 1;
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 50) {
-                this.resetTimer();
+              if (this.listOfPlayerWords.length == this.total) {
+                this.stopTimer();
                 this.endLevel();
               } 
             } else {
@@ -160,8 +164,15 @@ export default {
       
     },
 
+stopTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+      
+    },
+
+
     getRandomLetter() {
-      var getLetter = Math.floor(Math.random() * this.letters.length + 1);
+      var getLetter = Math.floor(Math.random() * this.letters.length);
       this.letter = this.letters[getLetter];
 
       var getNumber = Math.floor(Math.random() * 5 + 1);
@@ -198,6 +209,7 @@ this.getRandomLetter()
     resetTimer() {
       clearInterval(this.myTimer);
       this.timer = 10;
+      this.startTimer();
     },
 
     endLevel() {
@@ -230,13 +242,7 @@ this.getRandomLetter()
       this.$refs.gameContainer.style.display = "none";
     },
 
-    myTimer() {
-      if (this.timer == 0) {
-        this.gameOver();
-      } else {
-        this.timer -= 1;
-      }
-    },
+    
   },
 };
 </script>

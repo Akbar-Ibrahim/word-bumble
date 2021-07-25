@@ -23,7 +23,7 @@
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
         <div style="font-size: 21px" class="w3-padding" ref="score">
-          {{ score }}/100
+          {{ score }}/{{ total }}
         </div>
       </div>
       <div class="">
@@ -63,6 +63,7 @@ export default {
 
   data() {
     return {
+      total: 100,
       isDone: false,
       score: 0,
       rules:
@@ -74,6 +75,7 @@ export default {
       lastLetter: "",
       computer: "",
       timer: 10,
+      myTimer: null
     };
   },
 
@@ -86,10 +88,10 @@ export default {
   methods: {
     getLetters() {
 
-      var getFirstLetterIndex = Math.floor(Math.random() * this.letters.length + 1);
+      var getFirstLetterIndex = Math.floor(Math.random() * this.letters.length);
       this.firstLetter = this.letters[getFirstLetterIndex];
 
-      var getLastLetterIndex = Math.floor(Math.random() * this.letters.length + 1);
+      var getLastLetterIndex = Math.floor(Math.random() * this.letters.length);
       this.lastLetter = this.letters[getLastLetterIndex];
       if (this.lastLetter === 'j' || this.lastLetter === 'q' || this.lastLetter === 'u' || this.lastLetter === 'v') {
         this.getLetters();
@@ -119,11 +121,13 @@ export default {
     },
 
     startTimer() {
-      if (this.level > 1) {
-        // setInterval(this.myTimer, 2000);
-      } else {
-        setInterval(this.myTimer, 1000);
-      }
+      this.myTimer = setInterval( () => {
+            if (this.timer == 0) {
+              this.gameOver();
+            } else {
+              this.timer -= 1;
+            }
+        }, 1000);
     },
 
     playQuiz() {
@@ -132,7 +136,7 @@ export default {
 
       this.getLetters();
 
-      this.resetTimer();
+      // this.resetTimer();
       this.startTimer();
     },
 
@@ -178,8 +182,8 @@ export default {
               this.score += 1;
               this.getLetters();
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 50) {
-                this.resetTimer();
+              if (this.listOfPlayerWords.length == this.total) {
+                this.stopTimer();
                 this.endLevel();
               } else {
                 // this.getComputerWords(result);
@@ -222,17 +226,18 @@ export default {
       }
     },
 
-    myTimer() {
-      if (this.timer == 0) {
-        this.gameOver();
-      } else {
-        this.timer -= 1;
-      }
+    
+
+    stopTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+      
     },
 
     resetTimer() {
       clearInterval(this.myTimer);
       this.timer = 10;
+      this.startTimer();
     },
 
     gameOver() {

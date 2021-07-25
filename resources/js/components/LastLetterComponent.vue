@@ -26,7 +26,7 @@
       <div class="">
         <div class="">
           <div class="w3-center" ref="playAgain" style="display: none">
-            <game-over :score="score"></game-over>
+            <game-over :bus="bus" :score="score"></game-over>
           </div>
 
           <div ref="gameContainer" class="">
@@ -71,8 +71,9 @@ export default {
       listOfPlayerWords: [],
       wordLength: 0,
       computer: "",
-      timerCount: 10,
       timer: 10,
+      myTimer: null,
+      bus: this
     };
   },
 
@@ -82,18 +83,24 @@ export default {
 
   methods: {
     startTimer() {
-      if (this.level > 1) {
+      // if (this.level > 1) {
         // setInterval(this.myTimer, 2000);
-      } else {
-        setInterval(this.myTimer, 1000);
-      }
+      // } else {
+        this.myTimer = setInterval( () => {
+            if (this.timer == 0) {
+              this.gameOver();
+            } else {
+              this.timer -= 1;
+            }
+        }, 1000);
+      // }
     },
 
     playQuiz() {
       this.$refs.rules.style.display = "none";
       this.$refs.gameWrapper.style.display = "block";
 
-      this.resetTimer();
+      // this.resetTimer();
       this.startTimer();
     },
 
@@ -166,7 +173,8 @@ export default {
               this.score += 1;
               this.resetTimer();
               if (this.listOfPlayerWords.length == 50) {
-                this.resetTimer();
+                this.score = 0;
+                this.stopTimer();
                 this.endLevel();
               } else {
                 this.$refs.computerWord.textContent = result.word;
@@ -174,6 +182,7 @@ export default {
                 this.listOfComputerWords.push(result);
               }
             } else {
+              
               this.gameOver();
             }
           });
@@ -207,17 +216,17 @@ export default {
       }
     },
 
-    myTimer() {
-      if (this.timer == 0) {
-        this.gameOver();
-      } else {
-        this.timer -= 1;
-      }
+stopTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+      
     },
+
 
     resetTimer() {
       clearInterval(this.myTimer);
       this.timer = 10;
+      this.startTimer()
     },
 
     endLevel() {
@@ -243,6 +252,7 @@ export default {
     },
 
     gameOver() {
+      this.$emit("trackscore", this.score);
       this.$refs.playAgain.style.display = "block";
       this.$refs.gameContainer.style.display = "none";
     },

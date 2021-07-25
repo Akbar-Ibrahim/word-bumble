@@ -31,7 +31,7 @@
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
         <div style="font-size: 21px" class="w3-padding" ref="score">
-          {{ score }}/50
+          {{ score }}/{{ total }}
           </div>
       </div>
       <div class="">
@@ -76,6 +76,7 @@ export default {
 
   data() {
     return {
+      total: 50,
       isDone: false,
       level: 1,
       score: 0,
@@ -85,6 +86,7 @@ export default {
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
+      myTimer: null
     };
   },
 
@@ -94,18 +96,20 @@ export default {
 
   methods: {
     startTimer() {
-      if (this.level > 1) {
-        // setInterval(this.myTimer, 2000);
-      } else {
-        setInterval(this.myTimer, 1000);
-      }
+      this.myTimer = setInterval( () => {
+            if (this.timer == 0) {
+              this.gameOver();
+            } else {
+              this.timer -= 1;
+            }
+        }, 1000);
     },
 
     playQuiz() {
       this.$refs.rules.style.display = "none";
       this.$refs.gameWrapper.style.display = "block";
 
-      this.resetTimer();
+      // this.resetTimer();
       this.startTimer();
     },
 
@@ -150,8 +154,8 @@ export default {
               this.listOfPlayerWords.push(word);
               this.score += 1;
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 50) {
-                this.resetTimer();
+              if (this.listOfPlayerWords.length == this.total) {
+                this.stopTimer();
                 this.endLevel();
               } else {
                 this.$refs.computerWord.textContent = result.word;
@@ -187,13 +191,17 @@ export default {
     },
 
 
+stopTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
     
     resetTimer() {
       clearInterval(this.myTimer);
       this.timer = 10;
+      this.startTimer();
     },
 
-    stopTimer() {},
 
     
 
@@ -218,13 +226,7 @@ endLevel() {
       this.$refs.gameContainer.style.display = "none";
     },
 
-    myTimer() {
-      if (this.timer == 0) {
-        this.gameOver();
-      } else {
-        this.timer -= 1;
-      }
-    },
+    
 
     proceedToNextChallenge() {
       var next = parseInt(this.wordLength) + 1;

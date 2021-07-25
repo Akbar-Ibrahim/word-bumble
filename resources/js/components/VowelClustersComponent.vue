@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div ref="congrats" style="display: none;">
+    <div ref="congrats" style="display: none">
       <congrats></congrats>
     </div>
     <div ref="rules">
@@ -31,16 +31,12 @@
           00:<span v-if="timer < 10">0</span>{{ timer }}
         </div>
         <div style="font-size: 21px" class="w3-padding" ref="score">
-          {{ score }}/50
-          </div>
+          {{ score }}/{{ total }}
+        </div>
       </div>
       <div class="">
         <div class="">
-          <div
-            class=" w3-center"
-            ref="playAgain"
-            style="display: none"
-          >
+          <div class="w3-center" ref="playAgain" style="display: none">
             <game-over :score="score"></game-over>
           </div>
 
@@ -53,7 +49,7 @@
 
             <div class="card-body">
               <!--  -->
-<input-box @input-value="checkBeforeSending"></input-box>
+              <input-box @input-value="checkBeforeSending"></input-box>
               <!--  -->
             </div>
           </div>
@@ -75,6 +71,7 @@ export default {
 
   data() {
     return {
+      total: 5,
       vowels: ["a", "e", "i", "o", "u"],
       vowelIndex: 0,
       isDone: false,
@@ -85,6 +82,7 @@ export default {
       listOfPlayerWords: [],
       computer: "",
       timer: 10,
+      myTimer: null,
     };
   },
 
@@ -94,31 +92,30 @@ export default {
 
   methods: {
     startTimer() {
-      if (this.level > 1) {
-        // setInterval(this.myTimer, 2000);
-      } else {
-        setInterval(this.myTimer, 1000);
-      }
+      this.myTimer = setInterval(() => {
+        if (this.timer == 0) {
+          this.gameOver();
+        } else {
+          this.timer -= 1;
+        }
+      }, 1000);
     },
 
     playQuiz() {
       this.$refs.rules.style.display = "none";
       this.$refs.gameWrapper.style.display = "block";
 
-      this.resetTimer();
+      // this.resetTimer();
       this.startTimer();
     },
 
     checkBeforeSending(word) {
-      
-
       if (word) {
         this.verifyConditionsAreMet(word);
       }
     },
 
     sendWord(word) {
-      
       if (word) {
         // if (this.listOfPlayerWords.length > 0) {
         //   this.checkIfWordAlreadyExists(word);
@@ -146,8 +143,9 @@ export default {
               this.listOfPlayerWords.push(word);
               this.score += 1;
               this.resetTimer();
-              if (this.listOfPlayerWords.length == 50) {
-                this.resetTimer();
+              if (this.listOfPlayerWords.length == this.total) {
+                this.score = 0;
+                this.stopTimer();
                 this.endLevel();
               }
             } else {
@@ -155,7 +153,6 @@ export default {
             }
           });
       }
-      
     },
 
     checkIfWordAlreadyExists(word) {
@@ -174,27 +171,37 @@ export default {
       }
     },
 
+    stopTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
+    },
+
     resetTimer() {
       clearInterval(this.myTimer);
       this.timer = 10;
+      this.startTimer();
     },
 
     endLevel() {
       this.listOfPlayerWords = [];
       this.level += 1;
-      this.rules = "Mention words that have more than one vowel cluster. That is multiple vowels coming one after another";
-      if (this.level == 3) {
-      this.$refs.congrats.style.display = "block";
-      this.$refs.gameWrapper.style.display = "none";
+      if (this.level == 2) {
+      this.rules =
+        "Enter words that have two vowel clusters.";
+      } else if (this.level == 3) {
+          this.rules =
+            "Enter words that have three vowel clusters.";
+      }
+      if (this.level == 4) {
+        this.$refs.congrats.style.display = "block";
+        this.$refs.gameWrapper.style.display = "none";
       } else {
         this.$refs.rules.style.display = "block";
-      this.$refs.gameWrapper.style.display = "none";
+        this.$refs.gameWrapper.style.display = "none";
       }
     },
 
-    nextLevel(){
-
-    },
+    nextLevel() {},
 
     checkWord(word) {
       var check = 0;
@@ -211,28 +218,36 @@ export default {
           check += 1;
         }
       }
-switch(this.level) {
-  case 1:
-      if (check < 2) {
-        if (check > 0){
-        this.checkIfWordAlreadyExists(word);
-        } else {
-          this.gameOver();
-        }
-      } else {
-        this.gameOver();
-      }
-      break;
+      switch (this.level) {
+        case 1:
+          if (check < 2) {
+            if (check > 0) {
+              this.checkIfWordAlreadyExists(word);
+            } else {
+              this.gameOver();
+            }
+          } else {
+            this.gameOver();
+          }
+          break;
 
-      case 2:
-      if (check >= 2) {
-        this.checkIfWordAlreadyExists(word);
-      } else {
-        this.gameOver();
+        case 2:
+          if (check == 2) {
+            this.checkIfWordAlreadyExists(word);
+          } else {
+            this.gameOver();
+          }
+          break;
+
+        case 3:
+          if (check > 2) {
+            this.checkIfWordAlreadyExists(word);
+          } else {
+            this.gameOver();
+          }
+          break;
+        default:
       }
-      break;
-default:
-}
     },
 
     verifyConditionsAreMet(word) {
@@ -242,14 +257,6 @@ default:
     gameOver() {
       this.$refs.playAgain.style.display = "block";
       this.$refs.gameContainer.style.display = "none";
-    },
-
-    myTimer() {
-      if (this.timer == 0) {
-        this.gameOver();
-      } else {
-        this.timer -= 1;
-      }
     },
   },
 };
