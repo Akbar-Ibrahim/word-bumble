@@ -50,9 +50,9 @@ export default {
 
   mounted() {
     // console.log("Component mounted.");
-    this.bus.$on("trackscore", (myScore) => {
-      this.getMessage(myScore);
-    });
+    // this.bus.$on("trackscore", (myScore) => {
+    //   this.getMessage(myScore);
+    // });
   },
 
   methods: {

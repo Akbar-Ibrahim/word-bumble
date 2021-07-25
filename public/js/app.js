@@ -4586,13 +4586,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   updated: function updated() {},
-  mounted: function mounted() {
-    var _this = this;
-
-    // console.log("Component mounted.");
-    this.bus.$on("trackscore", function (myScore) {
-      _this.getMessage(myScore);
-    });
+  mounted: function mounted() {// console.log("Component mounted.");
+    // this.bus.$on("trackscore", (myScore) => {
+    //   this.getMessage(myScore);
+    // });
   },
   methods: {
     playAgain: function playAgain() {
