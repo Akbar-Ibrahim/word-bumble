@@ -36,8 +36,8 @@ a {
 <body>
 
 <!-- Sidebar -->
-<nav class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding-top:150px;z-index:4;color:white;" id="mySidebar">
-  <a style="font-size: 30px; color: white;" href="javascript:void(0)" onclick="w3_close()" class="w3-black w3-text-white w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
+<nav class="w3-sidebar w3-green w3-animate-top w3-xxlarge" style="display:none;padding-top:150px;z-index:4;color:white;" id="mySidebar">
+  <a style="font-size: 30px; color: white;" href="javascript:void(0)" onclick="w3_close()" class="w3-green w3-text-white w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
     <i class="fa fa-remove"></i>
   </a>
   <div class="w3-bar-block w3-center" style="width: 30%;">
@@ -145,7 +145,7 @@ a {
       <div class="w3-container w3-center">
         <h3>Words by definitions</h3>
         <div class="w3-container w3-center w3-margin">
-         <button class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange">Coming Soon</button> 
+         <button class="w3-button w3-border w3-win8-lime" style="color: black;">Coming Soon</button> 
          <!-- <play-button route="/word-definition"></play-button> -->
         </div>
       </div>

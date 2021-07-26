@@ -45797,7 +45797,7 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "w3-button w3-black w3-text-white w3-hover-amber",
+            staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
             staticStyle: { color: "white" },
             on: { click: _vm.reload }
           },
@@ -46131,7 +46131,7 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "w3-right w3-black w3-hover-amber w3-text-white",
+      staticClass: "w3-right w3-green w3-hover-amber w3-text-white",
       staticStyle: { color: "white" },
       on: { click: _vm.endGame }
     },
@@ -46810,7 +46810,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "w3-button w3-black w3-text-white w3-hover-amber",
+          staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
           staticStyle: { color: "white" },
           on: { click: _vm.playAgain }
         },
@@ -46877,7 +46877,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "btn btn-default go-button w3-black w3-text-white w3-hover-amber",
+                  "btn btn-default go-button w3-green w3-text-white w3-hover-amber",
                 staticStyle: { color: "white" },
                 attrs: { type: "submit" },
                 on: { click: _vm.checkBeforeSending }
@@ -46899,7 +46899,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "w3-text-white w3-black w3-hover-amber",
+              staticClass: "w3-text-white w3-green w3-hover-amber",
               staticStyle: { color: "white" },
               on: { click: _vm.restart }
             },
@@ -47566,7 +47566,7 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "w3-button w3-black w3-text-white w3-hover-amber",
+      staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
       staticStyle: { width: "100%", color: "white" },
       on: { click: _vm.play }
     },
@@ -47814,7 +47814,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "w3-button w3-black w3-text-white w3-hover-amber",
+                staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
                 staticStyle: { color: "white" },
                 on: { click: _vm.playQuiz }
               },
@@ -47840,7 +47840,7 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "w3-button w3-black w3-text-white w3-hover-amber",
+                      "w3-button w3-green w3-text-white w3-hover-amber",
                     staticStyle: { color: "white" },
                     on: { click: _vm.playQuiz }
                   },

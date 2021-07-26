@@ -1,5 +1,5 @@
 <template>
-    <button @click="endGame" class="w3-right w3-black w3-hover-amber w3-text-white" style="color: white;">
+    <button @click="endGame" class="w3-right w3-green w3-hover-amber w3-text-white" style="color: white;">
         Go Home
     </button>
 </template>
