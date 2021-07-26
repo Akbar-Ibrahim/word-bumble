@@ -47566,7 +47566,7 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "w3-button w3-border w3-black w3-text-white w3-hover-amber",
+      staticClass: "w3-button w3-black w3-text-white w3-hover-amber",
       staticStyle: { width: "100%", color: "white" },
       on: { click: _vm.play }
     },
