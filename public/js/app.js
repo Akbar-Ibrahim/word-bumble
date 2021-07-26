@@ -45797,7 +45797,8 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "w3-button w3-lime w3-text-white w3-hover-amber",
+            staticClass: "w3-button w3-black w3-text-white w3-hover-amber",
+            staticStyle: { color: "white" },
             on: { click: _vm.reload }
           },
           [_vm._v("Play Again")]
@@ -46130,7 +46131,8 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "w3-right w3-win8-lime w3-lime w3-hover-amber w3-text-white",
+      staticClass: "w3-right w3-black w3-hover-amber w3-text-white",
+      staticStyle: { color: "white" },
       on: { click: _vm.endGame }
     },
     [_vm._v("\n    Go Home\n")]
@@ -46808,7 +46810,8 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "w3-button w3-lime w3-text-white w3-hover-amber",
+          staticClass: "w3-button w3-black w3-text-white w3-hover-amber",
+          staticStyle: { color: "white" },
           on: { click: _vm.playAgain }
         },
         [_vm._v("Play Again")]
@@ -46874,7 +46877,8 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "btn btn-default go-button w3-lime w3-text-white w3-hover-amber",
+                  "btn btn-default go-button w3-black w3-text-white w3-hover-amber",
+                staticStyle: { color: "white" },
                 attrs: { type: "submit" },
                 on: { click: _vm.checkBeforeSending }
               },
@@ -46895,7 +46899,8 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "w3-win8-lime w3-text-white w3-lime w3-hover-amber",
+              staticClass: "w3-text-white w3-black w3-hover-amber",
+              staticStyle: { color: "white" },
               on: { click: _vm.restart }
             },
             [_vm._v("Restart Game")]
@@ -46992,7 +46997,8 @@ var render = function() {
                 staticClass: "w3-center",
                 staticStyle: { display: "none" }
               },
-              [_vm._v('">')]
+              [_c("game-over", { attrs: { score: _vm.score } })],
+              1
             ),
             _vm._v(" "),
             _c("div", { ref: "gameContainer" }, [
@@ -47560,9 +47566,8 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass:
-        "w3-button w3-border w3-win8-lime w3-text-white w3-hover-amber",
-      staticStyle: { width: "100%" },
+      staticClass: "w3-button w3-border w3-black w3-text-white w3-hover-amber",
+      staticStyle: { width: "100%", color: "white" },
       on: { click: _vm.play }
     },
     [_vm._v("\n    Play\n")]
@@ -47809,8 +47814,8 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass:
-                  "w3-button w3-win8-lime w3-text-white w3-hover-amber",
+                staticClass: "w3-button w3-black w3-text-white w3-hover-amber",
+                staticStyle: { color: "white" },
                 on: { click: _vm.playQuiz }
               },
               [_vm._v("Play")]
@@ -47835,7 +47840,8 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "w3-button w3-win8-lime w3-text-white w3-hover-amber",
+                      "w3-button w3-black w3-text-white w3-hover-amber",
+                    staticStyle: { color: "white" },
                     on: { click: _vm.playQuiz }
                   },
                   [_vm._v("Play")]

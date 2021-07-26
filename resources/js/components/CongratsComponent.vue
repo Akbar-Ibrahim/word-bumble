@@ -4,7 +4,7 @@
       <div class="w3-container w3-center w3-margin w3-padding">You made it.</div>
 
       <div class="w3-container w3-center w3-margin">
-        <button class="w3-button w3-lime w3-text-white w3-hover-amber" @click="reload">Play Again</button>
+        <button class="w3-button w3-black w3-text-white w3-hover-amber" @click="reload" style="color: white;">Play Again</button>
       </div>
 
   </div>

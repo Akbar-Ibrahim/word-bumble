@@ -26,7 +26,7 @@
       <div class="">
         <div class="">
           <div class="w3-center" ref="playAgain" style="display: none">
-            <game-overscore"></game-over>
+            <game-over :score="score"></game-over>
           </div>
 
           <div ref="gameContainer" class="">
@@ -252,7 +252,6 @@ stopTimer() {
     },
 
     gameOver() {
-      
       this.$refs.playAgain.style.display = "block";
       this.$refs.gameContainer.style.display = "none";
     },

@@ -14,7 +14,7 @@
     </div>
     <div>
       <span class="input-group-btn" style="border: none">
-        <button @click="checkBeforeSending" type="submit" class="btn btn-default go-button w3-lime w3-text-white w3-hover-amber">
+        <button @click="checkBeforeSending" type="submit" class="btn btn-default go-button w3-black w3-text-white w3-hover-amber" style="color: white;">
           <!-- <span class="glyphicon glyphicon-search"></span> -->
           Go
         </button>
@@ -29,7 +29,7 @@
     <end-game></end-game>
     </div>
     <div class="flex-fill">
-    <button class="w3-win8-lime w3-text-white w3-lime w3-hover-amber" @click="restart">Restart Game</button>
+    <button class="w3-text-white w3-black w3-hover-amber" style="color: white;" @click="restart">Restart Game</button>
     </div>
     </div>
   </div>
