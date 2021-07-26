@@ -45798,7 +45798,7 @@ var render = function() {
           "button",
           {
             staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
-            staticStyle: { color: "white" },
+            staticStyle: { color: "white", width: "100%" },
             on: { click: _vm.reload }
           },
           [_vm._v("Play Again")]
@@ -46811,7 +46811,7 @@ var render = function() {
         "button",
         {
           staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
-          staticStyle: { color: "white" },
+          staticStyle: { color: "white", width: "100%" },
           on: { click: _vm.playAgain }
         },
         [_vm._v("Play Again")]
@@ -47815,7 +47815,7 @@ var render = function() {
               "button",
               {
                 staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
-                staticStyle: { color: "white" },
+                staticStyle: { color: "white", width: "100%" },
                 on: { click: _vm.playQuiz }
               },
               [_vm._v("Play")]
@@ -47841,7 +47841,7 @@ var render = function() {
                   {
                     staticClass:
                       "w3-button w3-green w3-text-white w3-hover-amber",
-                    staticStyle: { color: "white" },
+                    staticStyle: { color: "white", width: "100%" },
                     on: { click: _vm.playQuiz }
                   },
                   [_vm._v("Play")]
