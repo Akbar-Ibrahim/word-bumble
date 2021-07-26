@@ -31,6 +31,10 @@
 
 }
 
+button {
+  color: white;
+}
+
 a {
   text-decoration: none;
   

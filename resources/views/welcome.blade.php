@@ -22,6 +22,10 @@
   font-size: 20px;
 }
 
+button {
+  color: white;
+}
+
 a {
   text-decoration: none;
   
