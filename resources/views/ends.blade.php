@@ -37,6 +37,18 @@ $(document).ready(function(){
     // alert("/ends-with/" + $(this).attr("letter"))
   });
 
+  $(".letter").mouseover(function(){
+    $(this).addClass("w3-border")
+    $(this).addClass("w3-black")
+    $(this).css("color", "white")
+});
+
+$(".letter").mouseout(function(){
+    $(this).removeClass("w3-border")
+    $(this).removeClass("w3-black")
+    $(this).css("color", "black")
+});
+
 });
 
 </script>
