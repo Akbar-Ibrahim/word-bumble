@@ -3,7 +3,7 @@
     <h4>Game over!</h4>
     <div ref="message">{{ message }}</div>
     <div class="w3-container w3-center w3-margin">
-      <button @click="playAgain" class="w3-button">Play Again</button>
+      <button @click="playAgain" class="w3-button w3-lime w3-text-white w3-hover-amber">Play Again</button>
     </div>
   </div>
 </template>

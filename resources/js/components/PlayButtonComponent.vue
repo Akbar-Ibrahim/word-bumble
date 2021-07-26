@@ -1,5 +1,5 @@
 <template>
-    <button @click="play" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-orange" style="width: 100%">
+    <button @click="play" class="w3-button w3-border w3-win8-lime w3-text-white w3-hover-amber" style="width: 100%">
         Play
     </button>
 </template>

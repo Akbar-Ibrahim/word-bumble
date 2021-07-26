@@ -7,7 +7,7 @@
       </div>
 
       <div class="w3-center w3-margin">
-        <button @click="playQuiz" class="w3-button w3-win8-lime w3-text-white">Play</button>
+        <button @click="playQuiz" class="w3-button w3-win8-lime w3-text-white w3-hover-amber">Play</button>
       </div>
     </div>
     <div v-else-if="level > 1">
@@ -18,7 +18,7 @@
         {{ rules }}
       </div>
       <div class="w3-center w3-margin">
-        <button v-if="isDone == false" @click="playQuiz" class="w3-button w3-win8-lime w3-text-white">Play</button>
+        <button v-if="isDone == false" @click="playQuiz" class="w3-button w3-win8-lime w3-text-white w3-hover-amber">Play</button>
         
       </div>
     </div>

@@ -21,6 +21,11 @@
 .w3-button {
   font-size: 20px;
 }
+
+a {
+  text-decoration: none;
+  font-size: 20px;
+}
 </style>
 
 </head>
