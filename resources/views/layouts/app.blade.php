@@ -27,7 +27,6 @@
 <style>
 .w3-button {
   font-size: 30px;
-  background-color: red;
   color: white;
 
 }
@@ -93,9 +92,9 @@ function w3_close() {
 
 <script>
 $(document).ready(function(){
-  $(".go-button").addClass("w3-win8-lime");
-  $(".go-button").css("color", "white");
-});
+//   $(".go-button").addClass("w3-win8-lime");
+//   $(".go-button").css("color", "white");
+// });
 
 $(document).keydown(function(event) {
     if (event.keyCode == 27) {
