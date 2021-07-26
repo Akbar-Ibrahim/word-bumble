@@ -14,15 +14,15 @@
 
     <div class="w3-container w3-center w3-hide-small">
         @foreach($letters as $letter)
-        <div letter="{{ strtoupper($letter) }}" class="letter w3-padding w3-black w3-hover-amber w3-text-white w3-left"
-            style="font-size: 60px; width: 120px; color: white; cursor: pointer;"> <b>{{ strtoupper($letter) }}</b> </div>
+        <div letter="{{ strtoupper($letter) }}" class="letter w3-padding w3-hover-amber w3-left"
+            style="font-size: 60px; width: 120px; cursor: pointer;"> <b>{{ strtoupper($letter) }}</b> </div>
         @endforeach
     </div>
 
     <div class="w3-container w3-center w3-hide-large">
         @foreach($letters as $letter)
-        <div letter="{{ strtoupper($letter) }}" class="letter w3-padding w3-black w3-hover-amber w3-text-white w3-left"
-            style="font-size: 30px; width: 60px; color: white;"> <b>{{ strtoupper($letter) }}</b> </div>
+        <div letter="{{ strtoupper($letter) }}" class="letter w3-padding w3-hover-amber w3-left"
+            style="font-size: 30px; width: 60px;"> <b>{{ strtoupper($letter) }}</b> </div>
         @endforeach
     </div>
 
@@ -38,12 +38,10 @@ $(document).ready(function(){
   });
 
   $(".letter").mouseover(function(){
-    $(this).addClass("w3-black")
     $(this).css("color", "white")
 });
 
 $(".letter").mouseout(function(){
-    $(this).removeClass("w3-black")
     $(this).css("color", "black")
 });
 
