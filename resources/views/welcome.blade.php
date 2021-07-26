@@ -24,7 +24,7 @@
 
 a {
   text-decoration: none;
-  font-size: 20px;
+  
 }
 </style>
 
@@ -32,13 +32,13 @@ a {
 <body>
 
 <!-- Sidebar -->
-<nav class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding-top:150px;z-index:4" id="mySidebar">
-  <a style="font-size: 30px;" href="javascript:void(0)" onclick="w3_close()" class="w3-black w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
+<nav class="w3-sidebar w3-lime w3-animate-top w3-xxlarge" style="display:none;padding-top:150px;z-index:4" id="mySidebar">
+  <a style="font-size: 30px;" href="javascript:void(0)" onclick="w3_close()" class="w3-lime w3-text-white w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
     <i class="fa fa-remove"></i>
   </a>
-  <div class="w3-bar-block w3-center">
-    <a href="/" class="w3-bar-item w3-text-grey w3-hover-black">Home</a>
-    <a href="/" class="w3-bar-item w3-text-grey w3-hover-black">Games</a>
+  <div class="w3-bar-block w3-center" style="width: 30%;">
+    <a style="text-decoration: none;" href="/" class="w3-bar-item w3-text-white w3-hover-amber">Home</a>
+    <a style="text-decoration: none;" href="/" class="w3-bar-item w3-text-white w3-hover-amber">Games</a>
   </div>
 </nav>
 
@@ -52,7 +52,7 @@ a {
       <!-- <a href="#projects" class="w3-bar-item w3-button">Projects</a>
       <a href="#about" class="w3-bar-item w3-button">About</a>
       <a href="#contact" class="w3-bar-item w3-button">Contact</a> -->
-      <span class="w3-right" onclick="w3_open()"><i class="fas fa fa-bars"></i></span> 
+      <span style="cursor: pointer;" class="w3-right" onclick="w3_open()"><i class="fas fa fa-bars"></i></span> 
     </div>
   </div>
 </div>
