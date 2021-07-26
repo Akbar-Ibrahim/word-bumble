@@ -67,7 +67,7 @@ export default {
 
   data() {
     return {
-      total: 20,
+      total: 2,
       alphabet: JSON.parse(this.letters),
       isDone: false,
       position: 1,

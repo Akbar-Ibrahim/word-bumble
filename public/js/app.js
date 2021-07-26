@@ -3023,6 +3023,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   mounted: function mounted() {// console.log("Component mounted.");
@@ -4574,6 +4575,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["score"],
   data: function data() {
@@ -5527,7 +5529,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ["letters"],
   data: function data() {
     return {
-      total: 20,
+      total: 2,
       alphabet: JSON.parse(this.letters),
       isDone: false,
       position: 1,
@@ -6094,6 +6096,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
 //
 //
 //
@@ -45797,8 +45801,20 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
+            staticClass:
+              "w3-hide-large w3-button w3-green w3-text-white w3-hover-amber",
             staticStyle: { color: "white", width: "100%" },
+            on: { click: _vm.reload }
+          },
+          [_vm._v("Play Again")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "w3-hide-small w3-button w3-green w3-text-white w3-hover-amber",
+            staticStyle: { color: "white", width: "50%" },
             on: { click: _vm.reload }
           },
           [_vm._v("Play Again")]
@@ -46810,8 +46826,20 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
+          staticClass:
+            "w3-hide-large w3-button w3-green w3-text-white w3-hover-amber",
           staticStyle: { color: "white", width: "100%" },
+          on: { click: _vm.playAgain }
+        },
+        [_vm._v("Play Again")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "w3-hide-small w3-button w3-green w3-text-white w3-hover-amber",
+          staticStyle: { color: "white", width: "50%" },
           on: { click: _vm.playAgain }
         },
         [_vm._v("Play Again")]
@@ -47814,8 +47842,20 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
+                staticClass:
+                  "w3-hide-large w3-button w3-green w3-text-white w3-hover-amber",
                 staticStyle: { color: "white", width: "100%" },
+                on: { click: _vm.playQuiz }
+              },
+              [_vm._v("Play")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "w3-hide-small w3-button w3-green w3-text-white w3-hover-amber",
+                staticStyle: { color: "white", width: "50%" },
                 on: { click: _vm.playQuiz }
               },
               [_vm._v("Play")]
@@ -47840,8 +47880,21 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "w3-button w3-green w3-text-white w3-hover-amber",
+                      "w3-hide-large w3-button w3-green w3-text-white w3-hover-amber",
                     staticStyle: { color: "white", width: "100%" },
+                    on: { click: _vm.playQuiz }
+                  },
+                  [_vm._v("Play")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isDone == false
+              ? _c(
+                  "button",
+                  {
+                    staticClass:
+                      "w3-hide-small w3-button w3-green w3-text-white w3-hover-amber",
+                    staticStyle: { color: "white", width: "50%" },
                     on: { click: _vm.playQuiz }
                   },
                   [_vm._v("Play")]
