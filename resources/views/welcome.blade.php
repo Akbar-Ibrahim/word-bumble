@@ -36,13 +36,13 @@ a {
 <body>
 
 <!-- Sidebar -->
-<nav class="w3-sidebar w3-green w3-animate-top w3-xxlarge" style="display:none;padding-top:150px;z-index:4;color:white;" id="mySidebar">
-  <a style="font-size: 30px; color: white;" href="javascript:void(0)" onclick="w3_close()" class="w3-green w3-text-white w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
+<nav class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding-top:150px;z-index:4;color:white;" id="mySidebar">
+  <a style="font-size: 30px; color: white;" href="javascript:void(0)" onclick="w3_close()" class="w3-black w3-text-white w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
     <i class="fa fa-remove"></i>
   </a>
-  <div class="w3-bar-block w3-center" style="width: 30%;">
-    <a style="text-decoration: none; color: white;" href="/" class="w3-bar-item w3-text-white w3-hover-amber">Home</a>
-    <a style="text-decoration: none; color: white;" href="/" class="w3-bar-item w3-text-white w3-hover-amber">Games</a>
+  <div class="w3-bar-block w3-center" style="width: 30%; margin: auto;">
+    <a style="text-decoration: none; color: white;" href="/" class="w3-bar-item w3-text-grey w3-hover-black">Home</a>
+    <a style="text-decoration: none; color: white;" href="/" class="w3-bar-item w3-text-grey w3-hover-black">Games</a>
   </div>
 </nav>
 
@@ -65,13 +65,13 @@ a {
 <!-- <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
   <img class="w3-image" src="/images/abcmagnet.jpg" alt="Architecture" width="1500" height="800">
   <div class="w3-display-middle w3-margin-top w3-center">
-    <!-- <h1 class="w3-xxlarge w3-text-white w3-center"><span class="w3-padding w3-black w3-opacity-min"><b>Word Bumble</b></span> <span class="w3-hide-small w3-text-light-grey"></span></h1> -->
+     <h1 class="w3-xxlarge w3-text-white w3-center"><span class="w3-padding w3-black w3-opacity-min"><b>Word Bumble</b></span> <span class="w3-hide-small w3-text-light-grey"></span></h1> 
   </div>
 </header> -->
 
 <header class="w3-container w3-content w3-wide" style="max-width:1500px;" id="home">
   <div class="w3-middle w3-margin-top w3-center">
-    <h1 class="w3-hide-small w3-xxlarge w3-text-white w3-center"><span style="font-size: 100px;"  class="w3-padding w3-black w3-opacity-min">Word Bumble</span> <span class="w3-hide-small w3-text-light-grey"></span></h1>
+    <h1 class="w3-hide-small w3-hide-medium w3-xxlarge w3-text-white w3-center"><span style="font-size: 100px;"  class="w3-padding w3-black w3-opacity-min">Word Bumble</span> <span class="w3-hide-small w3-text-light-grey"></span></h1>
     <h1 style="margin-top:50px;" class="w3-hide-large w3-xxlarge w3-text-white w3-center"><span style="font-size: 30px;"  class="w3-padding w3-black w3-opacity-min">Word Bumble</span> <span class="w3-hide-small w3-text-light-grey"></span></h1>
   </div>
 </header>

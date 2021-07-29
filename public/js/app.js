@@ -45813,7 +45813,7 @@ var render = function() {
           "button",
           {
             staticClass:
-              "w3-hide-small w3-button w3-green w3-text-white w3-hover-amber",
+              "w3-hide-small w3-hide-medium w3-button w3-green w3-text-white w3-hover-amber",
             staticStyle: { color: "white", width: "50%" },
             on: { click: _vm.reload }
           },
@@ -46838,7 +46838,7 @@ var render = function() {
         "button",
         {
           staticClass:
-            "w3-hide-small w3-button w3-green w3-text-white w3-hover-amber",
+            "w3-hide-small w3-hide-medium w3-button w3-green w3-text-white w3-hover-amber",
           staticStyle: { color: "white", width: "50%" },
           on: { click: _vm.playAgain }
         },
@@ -47854,7 +47854,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "w3-hide-small w3-button w3-green w3-text-white w3-hover-amber",
+                  "w3-hide-small w3-hide-medium w3-button w3-green w3-text-white w3-hover-amber",
                 staticStyle: { color: "white", width: "50%" },
                 on: { click: _vm.playQuiz }
               },
@@ -47893,7 +47893,7 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "w3-hide-small w3-button w3-green w3-text-white w3-hover-amber",
+                      "w3-hide-small w3-hide-medium w3-button w3-green w3-text-white w3-hover-amber",
                     staticStyle: { color: "white", width: "50%" },
                     on: { click: _vm.playQuiz }
                   },
