@@ -84,7 +84,7 @@
             <div class="w3-container" style="margin-top: 100px;">
 
                 <div class="w3-center w3-padding w3-margin">
-                    <a href="/">
+                    <a href="/" style="font-size: 30px;">
                         Home
                     </a>
                 </div>
