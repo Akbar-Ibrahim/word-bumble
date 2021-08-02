@@ -5804,6 +5804,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["route"],
   mounted: function mounted() {
@@ -47592,13 +47594,22 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "button",
+    "div",
     {
-      staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
-      staticStyle: { width: "100%", color: "white" },
-      on: { click: _vm.play }
+      staticClass: "w3-container w3-border w3-border-white",
+      staticStyle: { "margin-bottom": "50px" }
     },
-    [_vm._v("\n    Play\n")]
+    [
+      _c(
+        "button",
+        {
+          staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
+          staticStyle: { width: "100%", color: "white" },
+          on: { click: _vm.play }
+        },
+        [_vm._v("\n        Play\n    ")]
+      )
+    ]
   )
 }
 var staticRenderFns = []
