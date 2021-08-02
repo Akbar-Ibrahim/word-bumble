@@ -46149,7 +46149,8 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "w3-right w3-green w3-hover-amber w3-text-white",
+      staticClass:
+        "w3-right w3-green w3-hover-amber w3-text-white w3-border w3-border-white",
       staticStyle: { color: "white" },
       on: { click: _vm.endGame }
     },
@@ -46912,7 +46913,7 @@ var render = function() {
                 attrs: { type: "submit" },
                 on: { click: _vm.checkBeforeSending }
               },
-              [_vm._v("\n          Go\n        ")]
+              [_vm._v("\n          GO\n        ")]
             )
           ]
         )
@@ -46929,7 +46930,8 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "w3-text-white w3-green w3-hover-amber",
+              staticClass:
+                "w3-text-white w3-green w3-hover-amber w3-border w3-border-white",
               staticStyle: { color: "white" },
               on: { click: _vm.restart }
             },

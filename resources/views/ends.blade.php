@@ -14,14 +14,14 @@
 
     <div class="w3-container w3-center w3-hide-small">
         @foreach($letters as $letter)
-        <div letter="{{ strtoupper($letter) }}" class="letter w3-padding w3-hover-amber w3-left"
+        <div letter="{{ strtoupper($letter) }}" class="letter w3-padding w3-left"
             style="font-size: 60px; width: 120px; cursor: pointer;"> <b>{{ strtoupper($letter) }}</b> </div>
         @endforeach
     </div>
 
     <div class="w3-container w3-center w3-hide-large">
         @foreach($letters as $letter)
-        <div letter="{{ strtoupper($letter) }}" class="letter w3-padding w3-hover-amber w3-left"
+        <div letter="{{ strtoupper($letter) }}" class="letter w3-padding w3-left"
             style="font-size: 30px; width: 60px;"> <b>{{ strtoupper($letter) }}</b> </div>
         @endforeach
     </div>
