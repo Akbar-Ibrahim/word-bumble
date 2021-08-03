@@ -6,6 +6,7 @@ use App\Models\CommonWord;
 use App\Models\Dictionary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class WordDefinitionController extends Controller
 {
@@ -18,8 +19,9 @@ class WordDefinitionController extends Controller
         // $response = Http::get('https://api.dictionaryapi.dev/api/v2/entries/en_US/elephant');
     }
 
-    public function getWord() {
-        return Dictionary::inRandomOrder()->first();
+    public function getWord($length) {
+        // return Dictionary::inRandomOrder()->first();
+        return DB::table('dictionaries')->whereRaw('LENGTH(word) = ' . $length)->inRandomOrder()->take(1)->get();
     }
     
     public function everyLetter(Request $request){

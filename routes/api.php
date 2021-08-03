@@ -73,7 +73,7 @@ Route::post('/random/position', 'RandomPositionController@randomPosition');
 
 //Word definition
 Route::get('/word-definition', 'WordDefinitionController@getWords');
-Route::get('/get-word', 'WordDefinitionController@getWord');
+Route::get('/get-word/{length}', 'WordDefinitionController@getWord');
 Route::post('/every-letter', 'WordDefinitionController@everyLetter');
 Route::get('/get-words/{first}/{last}', 'WordDefinitionController@getTheWords');
 

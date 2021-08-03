@@ -48,7 +48,7 @@
 
 
     <nav class="w3-sidebar w3-black w3-animate-top w3-xxlarge"
-        style="display:none;padding-top:150px;z-index:4;color:white;" id="mySidebar">
+        style="display:none;padding-top:100px;z-index:4;color:white;" id="mySidebar">
         <a href="javascript:void(0)" onclick="w3_close()"
             class="w3-button w3-black w3-text-white w3-xxlarge w3-padding w3-display-topright"
             style="padding:6px 24px;color: white;">

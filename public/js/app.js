@@ -4140,20 +4140,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: [],
   data: function data() {
     return {
       isDone: false,
       score: 0,
-      rules: "You will be shown a word, your mission is to form a word with each letter in the word before the time runs out",
+      rules: "You have 10 seconds on the clock. You will be shown 3 letter words. Form a 3 letter word with every letter in the word. Your first word must not be the word you are shown. The words you enter must be in the order of the letters in the word shown to you.",
       level: 1,
       listOfPlayerWords: [],
-      wordLength: 0,
+      playerWords: [],
+      wordLength: 3,
+      wordTotal: 0,
       letter: "",
       letterIndex: 0,
       computer: "",
-      timer: 10
+      timer: 10,
+      myTimer: null,
+      total: 10
     };
   },
   created: function created() {},
@@ -4164,27 +4181,31 @@ __webpack_require__.r(__webpack_exports__);
     fetchWord: function fetchWord() {
       var _this = this;
 
-      var url = "api/get-word";
+      var url = "api/get-word/" + this.wordLength;
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (result) {
         // console.log(result);
-        _this.computer = result.word;
+        _this.computer = result[0].word;
         _this.$refs.computerWord.textContent = _this.computer;
-        _this.wordLength = result.word.length;
-        _this.letter = result.word.charAt(0); // console.log(result);
+        _this.wordLength = result[0].word.length;
+        _this.letter = result[0].word.charAt(0); // console.log(result);
       });
     },
     startTimer: function startTimer() {
-      if (this.level > 1) {// setInterval(this.myTimer, 2000);
-      } else {
-        setInterval(this.myTimer, 1000);
-      }
+      var _this2 = this;
+
+      this.myTimer = setInterval(function () {
+        if (_this2.timer == 0) {
+          _this2.gameOver();
+        } else {
+          _this2.timer -= 1;
+        }
+      }, 1000);
     },
     playQuiz: function playQuiz() {
       this.$refs.rules.style.display = "none";
       this.$refs.gameWrapper.style.display = "block";
-      this.resetTimer();
       this.startTimer();
     },
     playAgain: function playAgain() {
@@ -4193,13 +4214,17 @@ __webpack_require__.r(__webpack_exports__);
     checkBeforeSending: function checkBeforeSending(word) {
       if (this.letterIndex > 0) {
         if (word.charAt(0) === this.letter) {
-          this.checkIfWordAlreadyExists(word);
+          if (this.wordLength == word.length) {
+            this.checkIfWordAlreadyExists(word);
+          } else {
+            this.gameOver();
+          }
         } else {
           this.gameOver();
         }
       } else {
         if (word.charAt(this.letterIndex) === this.letter) {
-          if (word === this.computer) {
+          if (word === this.computer || this.wordLength !== word.length) {
             this.gameOver();
           } else {
             this.sendWord(word);
@@ -4213,7 +4238,7 @@ __webpack_require__.r(__webpack_exports__);
       this.letter = this.computer.charAt(this.letterIndex);
     },
     sendWord: function sendWord(word) {
-      var _this2 = this;
+      var _this3 = this;
 
       var data = {
         word: word
@@ -4233,28 +4258,67 @@ __webpack_require__.r(__webpack_exports__);
           console.log(result);
 
           if (result.length > 0) {
-            _this2.listOfPlayerWords.push(word);
+            _this3.listOfPlayerWords.push(word);
 
-            _this2.score += 1;
+            _this3.playerWords.push(word); // this.score += 1;
+            // this.resetTimer();
 
-            _this2.resetTimer();
 
-            if (_this2.listOfPlayerWords.length == _this2.wordLength) {
+            if (_this3.playerWords.length == _this3.wordLength) {
               // this.listOfPlayerWords = [];
-              _this2.letter = "";
-              _this2.letterIndex = 0;
+              _this3.wordTotal += 1;
+              _this3.playerWords = [];
+              _this3.letter = "";
+              _this3.letterIndex = 0;
 
-              _this2.resetTimer();
+              _this3.resetTimer();
 
-              _this2.fetchWord();
+              if (_this3.wordTotal == _this3.total) {
+                _this3.stopTimer();
+
+                _this3.endLevel();
+
+                _this3.fetchWord();
+              } else {
+                _this3.fetchWord();
+              }
             } else {// this.getComputerWords(result);
             }
           } else {
-            _this2.gameOver();
+            _this3.gameOver();
           }
         });
       } // this.$refs.word.value = "";
 
+    },
+    endLevel: function endLevel() {
+      this.wordTotal = 0;
+      this.listOfPlayerWords = [];
+      this.playerWords = [];
+      this.wordLength += 1;
+      this.level += 1;
+
+      if (this.level == 2) {
+        this.timer = 20;
+      } else if (this.level == 3) {
+        this.timer = 30;
+      } else if (this.level == 4) {
+        this.timer = 40;
+      } else if (this.level == 5) {
+        this.timer = 50;
+      } else if (this.level == 6) {
+        this.timer = 60;
+      }
+
+      if (this.level == 4) {
+        this.$refs.congrats.style.display = "block";
+        this.$refs.gameWrapper.style.display = "none";
+      } else {
+        this.$refs.rules.style.display = "block";
+        this.$refs.gameWrapper.style.display = "none";
+      }
+
+      this.rules = "You have " + this.timer + " seconds on the clock. You will be shown " + this.wordLength + "  letter words. Form a " + this.wordLength + " letter word with every letter in the word. Your first word must not be the word you are shown. The words you enter must be in the order of the letters in the word shown to you.";
     },
     checkIfWordAlreadyExists: function checkIfWordAlreadyExists(word) {
       var check = 0;
@@ -4273,16 +4337,42 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    myTimer: function myTimer() {
-      if (this.timer == 0) {
-        this.gameOver();
-      } else {
-        this.timer -= 1;
-      }
+    stopTimer: function stopTimer() {
+      clearInterval(this.myTimer);
+      this.timer = 10;
     },
     resetTimer: function resetTimer() {
       clearInterval(this.myTimer);
-      this.timer = 10;
+
+      switch (this.level) {
+        case 1:
+          this.timer = 10;
+          break;
+
+        case 2:
+          this.timer = 20;
+          break;
+
+        case 3:
+          this.timer = 30;
+          break;
+
+        case 4:
+          this.timer = 40;
+          break;
+
+        case 5:
+          this.timer = 50;
+          break;
+
+        case 6:
+          this.timer = 60;
+          break;
+
+        default:
+      }
+
+      this.startTimer();
     },
     gameOver: function gameOver() {
       this.$refs.playAgain.style.display = "block";
@@ -46440,6 +46530,13 @@ var render = function() {
   return _c("div", {}, [
     _c(
       "div",
+      { ref: "congrats", staticStyle: { display: "none" } },
+      [_c("congrats")],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
       { ref: "rules" },
       [
         _c("rules", {
@@ -46475,9 +46572,9 @@ var render = function() {
               staticStyle: { "font-size": "21px" }
             },
             [
-              _vm._v("\n        00:"),
+              _vm._v("\n                00:"),
               _vm.timer < 10 ? _c("span", [_vm._v("0")]) : _vm._e(),
-              _vm._v(_vm._s(_vm.timer) + "\n      ")
+              _vm._v(_vm._s(_vm.timer) + "\n            ")
             ]
           ),
           _vm._v(" "),
@@ -46488,7 +46585,11 @@ var render = function() {
               staticClass: "w3-padding",
               staticStyle: { "font-size": "21px" }
             },
-            [_vm._v("\n        " + _vm._s(_vm.score) + "/100\n      ")]
+            [
+              _vm._v(
+                "\n                " + _vm._s(_vm.wordTotal) + "\n            "
+              )
+            ]
           )
         ]),
         _vm._v(" "),
@@ -46514,7 +46615,11 @@ var render = function() {
                     staticClass: "w3-center",
                     staticStyle: { "font-size": "21px" }
                   },
-                  [_vm._v("\n              Let's go!\n            ")]
+                  [
+                    _vm._v(
+                      "\n                            Let's go!\n                        "
+                    )
+                  ]
                 )
               ]),
               _vm._v(" "),
@@ -47597,15 +47702,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "w3-container w3-border w3-border-white",
-      staticStyle: { "margin-bottom": "50px" }
-    },
+    { staticClass: "w3-container", staticStyle: { "margin-bottom": "50px" } },
     [
       _c(
         "button",
         {
-          staticClass: "w3-button w3-green w3-text-white w3-hover-amber",
+          staticClass:
+            "w3-button w3-green w3-text-white w3-hover-amber w3-border w3-border-white",
           staticStyle: { width: "100%", color: "white" },
           on: { click: _vm.play }
         },
