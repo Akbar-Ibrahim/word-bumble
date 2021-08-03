@@ -4310,7 +4310,7 @@ __webpack_require__.r(__webpack_exports__);
         this.timer = 60;
       }
 
-      if (this.level == 4) {
+      if (this.level == 7) {
         this.$refs.congrats.style.display = "block";
         this.$refs.gameWrapper.style.display = "none";
       } else {
